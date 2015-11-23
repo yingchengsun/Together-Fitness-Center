@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+
+td {
+	text-align: center;
+}
+
+hr {
+	width: 90%;
+}
+
+body {
+	background-image: url(Pictures/newbackground.png);
+}

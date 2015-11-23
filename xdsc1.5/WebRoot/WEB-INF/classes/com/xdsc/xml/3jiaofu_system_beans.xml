@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<!-- <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation"
+			value="classpath:hibernate.cfg.xml">
+		</property>
+	</bean> -->
+
+	<!-- ********************************事务管理********************************-->
+	<!-- <bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="find*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="bussinessService"
+			expression="execution(public * com.xdsc.service.jiaofu.*.*(..))" />
+		<aop:advisor pointcut-ref="bussinessService"
+			advice-ref="txAdvice" />
+	</aop:config> -->
+
+    <!-- ********************************配置DAO********************************-->
+    <!-- 配置学生作业管理DAO -->
+    <bean id="StudentHomeworkManageDAO" class="com.xdsc.dao.jiaofu.impl.StudentHomeworkManageDAOImpl">
+        <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+    </bean>
+    
+    <!-- 配置助教作业管理DAO -->
+    <bean id="AssistHomeworkManageDAO" class="com.xdsc.dao.jiaofu.impl.AssistHomeworkManageDAOImpl">
+        <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+    </bean>
+    
+    <!-- 配置教师作业管理DAO -->
+    <bean id="TeacherHomeworkManageDAO" class="com.xdsc.dao.jiaofu.impl.TeacherHomeworkManageDAOImpl">
+        <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+    </bean>
+    
+    <!-- 配置学生课程管理DAO -->
+    <bean id="StudentCourseManageDAO" class="com.xdsc.dao.jiaofu.impl.StudentCourseManageDAOImpl">
+        <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+    </bean>
+    
+    <!-- 配置助教课程管理DAO -->
+    <bean id="AssistCourseManageDAO" class="com.xdsc.dao.jiaofu.impl.AssistCourseManageDAOImpl">
+        <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+    </bean>
+    
+    <!-- 配置助教资源管理DAO -->
+    <bean id="AssistResourceManageDAO" class="com.xdsc.dao.jiaofu.impl.AssistResourceManageDAOImpl">
+        <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+    </bean>
+    
+    <!-- 配置学生成绩管理DAO -->
+    <bean id="AdminStudentScoreDAO" class="com.xdsc.dao.jiaofu.impl.AdminStudentScoreDAOImpl">
+        <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+    </bean>
+    
+    <!-- 配置学生资源管理DAO -->
+    <bean id="StudentResourceManageDAO" class="com.xdsc.dao.jiaofu.impl.StudentResourceManageDAOImpl">
+        <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+    </bean>
+    
+    <!-- 配置助教教学管理DAO -->
+    <bean id="AssistTeachingManageDAO" class="com.xdsc.dao.jiaofu.impl.AssistTeachingManageDAOImpl">
+        <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+    </bean>
+    
+    <!-- 配置学生教学管理DAO -->
+    <bean id="StudentTeachingManageDAO" class="com.xdsc.dao.jiaofu.impl.StudentTeachingManageDAOImpl">
+        <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+    </bean>
+    
+    <!-- 配置管理员资源管理DAO -->
+    <bean id="AdminResourcemanageDAO" class="com.xdsc.dao.jiaofu.impl.AdminResourceManageDAOImpl">
+        <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+    </bean>
+    
+    <!-- 配置教师资源管理DAO -->
+    <bean id="TeacherResourceManageDAO" class="com.xdsc.dao.jiaofu.impl.TeacherResourceManageDAOImpl">
+        <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+    </bean>
+    
+    <!-- 配置教师课程管理DAO -->
+    <bean id="TeacherCourseManageDAO" class="com.xdsc.dao.jiaofu.impl.TeacherCourseManageDAOImpl">
+        <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+    </bean>
+    
+    <!-- 配置教师课程助教管理DAO -->
+    <bean id="TeacherCourseAssistantDAO" class="com.xdsc.dao.jiaofu.impl.TeacherCourseAssistantDAOImpl">
+        <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+    </bean>
+    
+    <!-- 配置教师自我安排DAO -->
+	<bean id="OwnArrangementDAO" class="com.xdsc.dao.jiaofu.impl.OwnArrangementDAOImpl">
+	    <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置管理员基本信息管理DAO -->
+	<bean id="BasicInfoManageDAO" class="com.xdsc.dao.jiaofu.impl.BasicInfoManageDAOImpl">
+	    <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置管理员对应配置管理DAO -->
+	<bean id="CorrespondingDeployDAO" class="com.xdsc.dao.jiaofu.impl.CorrespondingDeployDAOImpl">
+	    <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置管理员课程助教管理DAO -->
+	<bean id="AdminCourseAssitantDAO" class="com.xdsc.dao.jiaofu.impl.AdminCourseAssistantDAOImpl">
+	    <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+	</bean>
+	
+	<!-- ********************************配置Service********************************-->
+	<!-- 配置学生作业管理Service -->
+	<bean id="StudentHomeworkManageManager" class="com.xdsc.service.jiaofu.impl.StudentHomeworkManageManagerImpl">
+	    <property name="studentHomeworkManageDAO">
+	       <ref bean="StudentHomeworkManageDAO"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置助教作业管理Service -->
+	<bean id="AssistHomeworkManageManager" class="com.xdsc.service.jiaofu.impl.AssistHomeworkManageManagerImpl">
+	    <property name="assistHomeworkManageDAO">
+	       <ref bean="AssistHomeworkManageDAO"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置教师作业管理Service -->
+	<bean id="TeacherHomeworkManageManager" class="com.xdsc.service.jiaofu.impl.TeacherHomeworkManageManagerImpl">
+	    <property name="teacherHomeworkManageDAO">
+	       <ref bean="TeacherHomeworkManageDAO"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置学生课程管理Service -->
+	<bean id="StudentCourseManager" class="com.xdsc.service.jiaofu.impl.StudentCourseManageManagerImpl">
+	    <property name="studentCourseManageDAO">
+	       <ref bean="StudentCourseManageDAO"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置助教课程管理Service -->
+	<bean id="AssistCourseManageManager" class="com.xdsc.service.jiaofu.impl.AssistCourseManageManagerImpl">
+	    <property name="assistCourseManageDAO">
+	       <ref bean="AssistCourseManageDAO"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置助教资源管理Service -->
+	<bean id="AssistResourceManageManager" class="com.xdsc.service.jiaofu.impl.AssistResourceManageManagerImpl">
+	    <property name="assistResourceManageDAO">
+	       <ref bean="AssistResourceManageDAO"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置管理员学生成绩管理Service -->
+	<bean id="AdminStudentScoreManager" class="com.xdsc.service.jiaofu.impl.AdminStudentScoreManagerImpl">
+	    <property name="adminStudentScoreDAO">
+	       <ref bean="AdminStudentScoreDAO"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置学生资源管理Service -->
+	<bean id="StudentResourceManager" class="com.xdsc.service.jiaofu.impl.StudentResourceManageManagerImpl">
+	    <property name="studentResourceManageDAO">
+	       <ref bean="StudentResourceManageDAO"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置助教教学管理Service -->
+	<bean id="AssistTeachingManageManager" class="com.xdsc.service.jiaofu.impl.AssistTeachingManageManagerImpl">
+	    <property name="assistTeachingManageDAO">
+	        <ref bean="AssistTeachingManageDAO"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置学生教学管理Service -->
+	<bean id="StudentTeachingManageManager" class="com.xdsc.service.jiaofu.impl.StudentTeachingManageManagerImpl">
+	    <property name="studentTeachingManageDAO">
+	       <ref bean="StudentTeachingManageDAO"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置管理员资源管理Service -->
+	<bean id="AdminResourceManageManager" class="com.xdsc.service.jiaofu.impl.AdminResourceManageManagerImpl">
+	    <property name="adminResourceManageDAO">
+	       <ref bean="AdminResourcemanageDAO"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置教师资源管理Service -->
+	<bean id="TeacherResourceManageManager" class="com.xdsc.service.jiaofu.impl.TeacherResourceManageManagerImpl">
+	    <property name="teacherResourceManageDAO">
+	       <ref bean="TeacherResourceManageDAO"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置教师课程管理Service -->
+	<bean id="TeacherCourseManageManager" class="com.xdsc.service.jiaofu.impl.TeacherCourseManageManagerImpl">
+	    <property name="teacherCourseManageDAO">
+	       <ref bean="TeacherCourseManageDAO"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置教师课程助教管理Service -->
+	<bean id="TeacherCourseAssistantManager" class="com.xdsc.service.jiaofu.impl.TeacherCourseAssistantManagerImpl">
+	    <property name="teacherCourseAssistantDAO">
+	       <ref bean="TeacherCourseAssistantDAO"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置教师自我安排Service -->
+	<bean id="OwnArrangementMannager" class="com.xdsc.service.jiaofu.impl.OwnArrangementManagerImpl">
+	    <property name="ownArrangementDAO">
+	       <ref bean="OwnArrangementDAO"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置管理员基本信息管理Service -->
+	<bean id="BasicInfoManageManager" class="com.xdsc.service.jiaofu.impl.BasicInfoManageManagerImpl">
+	    <property name="basicInfoManageDAO">
+	       <ref bean="BasicInfoManageDAO"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置管理员对应配置Service -->
+	<bean id="CorrespondingDeployManager" class="com.xdsc.service.jiaofu.impl.CorrespondingDeployManagerImpl">
+        <property name="correspondingDeployDAO">
+           <ref bean="CorrespondingDeployDAO"/>
+        </property>	
+	</bean>
+	
+	<!-- 配置管理员课程助教管理Service -->
+	<bean id="AdminCourseAssistantManager" class="com.xdsc.service.jiaofu.impl.AdminCourseAssistantManagerImpl">
+	    <property name="adminCourseAssistantDAO">
+	       <ref bean="AdminCourseAssitantDAO"/>
+	    </property>
+	</bean>
+	
+	<!-- ********************************配置Action********************************-->
+	<!-- 配置学生作业管理Action -->
+	<bean id="StudentHomeworkManageAction" class="com.xdsc.action.jiaofu.StudentHomeworkManageAction">
+	    <property name="studentHomeworkManageManager">
+	       <ref bean="StudentHomeworkManageManager"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置助教作业管理Action -->
+	<bean id="AssistHomeworkManageAction" class="com.xdsc.action.jiaofu.AssistHomeworkManageAction">
+	    <property name="assistHomeworkManageManager">
+	       <ref bean="AssistHomeworkManageManager"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置教师作业管理Action -->
+	<bean id="TeacherHomeworkManageAction" class="com.xdsc.action.jiaofu.TeacherHomeworkManageAction">
+	    <property name="teacherHomeworkManageManager">
+	       <ref bean="TeacherHomeworkManageManager"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置学生课程管理Action -->
+	<bean id="StudentCourseManageAction" class="com.xdsc.action.jiaofu.StudentCourseManageAction">
+	    <property name="studentCourseManageManager">
+	       <ref bean="StudentCourseManager"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置助教课程管理Action -->
+	<bean id="AssistCourseManageAction" class="com.xdsc.action.jiaofu.AssistCourseManageAction">
+	    <property name="assistCourseManageManager">
+	       <ref bean="AssistCourseManageManager"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置助教资源管理Action -->
+	<bean id="AssistResourceManageAction" class="com.xdsc.action.jiaofu.AssistResourceManageAction">
+	    <property name="assistResourceManageManager">
+	       <ref bean="AssistResourceManageManager"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置管理员学生成绩Action -->
+	<bean id="AdminStudentScoreAction" class="com.xdsc.action.jiaofu.AdminStudentScoreAction">
+	    <property name="adminStudentScoreManager">
+	       <ref bean="AdminStudentScoreManager"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置学生是资源管理Action -->
+	<bean id="StudentResourceManageAction" class="com.xdsc.action.jiaofu.StudentResourceManageAction">
+	    <property name="studentResourceManageManager">
+	       <ref bean="StudentResourceManager"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置助教教学管理Action -->
+	<bean id="AssistTeachingManageAction" class="com.xdsc.action.jiaofu.AssistTeachingmanageAction">
+	    <property name="assistTeachingManageManager">
+	       <ref bean="AssistTeachingManageManager"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置学生教学管理Action -->
+	<bean id="StudentTeachingManageAction" class="com.xdsc.action.jiaofu.StudentTeachingManageAction">
+	    <property name="studentTeachingManageManager">
+	       <ref bean="StudentTeachingManageManager"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置管理员资源管理Action -->
+	<bean id="AdminResourceManageAction" class="com.xdsc.action.jiaofu.AdminResourceManageAction">
+	    <property name="adminResourceManageManager">
+	        <ref bean="AdminResourceManageManager"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置教师资源管理Action -->
+	<bean id="TeacherResourceManageAction" class="com.xdsc.action.jiaofu.TeacherResourceManageAction">
+	    <property name="teacherResourceManageManager">
+	       <ref bean="TeacherResourceManageManager"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置教师课程管理Action -->
+    <bean id="TeacherCourseManageAction" class="com.xdsc.action.jiaofu.TeacherCourseManageAction">
+        <property name="teacherCourseManageManager">
+           <ref bean="TeacherCourseManageManager"/>
+        </property>
+    </bean>	
+	
+	<!-- 配置教师课程助教管理Action -->
+	<bean id="TeacherCourseAssistantAction" class="com.xdsc.action.jiaofu.TeacherCourseAssistantAction">
+	    <property name="teacherCourseAssistantManager">
+	       <ref bean="TeacherCourseAssistantManager"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置教师教学管理Action -->
+	<bean id="TeachingManagerAction" class="com.xdsc.action.jiaofu.TeachingManagerAction">
+	    <property name="ownArrangementManager">
+	       <ref bean="OwnArrangementMannager"/>
+	    </property>
+	</bean>
+	
+	<!-- 配置管理员基本信息管理Action -->
+	<bean id="BasicInfoManageAction" class="com.xdsc.action.jiaofu.BasicInfoManageAction">
+	   <property name="basicInfoManageManager">
+           <ref bean="BasicInfoManageManager"/>
+	   </property>
+	</bean>
+	
+	<!-- 配置管理员对应配置Action -->
+	<bean id="CorrespondingDeployAction" class="com.xdsc.action.jiaofu.CorrespondingDeployAction">
+	   <property name="correspondingDeployManager">
+	       <ref bean="CorrespondingDeployManager"/>
+	   </property>
+	</bean>
+	
+	<!-- 配置管理员课程助教管理Action -->
+	<bean id="AdminCourseAssistantAction" class="com.xdsc.action.jiaofu.AdminCourseAssistantAction">
+	   <property name="adminCourseAssistantManager">
+	       <ref bean="AdminCourseAssistantManager"/>
+	   </property>
+	</bean>
+	
+</beans>

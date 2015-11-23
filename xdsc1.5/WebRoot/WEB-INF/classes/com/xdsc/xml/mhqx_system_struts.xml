@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="mhqx" extends="struts-default" namespace="/">
+		<!--用户资料显示 -->
+		<action name="showPIAction" class="MhqxshowPIAction">
+			<result name="showPersonalInfo">/1_mhqx/selfPage/selfPage.jsp</result>
+			<result name="editPersonalInfo">/1_mhqx/selfPage/editPage.jsp</result>
+	 	</action> 	
+	 	<!--修改密码 -->
+	 	<action name="ChangePassword" class="MhqxChangePasswordAction" >
+			<result name="success">selfPage.jsp</result>
+			<result name="error">/1_mhqx/selfPage/changePassword.jsp</result>
+	 	</action>
+	 	<!--用户资料修改 
+	 管理员 0，教师、导师、辅导员 1，助教4，家长 5，企业6，本科生7，研究生8 -->
+	 	<action name="EditInfo1Action" class="MhqxEditTeacherInfoAction"
+	 		method="updateTeacher">
+	 		<result type="redirect">
+	 			showPIAction!showPersonalInfo.action
+	 		</result>
+	 		<result  name="error">/1_mhqx/selfPage/editPage.jsp</result>
+	 	</action>
+	 	<action name="EditInfo4Action" class="MhqxEditAssitInfoAction"
+	 		method="updateAssit">
+	 		<result type="redirect">
+	 			showPIAction!showPersonalInfo.action
+	 		</result>
+	 		<result  name="error">/1_mhqx/selfPage/editPage.jsp</result>
+	 	</action>
+	 	<action name="EditInfo6Action" class="MhqxEditCompanyInfoAction"
+	 		method="updateCompany">
+	 		<result type="redirect">
+	 			showPIAction!showPersonalInfo.action
+	 		</result>
+	 		<result  name="error">/1_mhqx/selfPage/editPage.jsp</result>
+	 	</action>
+	 	<action name="EditInfo0Action" class="MhqxEditAdminInfoAction"
+	 		method="updateAdmin">
+	 		<result type="redirect">
+	 			showPIAction!showPersonalInfo.action
+	 		</result>
+	 		<result  name="error">/1_mhqx/selfPage/editPage.jsp</result>
+	 	</action>
+	 	<action name="EditInfo7Action" class="MhqxEditStudentInfoAction" method="updateStudent" >
+			<result  type="redirect">showPIAction!showPersonalInfo.action</result>
+			<result  name="error">/1_mhqx/selfPage/editPage.jsp</result>
+	 	</action>
+	 	<action name="EditInfo8Action" class="MhqxEditStudentInfoAction" method="updateStudent" >
+			<result  type="redirect">showPIAction!showPersonalInfo.action</result>
+			<result  name="error">/1_mhqx/selfPage/editPage.jsp</result>
+	 	</action>
+	 	
+	 	<action name="loginOutAction" class="MhqxLoginOutAction" method="loginOut" >
+			<result>/index.jsp</result>
+	 	</action>
+	 	<action name="ChangeCssAction" class="ChangeCssAction" method="insertOrUpdateCss" >
+			<result name="insertOrUpdateCss" type="redirect">CheckLoginAction!relogin.action</result>
+	 	</action>
+	 	<action name="HTMenu" class="MenuAction"  >
+		   <result name="searchMenu">/1_mhqx/admin/Menu/HTMenuList.jsp</result>
+		   <result name="menuManager">/1_mhqx/admin/Menu/MenuManager.jsp</result>
+		   <result name="swichMenu" type="redirect">HTMenu!menuManager.action</result>
+		   <result name="changeName" type="redirect">HTMenu!menuManager.action</result>
+		   <result name="preaddMenu" >/1_mhqx/admin/Menu/AddSubMenu.jsp</result>
+		   <result name="preaddError" type="redirect">HTMenu!menuManager.action</result>
+		   <result name="addMenu" type="redirect">HTMenu!menuManager.action</result>
+		   <result name="predelete" >/1_mhqx/admin/Menu/DeleteSubMenu.jsp</result>
+		   <result name="deleteSubMenu" type="redirect">HTMenu!predelete.action</result>  
+		   <result name="subMenuList" >/1_mhqx/admin/Menu/SubMenuList.jsp</result>
+		   <result name="tosublist" type="redirect" >HTMenu!subMenuList.action</result>
+	 	</action>
+	 
+	</package>
+</struts>

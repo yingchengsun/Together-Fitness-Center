@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+<!-- 
+    <package name="jiaofu_system" extends="struts-default" namespace="/">
+        <action name="*-*" class="com.xdsc.action.jiaofu.{1}Action" method="{2}">
+            <result>/3_jiaofu_system/jf_system.jsp</result>
+            <result name="input">/login.jsp</result>
+        </action>
+    </package>
+    teacher/OwnArrangeInfo!findAllInfo.action
+ -->
+    <package name="jiaofu_student" extends="struts-default" namespace="/student">
+        <!-- 学生的教学管理模块 -->
+        <action name="Teachingmanage" class="StudentTeachingManageAction">
+            <result name="findAllInfo">/3_jiaofu_system/student/teachingManage/OwnArrangement.jsp</result>
+            <result name="findAllInfoDetail">/3_jiaofu_system/student/teachingManage/OwnArrangementDetail.jsp</result>
+            <result name="deleteInfoByID" type="redirect">student/Teachingmanage!findAllInfo.action</result>
+            <result name="addInfo" type="redirect">student/Teachingmanage!findAllInfo.action</result>
+        </action>
+        
+        <!-- 学生的资源管理模块 -->
+        <action name="ResourceManage" class="StudentResourceManageAction">
+            <param name="savePath">files/jfpt_system/Resource/CourseAbout</param>
+            <result name="findResourceInfo">/3_jiaofu_system/student/resourceManage/SeeResource.jsp</result>
+            <result name="downFileSuccess" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">filename=${fileName}</param>
+				<param name="inputName">downFile</param>
+				<param name="bufferSize">4096</param>
+			</result>
+        </action>
+        
+        <!-- 学生的课程管理模块 -->
+        <action name="CourseManage" class="StudentCourseManageAction">
+           <result name="findCourseInfo">/3_jiaofu_system/student/courseManage/SeeCourse.jsp</result>
+           <result name="questionReplyInfo">/3_jiaofu_system/student/courseManage/CourseProblem.jsp</result>
+           <result name="findProblemDetailByID">/3_jiaofu_system/student/courseManage/CourseProblemDetail.jsp</result>
+           <result name="addReplyInfoByID" type="redirect">student/CourseManage!selectQuestionReplyInfo.action</result>
+           <result name="selectQuestionReplyInfo">/3_jiaofu_system/student/courseManage/CourseProblem2.jsp</result>
+           <result name="addAskInfo" type="redirect">student/CourseManage!selectQuestionReplyInfo.action</result>
+           <result name="addInfoBeforeAsk">/3_jiaofu_system/student/courseManage/CourseProblemAdd.jsp</result>
+           <result name="findCourseNoticeInfo">/3_jiaofu_system/student/courseManage/CourseNotice.jsp</result>
+           <result name="deleteNoticeByID" type="redirect">student/CourseManage!findCourseNoticeInfo.action</result>
+           <result name="findNoticeDetailByID">/3_jiaofu_system/student/courseManage/CourseNoticeDetail.jsp</result>
+           <result name="downFileSuccess" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">filename=${fileName}</param>
+				<param name="inputName">downFile</param>
+				<param name="bufferSize">4096</param>
+			</result>
+       </action>
+       
+       <!-- 学生的作业管理模块 -->
+       <action name="HomeworkManage" class="StudentHomeworkManageAction">
+           <!-- ***************************布置作业信息*************************** -->
+            <result name="findHomeNoticeInfo">/3_jiaofu_system/student/homeworkManage/HomeNotice.jsp</result>
+            <result name="findHomeDetailByID">/3_jiaofu_system/student/homeworkManage/HomeNoticeDetail.jsp</result>
+            <result name="deleteHomeByID" type="redirect">student/HomeworkManage!findHomeNoticeInfo.action</result>
+            <result name="downFileSuccess" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">filename=${fileName}</param>
+				<param name="inputName">downFile</param>
+				<param name="bufferSize">4096</param>
+			</result>
+			
+			<result name="downFileSuccess1" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">filename=${fileName}</param>
+				<param name="inputName">downFile1</param>
+				<param name="bufferSize">4096</param>
+			</result>
+			
+			<result name="findHomeUploadInfo">/3_jiaofu_system/student/homeworkManage/HomeUpload.jsp</result>
+			<result name="findHomeworkDetailByID">/3_jiaofu_system/student/homeworkManage/HomeUploadDetail.jsp</result>
+			<result name="deleteHomeworkInfoByID" type="redirect">student/HomeworkManage!findHomeUploadInfo.action</result>
+			<result name="addHomeworkInfoBefore">/3_jiaofu_system/student/homeworkManage/HomeUploadAdd.jsp</result>
+			<result name="addHomeworkInfo" type="redirect">student/HomeworkManage!findHomeUploadInfo.action</result>
+			<param name="savePath">files/jfpt_system/Resource/HomeUpload</param>
+       </action>
+    </package>
+    
+    <package name="jfreechartassist" extends="struts-default" namespace="/assistant">
+        <result-types>
+			<result-type name="chart" class="org.apache.struts2.dispatcher.ChartResult">
+			</result-type>
+		</result-types>
+		<!-- 助教的作业管理模块中成绩分布配置 -->
+		<action name="webChart" class="AssistHomeworkManageAction" method="webChart1">
+			<result type="chart">
+				<param name="width">700</param>
+				<param name="height">400</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="jfreechartteacher" extends="struts-default" namespace="/teachers">
+        <result-types>
+			<result-type name="chart" class="org.apache.struts2.dispatcher.ChartResult">
+			</result-type>
+		</result-types>
+		<!-- 教师的作业管理模块中成绩分布配置 -->
+		<action name="webChart" class="TeacherHomeworkManageAction" method="webChart1">
+			<result type="chart">
+				<param name="width">700</param>
+				<param name="height">400</param>
+			</result>
+		</action>
+	</package>
+    
+    <package name="jiaofu_assist" extends="struts-default" namespace="/assist">
+        <!-- 助教的课程管理模块 -->
+        <action name="CourseManage" class="AssistCourseManageAction">
+           <result name="seeCourseDetail">/3_jiaofu_system/assistant/courseManage/SeeCourseSee.jsp</result>
+           <param name="savePath">files/jfpt_system/Resource/CourseNotice</param>
+           <result name="findCourseInfo">/3_jiaofu_system/assistant/courseManage/SeeCourse.jsp</result>
+           <result name="questionReplyInfo">/3_jiaofu_system/assistant/courseManage/CourseProblem.jsp</result>
+           <result name="selectQuestionReplyInfo">/3_jiaofu_system/assistant/courseManage/CourseProblem2.jsp</result>
+           <result name="findProblemDetailByID">/3_jiaofu_system/assistant/courseManage/CourseProblemDetail.jsp</result>
+           <result name="addReplyInfoByID" type="redirect">assist/CourseManage!selectQuestionReplyInfo.action</result>
+           <result name="deleteAskQuestionByID" type="redirect">assist/CourseManage!selectQuestionReplyInfo.action</result>
+           <result name="findCourseNoticeInfo">/3_jiaofu_system/assistant/courseManage/CourseNotice.jsp</result>
+            <result name="deleteNoticeByID" type="redirect">assist/CourseManage!findCourseNoticeInfo.action</result>
+            <result name="findNoticeDetailByID">/3_jiaofu_system/assistant/courseManage/CourseNoticeDetail.jsp</result>
+    		<result name="downFileSuccess" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">filename=${fileName}</param>
+				<param name="inputName">downFile</param>
+				<param name="bufferSize">4096</param>
+			</result>
+			<result name="AddNewNoticeBefore">/3_jiaofu_system/assistant/courseManage/CourseNoticeBeforeAdd.jsp</result>
+			<result name="AddNewNoticeBefore2">/3_jiaofu_system/assistant/courseManage/CourseNoticeAdd.jsp</result>
+			<result name="addNotice" type="redirect">assist/CourseManage!findCourseNoticeInfo.action</result>
+        </action>
+    
+        <!-- 助教的教学管理模块 -->
+        <action name="Teachingmanage" class="AssistTeachingManageAction">
+            <result name="findAllInfo">/3_jiaofu_system/assistant/teachingManage/OwnArrangement.jsp</result>
+            <result name="findAllInfoDetail">/3_jiaofu_system/assistant/teachingManage/OwnArrangementDetail.jsp</result>
+            <result name="deleteInfoByID" type="redirect">assist/Teachingmanage!findAllInfo.action</result>
+            <result name="addInfo" type="redirect">assist/Teachingmanage!findAllInfo.action</result>
+        </action>
+        
+        <!-- 助教的资源管理模块 -->
+        <action name="ResourceManage" class="AssistResourceManageAction">
+            <result name="findResourceInfo">/3_jiaofu_system/assistant/resourceManage/SeeResource.jsp</result>
+            <result name="downFileSuccess" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">filename=${fileName}</param>
+				<param name="inputName">downFile</param>
+				<param name="bufferSize">4096</param>
+			</result>
+        </action>
+        
+        <!-- 助教的作业管理模块 -->
+        <action name="HomeworkManage" class="AssistHomeworkManageAction">
+            <result name="webChart">/3_jiaofu_system/assistant/homeworkManage/webChart.jsp</result>
+            <result name="webChartBefore">/3_jiaofu_system/assistant/homeworkManage/UsualScoreBeforeWebchart.jsp</result>
+            <result name="findBeforeScoreInfo">/3_jiaofu_system/assistant/homeworkManage/UsualScore.jsp</result>
+            <result name="findUsualSelectInfo">/3_jiaofu_system/assistant/homeworkManage/UsualScore2.jsp</result>
+            <result name="deleteUsualscoreInfoByID" type="redirect">assist/HomeworkManage!findUsualSelectInfo.action</result>
+            <result name="addUsualscoreInfo">/3_jiaofu_system/assistant/homeworkManage/UsualScoreAdd.jsp</result>
+            <result name="addNewUsualScoreInfo" type="redirect">assist/HomeworkManage!findUsualSelectInfo.action</result>
+            <result name="updateStudentsScore" type="redirect">assist/HomeworkManage!findUsualSelectInfo.action</result>
+            
+            <!-- ***************************布置作业信息*************************** -->
+            <param name="savePath">files/jfpt_system/Resource/HomeNotice</param>
+            <result name="findHomeNoticeInfo">/3_jiaofu_system/assistant/homeworkManage/HomeNotice.jsp</result>
+            <result name="findHomeDetailByID">/3_jiaofu_system/assistant/homeworkManage/HomeNoticeDetail.jsp</result>
+            <result name="deleteHomeByID" type="redirect">assist/HomeworkManage!findHomeNoticeInfo.action</result>
+            <result name="downFileSuccess" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">filename=${fileName}</param>
+				<param name="inputName">downFile</param>
+				<param name="bufferSize">4096</param>
+			</result>
+			
+			<result name="AddNewHomenoticeBefore">/3_jiaofu_system/assistant/homeworkManage/HomeNoticeBeforeAdd.jsp</result>
+			<result name="AddNewHomenoticeBefore2">/3_jiaofu_system/assistant/homeworkManage/HomeNoticeAdd.jsp</result>
+			<result name="addHome" type="redirect">assist/HomeworkManage!findHomeNoticeInfo.action</result>
+			
+			<!-- ***************************批改作业信息*************************** -->
+			<result name="findHomeUploadInfo">/3_jiaofu_system/assistant/homeworkManage/HomeUpload.jsp</result>
+			<result name="findSelectHomeworkInfo">/3_jiaofu_system/assistant/homeworkManage/HomeUpload2.jsp</result>
+			<result name="findHomeworkDetailByID">/3_jiaofu_system/assistant/homeworkManage/HomeUploadDetail.jsp</result>
+				<result name="downFileSuccess1" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">filename=${fileName}</param>
+				<param name="inputName">downFile1</param>
+				<param name="bufferSize">4096</param>
+			</result>
+			<result name="updateHomeworkInfoByID" type="redirect">teacher/HomeworkManage!findSelectHomeworkInfo.action</result>
+        </action>
+    </package>
+ 
+    <package name="jiaofu_teacher" extends="struts-default" namespace="/teacher">
+        <!-- 教师的作业管理模块 -->
+        <action name="HomeworkManage" class="TeacherHomeworkManageAction">
+            <result name="webChart">/3_jiaofu_system/teacher/homeworkManage/webChart.jsp</result>
+            <result name="webChartBefore">/3_jiaofu_system/teacher/homeworkManage/UsualScoreBeforeWebchart.jsp</result>
+            <result name="findBeforeScoreInfo">/3_jiaofu_system/teacher/homeworkManage/UsualScore.jsp</result>
+            <result name="findUsualSelectInfo">/3_jiaofu_system/teacher/homeworkManage/UsualScore2.jsp</result>
+            <result name="deleteUsualscoreInfoByID" type="redirect">teacher/HomeworkManage!findUsualSelectInfo.action</result>
+            <result name="addUsualscoreInfo">/3_jiaofu_system/teacher/homeworkManage/UsualScoreAdd.jsp</result>
+            <result name="addNewUsualScoreInfo" type="redirect">teacher/HomeworkManage!findUsualSelectInfo.action</result>
+            <result name="updateStudentsScore" type="redirect">teacher/HomeworkManage!findUsualSelectInfo.action</result>
+            
+            <!-- ***************************布置作业信息*************************** -->
+            <param name="savePath">files/jfpt_system/Resource/HomeNotice</param>
+            <result name="findHomeNoticeInfo">/3_jiaofu_system/teacher/homeworkManage/HomeNotice.jsp</result>
+            <result name="findHomeDetailByID">/3_jiaofu_system/teacher/homeworkManage/HomeNoticeDetail.jsp</result>
+            <result name="deleteHomeByID" type="redirect">teacher/HomeworkManage!findHomeNoticeInfo.action</result>
+            <result name="downFileSuccess" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">filename=${fileName}</param>
+				<param name="inputName">downFile</param>
+				<param name="bufferSize">4096</param>
+			</result>
+			<result name="AddNewHomenoticeBefore">/3_jiaofu_system/teacher/homeworkManage/HomeNoticeBeforeAdd.jsp</result>
+			<result name="AddNewHomenoticeBefore2">/3_jiaofu_system/teacher/homeworkManage/HomeNoticeAdd.jsp</result>
+			<result name="addHome" type="redirect">teacher/HomeworkManage!findHomeNoticeInfo.action</result>
+			
+			<!-- ***************************批改作业信息*************************** -->
+			<result name="findHomeUploadInfo">/3_jiaofu_system/teacher/homeworkManage/HomeUpload.jsp</result>
+			<result name="findSelectHomeworkInfo">/3_jiaofu_system/teacher/homeworkManage/HomeUpload2.jsp</result>
+			<result name="findHomeworkDetailByID">/3_jiaofu_system/teacher/homeworkManage/HomeUploadDetail.jsp</result>
+				<result name="downFileSuccess1" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">filename=${fileName}</param>
+				<param name="inputName">downFile1</param>
+				<param name="bufferSize">4096</param>
+			</result>
+			<result name="updateHomeworkInfoByID" type="redirect">teacher/HomeworkManage!findSelectHomeworkInfo.action</result>
+        </action>
+    
+        <!-- 教师的资源管理模块 -->
+        <action name="ResourceManage" class="TeacherResourceManageAction">
+            <param name="savePath">files/jfpt_system/Resource/CourseAbout</param>
+            <result name="addInfoBeforeUpload">/3_jiaofu_system/teacher/resourceManage/UploadResource.jsp</result>
+            <result name="addFileIntoUpload">/3_jiaofu_system/teacher/resourceManage/UploadResourceSuccess.jsp</result>
+            <result name="findResourceInfo">/3_jiaofu_system/teacher/resourceManage/SeeResource.jsp</result>
+            <result name="deleteUpfileInfoByID" type="redirect">teacher/ResourceManage!findResourceInfo.action</result>
+            <result name="downFileSuccess" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">filename=${fileName}</param>
+				<param name="inputName">downFile</param>
+				<param name="bufferSize">4096</param>
+			</result>
+        </action>   
+    
+        <!-- 教师的课程管理模块 -->
+        <action name="CourseManage" class="TeacherCourseManageAction">
+            <result name="seeCourseDetail">/3_jiaofu_system/teacher/courseManage/SeeCourseSee.jsp</result>
+            <param name="savePath">files/jfpt_system/Resource/CourseNotice</param>
+            <result name="findCourseInfo">/3_jiaofu_system/teacher/courseManage/SeeCourse.jsp</result>
+            
+            <result name="questionReplyInfo">/3_jiaofu_system/teacher/courseManage/CourseProblem.jsp</result>
+            <result name="selectQuestionReplyInfo">/3_jiaofu_system/teacher/courseManage/CourseProblem2.jsp</result>
+            <result name="deleteAskQuestionByID" type="redirect">teacher/CourseManage!selectQuestionReplyInfo.action</result>
+            <result name="addReplyInfoByID" type="redirect">teacher/CourseManage!selectQuestionReplyInfo.action</result>
+            
+            <result name="findCourseNoticeInfo">/3_jiaofu_system/teacher/courseManage/CourseNotice.jsp</result>
+            <result name="findProblemDetailByID">/3_jiaofu_system/teacher/courseManage/CourseProblemDetail.jsp</result>
+            <result name="deleteNoticeByID" type="redirect">teacher/CourseManage!findCourseNoticeInfo.action</result>
+            <result name="findNoticeDetailByID">/3_jiaofu_system/teacher/courseManage/CourseNoticeDetail.jsp</result>
+    		<result name="downFileSuccess" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">filename=${fileName}</param>
+				<param name="inputName">downFile</param>
+				<param name="bufferSize">4096</param>
+			</result>
+			<result name="AddNewNoticeBefore">/3_jiaofu_system/teacher/courseManage/CourseNoticeBeforeAdd.jsp</result>
+			<result name="AddNewNoticeBefore2">/3_jiaofu_system/teacher/courseManage/CourseNoticeAdd.jsp</result>
+			<result name="addNotice" type="redirect">teacher/CourseManage!findCourseNoticeInfo.action</result>
+        </action>
+    
+        <!-- 教师的助教管理模块 -->
+        <action name="AssistantInfo" class="TeacherCourseAssistantAction">
+            <result name="findAssistantInfo">/3_jiaofu_system/teacher/assistantManage/AssistantInfo.jsp</result>
+            <result name="deleteAssistantInfo" type="redirect">teacher/AssistantInfo!findAssistantInfo.action</result>
+            <result name="findAssistantDetailInfoO">/3_jiaofu_system/teacher/assistantManage/AssistantInfoDetailO.jsp</result>
+            <result name="findAssistantDetailInfoS">/3_jiaofu_system/teacher/assistantManage/AssistantInfoDetailS.jsp</result>
+            <result name="findAssistantDetailInfoT">/3_jiaofu_system/teacher/assistantManage/AssistantInfoDetailT.jsp</result>
+            <result name="addAssistantInfo" type="redirect">teacher/AssistantInfo!findAssistantInfo.action</result>
+        </action>
+    
+        <!-- 教师的自我安排模块 -->
+        <action name="OwnArrangeInfo" class="TeachingManagerAction">
+            <!-- ***************************自我安排相关信息*************************** -->
+            <result name="findAllInfo">/3_jiaofu_system/teacher/teachingManage/OwnArrangement.jsp</result>
+            <result name="findAllInfoDetail">/3_jiaofu_system/teacher/teachingManage/OwnArrangementDetail.jsp</result>
+            <result name="deleteInfoByID" type="redirect">teacher/OwnArrangeInfo!findAllInfo.action</result>
+            <result name="addInfo" type="redirect">teacher/OwnArrangeInfo!findAllInfo.action</result>
+        </action>
+    </package>
+    
+    <package name="jiaofu_administrator" extends="struts-default" namespace="/administrator">
+        <!-- 管理员的成绩管理模块 -->
+        <action name="ScoreInfo" class="AdminStudentScoreAction">
+            <result name="deletelist1" type="redirect">administrator/ScoreInfo!findUsualScore.action</result>
+            <result name="deletelist2" type="redirect">administrator/ScoreInfo!findUsualSelectInfo.action</result>
+            <result name="findUsualScore">/3_jiaofu_system/administrator/studentScore/UsualScore.jsp</result>
+            <result name="findUsualSelectInfo">/3_jiaofu_system/administrator/studentScore/UsualScore2.jsp</result>
+        </action>
+        
+        <!-- 管理员的资源管理模块 -->
+        <action name="ResourceManage" class="AdminResourceManageAction">
+            <result name="findResourceInfo">/3_jiaofu_system/administrator/resourceManage/SeeResource.jsp</result>
+            <result name="deleteUpfileInfoByID" type="redirect">administrator/ResourceManage!findResourceInfo.action</result>
+            <result name="deleteUpfileInfo" type="redirect">administrator/ResourceManage!findResourceInfo.action</result>
+        </action>
+    
+        <!-- 管理员的助教管理模块 -->
+        <action name="AssistantInfo" class="AdminCourseAssistantAction">
+            <result name="findAssistantapplyInfo">/3_jiaofu_system/administrator/courseAssistant/AssistantManage.jsp</result>
+            <result name="updateApplyInfoByID" type="redirect">administrator/AssistantInfo!findAssistantapplyInfo.action</result>
+            <result name="deleteApplyInfoByID" type="redirect">administrator/AssistantInfo!findAssistantapplyInfo.action</result>
+            <result name="addAssistantInfo">/3_jiaofu_system/administrator/courseAssistant/AssistantAddSuccess.jsp</result>
+        </action>    
+    
+        <!-- 管理员的基本信息管理模块 -->
+        <action name="BasicInfo" class="BasicInfoManageAction">
+            <!-- ***************************课程相关信息*************************** -->
+            <result name="findCourseInfo">/3_jiaofu_system/administrator/basicInfoManage/CourseInfo.jsp</result>
+            <result name="deleteCourseInfoByID" type="redirect">administrator/BasicInfo!findCourseInfo.action</result>
+            <result name="addCourseInfo" type="redirect">administrator/BasicInfo!findCourseInfo.action</result>
+            <result name="findCourseInfoByID">/3_jiaofu_system/administrator/basicInfoManage/CourseInfoUpdate.jsp</result>
+            <result name="updateCourseInfo" type="redirect">administrator/BasicInfo!findCourseInfo.action</result>
+            <result name="findCourseInfoByName">/3_jiaofu_system/administrator/basicInfoManage/CourseInfo.jsp</result>
+            
+            <!-- ***************************专业相关信息*************************** -->
+            <result name="findDirectionInfo">/3_jiaofu_system/administrator/basicInfoManage/DirectionInfo.jsp</result>
+            <result name="deleteDirectionInfoByID" type="redirect">administrator/BasicInfo!findDirectionInfo.action</result>
+            <result name="AddDirectionInfo" type="redirect">administrator/BasicInfo!findDirectionInfo.action</result>
+            
+            <!-- ***************************课程类型相关信息*************************** -->
+            <result name="findCoursetypeInfo">/3_jiaofu_system/administrator/basicInfoManage/CoursetypeInfo.jsp</result>
+            <result name="deleteCoursetypeInfoByID" type="redirect">administrator/BasicInfo!findCoursetypeInfo.action</result>
+            <result name="addCoursetypeInfo" type="redirect">administrator/BasicInfo!findCoursetypeInfo.action</result>
+            <result name="addInfoIntoCoursetype">/3_jiaofu_system/administrator/basicInfoManage/CoursetypeInfoAdd.jsp</result>
+            
+             <!-- ***************************教师相关信息*************************** -->
+            <result name="findTeacherInfo">/3_jiaofu_system/administrator/basicInfoManage/TeacherInfo.jsp</result>
+            <result name="deleteTeacherInfoByID" type="redirect">administrator/BasicInfo!findTeacherInfo.action</result>
+            <result name="findTeacherInfoDetailByID">/3_jiaofu_system/administrator/basicInfoManage/TeacherInfoDetail.jsp</result>
+            <result name="addTeacherInfo" type="redirect">administrator/BasicInfo!findTeacherInfo.action</result>
+            
+            <!-- ***************************校外助教相关信息*************************** -->
+            <result name="findOtherInfo">/3_jiaofu_system/administrator/basicInfoManage/OtherInfo.jsp</result>
+            <result name="deleteOtherInfoByID" type="redirect">administrator/BasicInfo!findOtherInfo.action</result>
+            <result name="addOtherInfo" type="redirect">administrator/BasicInfo!findOtherInfo.action</result>
+        </action>
+        
+        <!-- 管理员的对应配置管理模块 -->
+        <action name="corresponding" class="CorrespondingDeployAction">
+            <!-- ***************************教师班级课程*************************** -->
+            <result name="findTeacherDeployInfo">/3_jiaofu_system/administrator/correspondingdeploy/TeachersInfo.jsp</result>
+            <result name="deleteTeacherInfoByID" type="redirect">administrator/corresponding!findTeacherDeployInfo.action</result>
+            <result name="addInfoIntoTeacherDeploy">/3_jiaofu_system/administrator/correspondingdeploy/TeachersInfoAdd.jsp</result>
+            <result name="addTeacherDeploy" type="redirect">administrator/corresponding!findTeacherDeployInfo.action</result>
+            
+            <!-- ***************************学生课程班级*************************** -->
+            <result name="findStudentDeployInfo">/3_jiaofu_system/administrator/correspondingdeploy/StudentsInfo.jsp</result>
+            <result name="deleteStudentInfoByID" type="redirect">administrator/corresponding!findStudentDeployInfo.action</result>
+            <result name="addInfoIntoStudentDeploy">/3_jiaofu_system/administrator/correspondingdeploy/StudentsInfoAdd.jsp</result>
+            <result name="addStudentDeploy" type="redirect">administrator/corresponding!findStudentDeployInfo.action</result>
+            <!-- ***************************教师课程学生*************************** -->
+            <result name="findOtherDeployInfo">/3_jiaofu_system/administrator/correspondingdeploy/OthersInfo.jsp</result>
+            <result name="deleteOtherInfoByID" type="redirect">administrator/corresponding!findOtherDeployInfo.action</result>
+            <result name="addInfoIntoOtherDeploy">/3_jiaofu_system/administrator/correspondingdeploy/OthersInfoAdd.jsp</result>
+            <result name="addOtherDeploy" type="redirect">administrator/corresponding!findOtherDeployInfo.action</result>
+        </action>
+        
+        <!-- excel导入教师课程学生 -->
+            <!--path指定的是上传文件的地址 -->
+        <action name="excelIn" class="com.xdsc.util.ExcelChoose">
+			<param name="path">
+			    /WEB-INF/classes/com/xdsc/service/jiaofu/impl/upfile
+			</param>
+		    <param name="tableName">jfpt_tab_chooseassociate</param>
+		    <param name="tableValue">
+			    f_CourseNumber,f_TeacherNumber,f_StudentNumber
+			</param>
+			<result name="success">/3_jiaofu_system/administrator/correspondingdeploy/ProjectInSuccessO.jsp</result>
+			<result name="fail">/3_jiaofu_system/administrator/correspondingdeploy/registerFail.jsp</result>
+		</action>
+		
+		<!-- excel导入学生班级课程信息 -->
+		<action name="excelIn1" class="com.xdsc.util.ExcelChoose">
+			<param name="path">
+			    /WEB-INF/classes/com/xdsc/service/jiaofu/impl/upfile
+			</param>
+		    <param name="tableName">jfpt_tab_studentassociate</param>
+		    <param name="tableValue">
+			    f_CourseNumber,f_StudentNumber,f_ClassNumber
+			</param>
+			<result name="success">/3_jiaofu_system/administrator/correspondingdeploy/ProjectInSuccessS.jsp</result>
+			<result name="fail">/3_jiaofu_system/administrator/correspondingdeploy/registerFail.jsp</result>
+		</action>
+		
+		<!-- excel导入教师课程班级信息 -->
+		<action name="excelIn2" class="com.xdsc.util.ExcelChoose">
+			<param name="path">
+			    /WEB-INF/classes/com/xdsc/service/jiaofu/impl/upfile
+			</param>
+		    <param name="tableName">jfpt_tab_teacherassociate</param>
+		    <param name="tableValue">
+			    f_CourseNumber,f_TeacherNumber,f_ClassNumber
+			</param>
+			<result name="success">/3_jiaofu_system/administrator/correspondingdeploy/ProjectInSuccessT.jsp</result>
+			<result name="fail">/3_jiaofu_system/administrator/correspondingdeploy/registerFail.jsp</result>
+		</action>
+		
+		<!-- excel导入教师信息 -->
+		<action name="excelIn3" class="com.xdsc.util.ExcelChoose">
+			<param name="path">
+			    /WEB-INF/classes/com/xdsc/service/jiaofu/impl/upfile
+			</param>
+		    <param name="tableName">tab_teachers</param>
+		    <param name="tableValue">
+			    f_TeacherNumber,f_TeacherName,f_IsLocked
+			</param>
+			<result name="success">/3_jiaofu_system/administrator/basicInfoManage/ProjectInSuccessT.jsp</result>
+			<result name="fail">/3_jiaofu_system/administrator/basicInfoManage/registerFail.jsp</result>
+		</action>
+		
+		<!-- excel导入院外助教信息 -->
+		<action name="excelIn4" class="com.xdsc.util.ExcelChoose">
+			<param name="path">
+			    /WEB-INF/classes/com/xdsc/service/jiaofu/impl/upfile
+			</param>
+		    <param name="tableName">jfpt_tab_otherassist</param>
+		    <param name="tableValue">
+			    f_AssistantID,f_Name,f_Sex
+			</param>
+			<result name="success">/3_jiaofu_system/administrator/basicInfoManage/ProjectInSuccessO.jsp</result>
+			<result name="fail">/3_jiaofu_system/administrator/basicInfoManage/registerFail.jsp</result>
+		</action>
+		
+		<!-- excel导入院外助教信息 -->
+		<action name="excelIn5" class="com.xdsc.util.ExcelChoose">
+			<param name="path">
+			    /WEB-INF/classes/com/xdsc/service/jiaofu/impl/upfile
+			</param>
+		    <param name="tableName">tab_course</param>
+		    <param name="tableValue">
+			    f_CourseNumber,f_CourseName,f_CourseScore,f_CourseXueShi,f_Remark
+			</param>
+			<result name="success">/3_jiaofu_system/administrator/basicInfoManage/ProjectInSuccessC.jsp</result>
+			<result name="fail">/3_jiaofu_system/administrator/basicInfoManage/registerFail.jsp</result>
+		</action>
+		
+		<!-- 上传文件 -->
+		<action name="upload" class="com.xdsc.util.UploadAction">
+	        <!--path变量指定上传文件保存的位置，统一要求保存在ServiceImpl层对应的各子系统文件夹下面，存放文件的文件夹可任意命名。此处以学生管理系统为例，所建文件夹为upfile-->
+			<param name="path">
+			    /WEB-INF/classes/com/xdsc/service/jiaofu/impl/upfile
+			</param> 
+			<result name="success">/FileUpSuccess.jsp</result>
+			<result name="fail">/registerFail.jsp</result>
+		</action>
+    </package>
+</struts>

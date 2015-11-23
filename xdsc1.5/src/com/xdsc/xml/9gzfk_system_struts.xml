@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+<constant name="struts.i18n.encoding" value="utf-8" />
+
+    <package name="gzfk_common" extends="struts-default" namespace="/">
+		<action name="CommonLogin" class="GzfkCommonLoginAction">
+			<result name="adminLogin">/9_genzongfankui_system/Admin/welcomepageAdmin.jsp</result>
+			<result name="studentLogin">/9_genzongfankui_system/Student/welcomepageStudent.jsp</result>
+			<result name="tutorLogin">/9_genzongfankui_system/Tutor/welcomepageTutor.jsp</result>
+			<result name="loginFalse">/9_genzongfankui_system/loginFalse.jsp</result>
+		</action>
+	</package>
+
+	<package name="gzfk_admin" extends="struts-default" namespace="/admin">
+	
+ 		<action name="WorkInfo" class="GzfkWorkInfoAction">
+        	<result name="findAllWorkInfo">/9_genzongfankui_system/Admin/Workstudent.jsp</result>
+        	<result name="addWorkInfo">/9_genzongfankui_system/Admin/Workstudent.jsp</result>
+        	<result name="findWorkInfoByName">/9_genzongfankui_system/Admin/Workstudent.jsp</result>
+        	<result name="deleteWorkInfoByID">/9_genzongfankui_system/Admin/Workstudent.jsp</result>
+        	<result name="findWorkInfoByCity">/9_genzongfankui_system/Admin/Workstudent.jsp</result>
+        	<result name="updateWorkInfo">/9_genzongfankui_system/Admin/Workstudent.jsp</result>
+        	<result name="findWorkInfoByID">/9_genzongfankui_system/Admin/updateWorkstudent.jsp</result>
+        	<result name="workStudentExist">/9_genzongfankui_system/Admin/workStudentExist.jsp</result>
+        	
+    	</action>
+        
+    	<action name="StudentInfo" class="GzfkStudentInfoAction">
+        	<result name="addStudentInfo">/9_genzongfankui_system/Admin/StudentInfo.jsp</result>
+        	<result name="findAllStudentInfo">/9_genzongfankui_system/Admin/StudentInfo.jsp</result>
+        	<result name="findStudentbyName">/9_genzongfankui_system/Admin/StudentInfo.jsp</result>
+        	<result name="findStudentbyNum">/9_genzongfankui_system/Admin/updateStudent.jsp</result>
+        	<result name="updateStudentInfo">/9_genzongfankui_system/Admin/StudentInfo.jsp</result>
+        	<result name="delStudentByNum">/9_genzongfankui_system/Admin/StudentInfo.jsp</result>
+        	<result name="findStudentByClass">/9_genzongfankui_system/Admin/StudentInfo.jsp</result>
+        	<result name="findStudentbyQuxiang">/9_genzongfankui_system/Admin/StudentInfo.jsp</result>
+        	<result name="StudentExist">/9_genzongfankui_system/Admin/StudentExist.jsp</result>
+        	<result name="searchStudentByNum">/9_genzongfankui_system/Admin/StudentInfo.jsp</result>
+        	
+        </action>
+        
+        <action name="ClassInfo" class="GzfkClassInfoAction">
+        	<result name="addClassInfo">/9_genzongfankui_system/Admin/ClassInfo.jsp</result>
+        	<result name="findAllClassInfo">/9_genzongfankui_system/Admin/ClassInfo.jsp</result>
+        	<result name="findClassoneByNum">/9_genzongfankui_system/Admin/ClassInfoex.jsp</result>
+        	<result name="findClassByNum">/9_genzongfankui_system/Admin/updateClass.jsp</result>
+        	<result name="findGradeByNum">/9_genzongfankui_system/Admin/ClassInfoex.jsp</result>
+        	<result name="delClassByNum">/9_genzongfankui_system/Admin/ClassInfo.jsp</result>
+        	<result name="updateClassInfo">/9_genzongfankui_system/Admin/ClassInfo.jsp</result>
+        	<result name="ClassExist">/9_genzongfankui_system/Admin/ClassExist.jsp</result>		
+        			
+        </action>
+        
+        <action name="Tongji" class="GzfkClassInfoAction">
+        	<result name="addClassInfo">/9_genzongfankui_system/Admin/Tongji.jsp</result>
+        	<result name="findAllClassInfo">/9_genzongfankui_system/Admin/Tongji.jsp</result>
+        	<result name="findClassoneByNum">/9_genzongfankui_system/Admin/Tongjiex.jsp</result>
+        	<result name="delClassByNum">/9_genzongfankui_system/Admin/Tongji.jsp</result>
+        	<result name="updateClassInfo">/9_genzongfankui_system/Admin/Tongji.jsp</result>		
+        </action>
+        
+        <action name="CompanyInfo" class="GzfkCompanyInfoAction">
+        	<result name="addCompanyInfo">/9_genzongfankui_system/Admin/CompanyInfo.jsp</result>
+        	<result name="findAllCompanyInfo">/9_genzongfankui_system/Admin/CompanyInfo.jsp</result>
+        	<result name="findCompanybyName">/9_genzongfankui_system/Admin/CompanyInfo.jsp</result>
+        	<result name="findCompanybyNum">/9_genzongfankui_system/Admin/updateCompany.jsp</result>
+        	<result name="updateCompanyInfo">/9_genzongfankui_system/Admin/CompanyInfo.jsp</result>        	
+        	<result name="findCompanyByProperty">/9_genzongfankui_system/Admin/CompanyInfo.jsp</result>
+        	<result name="delCompanyByNum">/9_genzongfankui_system/Admin/CompanyInfo.jsp</result>
+           	<result name="CompanyExist">/9_genzongfankui_system/Admin/CompanyExist.jsp</result>
+        	
+        </action>
+        
+        <action name="UniInfo" class="GzfkUniInfoAction">
+        	<result name="addUniInfo">/9_genzongfankui_system/Admin/UniInfo.jsp</result>
+        	<result name="findAllUniInfo">/9_genzongfankui_system/Admin/UniInfo.jsp</result>
+        	<result name="searchUniByName">/9_genzongfankui_system/Admin/UniInfo.jsp</result>
+        	<result name="delCompanyByNum">/9_genzongfankui_system/Admin/UniInfo.jsp</result>
+        	<result name="updateUniInfo">/9_genzongfankui_system/Admin/UniInfo.jsp</result>
+        	<result name="findUniByNum">/9_genzongfankui_system/Admin/updateUni.jsp</result>
+        	<result name="UniExist">/9_genzongfankui_system/Admin/UniExist.jsp</result>
+        	
+        </action>
+        
+        <action name="KaoyanInfo" class="GzfkKaoyanInfoAction">
+        	<result name="addKaoyanInfo">/9_genzongfankui_system/Admin/Kaoyanstudent.jsp</result>
+        	<result name="findAllKaoyanInfo">/9_genzongfankui_system/Admin/Kaoyanstudent.jsp</result>
+        	<result name="findKaoyanInfoByName">/9_genzongfankui_system/Admin/Kaoyanstudent.jsp</result>
+        	<result name="findKaoyanInfoByID">/9_genzongfankui_system/Admin/updateKaoyanstudent.jsp</result>
+        	<result name="updateKaoyanInfo">/9_genzongfankui_system/Admin/Kaoyanstudent.jsp</result>
+        	<result name="deleteKaoyanInfoByID">/9_genzongfankui_system/Admin/Kaoyanstudent.jsp</result>
+           	<result name="KaoyanstudentExist">/9_genzongfankui_system/Admin/KaoyanstudentExist.jsp</result>
+        	
+        </action>
+        
+        <action name="OtherInfo" class="GzfkOtherInfoAction">
+        	<result name="addOtherInfo">/9_genzongfankui_system/Admin/Otherstudent.jsp</result>
+        	<result name="findAllOtherInfo">/9_genzongfankui_system/Admin/Otherstudent.jsp</result>
+         	<result name="findOtherInfoByName">/9_genzongfankui_system/Admin/Otherstudent.jsp</result>
+         	<result name="findOtherInfoByID">/9_genzongfankui_system/Admin/updateOtherstudent.jsp</result>
+         	<result name="updateOtherInfo">/9_genzongfankui_system/Admin/Otherstudent.jsp</result>
+         	<result name="deleteOtherInfoByID">/9_genzongfankui_system/Admin/Otherstudent.jsp</result>
+         	<result name="OtherExist">/9_genzongfankui_system/Admin/OtherExist.jsp</result>
+         	
+        </action>	
+        
+		<action name="Workyear" class="GzfkWorkyearAction">
+            <result name="findWorkyearInfoByNum">/9_genzongfankui_system/Admin/Workyear.jsp</result>
+            <result name="addWorkyear">/9_genzongfankui_system/Admin/ComAddSuccess.jsp</result>
+            <result name="findWorkyearByNum">/9_genzongfankui_system/Admin/updateWorkyear.jsp</result>
+            <result name="deleteWorkyearByNum">/9_genzongfankui_system/Admin/ComDelSuccess.jsp</result>
+            <result name="updateWorkyear" type="redirect">/admin/CompanyInfo!findAllCompanyInfo.action</result>
+            
+        </action>
+        
+        <action name="Uniyear" class="GzfkUniyearAction">
+        	<result name="findUniyearInfoByNum">/9_genzongfankui_system/Admin/Uniyear.jsp</result>
+        	<result name="addUniyear">/9_genzongfankui_system/Admin/UniAddSuccess.jsp</result>
+        	<result name="findUniyearByNum">/9_genzongfankui_system/Admin/updateUniyear.jsp</result>
+        	<result name="updateUniyear">/9_genzongfankui_system/Admin/UniInfo.jsp</result>
+        	<result name="deleteUniyearByNum">/9_genzongfankui_system/Admin/UniDelSuccess.jsp</result>
+        </action>
+        
+    </package>
+    
+    <package name="gzfk_admin2" extends="struts-default" namespace="/admin2">
+    	<action name="CompanyInfo"  class="GzfkCompanyInfoAction">
+    		<result name="findAllCompanyInfo">/9_genzongfankui_system/Admin/companyID.jsp</result>
+    	</action>
+    	<action name="StudentInfo"  class="GzfkStudentInfoAction">
+    		<result name="findAllStudentInfo">/9_genzongfankui_system/Admin/studentID.jsp</result>
+    	</action>
+    	<action name="UniInfo"  class="GzfkUniInfoAction">
+    		<result name="findAllUniInfo">/9_genzongfankui_system/Admin/uniID.jsp</result>
+    	</action>
+    </package>
+    
+    <package name="gzfk_admin3" extends="struts-default" namespace="/admin3">
+    	<action name="CompanyInfo"  class="GzfkCompanyInfoAction">
+    		<result name="findAllCompanyInfo">/9_genzongfankui_system/Admin/companyIDcom.jsp</result>
+    	</action>
+    	<action name="StudentInfo"  class="GzfkStudentInfoAction">
+    		<result name="findAllStudentInfo">/9_genzongfankui_system/Admin/studentID.jsp</result>
+    	</action>
+    	<action name="UniInfo"  class="GzfkUniInfoAction">
+    		<result name="findAllUniInfo">/9_genzongfankui_system/Admin/uniIDuni.jsp</result>
+    	</action>
+    </package>
+    
+    <package name="gzfk_tutor" extends="struts-default" namespace="/tutor">
+    
+    	<action name="ClassInfo" class="GzfkClassInfoAction">
+    		<result name="findAllClassInfo">/9_genzongfankui_system/Tutor/ClassInfo.jsp</result>
+        	<result name="findClassByNum">/9_genzongfankui_system/Tutor/ClassInfo.jsp</result>
+        	<result name="findClassoneByNum">/9_genzongfankui_system/Tutor/ClassInfoex.jsp</result>
+        	<result name="findGradeByNum">/9_genzongfankui_system/Tutor/ClassInfoex.jsp</result>
+    	</action>
+    	
+    	<action name="StudentInfo" class="GzfkStudentInfoAction">
+    		<result name="findAllStudentInfo">/9_genzongfankui_system/Tutor/StudentInfo.jsp</result>
+    		<result name="findStudentbyName">/9_genzongfankui_system/Tutor/StudentInfo.jsp</result>
+    		<result name="findStudentByClass">/9_genzongfankui_system/Tutor/StudentInfo.jsp</result>
+    	    <result name="searchStudentByNum">/9_genzongfankui_system/Tutor/StudentInfo.jsp</result>
+    		
+    	</action>
+    	
+    	<action name="Tongji" class="GzfkClassInfoAction">
+    		<result name="findAllClassInfo">/9_genzongfankui_system/Tutor/Tongji.jsp</result>
+        	<result name="findClassoneByNum">/9_genzongfankui_system/Tutor/Tongji.jsp</result>
+    	</action>
+    	
+    	<action name="CompanyInfo" class="GzfkCompanyInfoAction">
+    		<result name="findAllCompanyInfo">/9_genzongfankui_system/Tutor/CompanyInfo.jsp</result>
+        	<result name="findCompanybyName">/9_genzongfankui_system/Tutor/CompanyInfo.jsp</result>
+        	<result name="findCompanyByProperty">/9_genzongfankui_system/Tutor/CompanyInfo.jsp</result>
+    	</action>
+    	
+    	<action name="UniInfo" class="GzfkUniInfoAction">
+    		<result name="findAllUniInfo">/9_genzongfankui_system/Tutor/UniInfo.jsp</result>
+        	<result name="searchUniByName">/9_genzongfankui_system/Tutor/UniInfo.jsp</result>
+    	</action>
+    	
+    	<action name="WorkInfo" class="GzfkWorkInfoAction">
+    		<result name="findAllWorkInfo">/9_genzongfankui_system/Tutor/Workstudent.jsp</result>
+    		<result name="findWorkInfoByName">/9_genzongfankui_system/Tutor/Workstudent.jsp</result>
+    		<result name="findWorkInfoByCity">/9_genzongfankui_system/Tutor/Workstudent.jsp</result>
+    	</action>
+    	
+    	 <action name="OtherInfo" class="GzfkOtherInfoAction">
+    	 	<result name="findAllOtherInfo">/9_genzongfankui_system/Tutor/Otherstudent.jsp</result>
+         	<result name="findOtherInfoByName">/9_genzongfankui_system/Tutor/Otherstudent.jsp</result>
+    	 </action>
+    	
+    	<action name="KaoyanInfo" class="GzfkKaoyanInfoAction">
+    		<result name="findAllKaoyanInfo">/9_genzongfankui_system/Tutor/Kaoyanstudent.jsp</result>
+        	<result name="findKaoyanInfoByName">/9_genzongfankui_system/Tutor/Kaoyanstudent.jsp</result>
+    	</action>
+    	
+    	<action name="Workyear" class="GzfkWorkyearAction">
+            <result name="findWorkyearInfoByNum">/9_genzongfankui_system/Tutor/Workyear.jsp</result>
+        </action>
+        
+        <action name="Uniyear" class="GzfkUniyearAction">
+        	<result name="findUniyearInfoByNum">/9_genzongfankui_system/Tutor/Uniyear.jsp</result>
+        	
+        </action>
+    </package>
+    
+    <package name="gzfk_student" extends="struts-default" namespace="/student">
+    
+    	<action name="StudentSelf" class="GzfkStudentSelfAction">
+    		<result name="findStudentSelfInfo">/9_genzongfankui_system/Student/StudentSelf.jsp</result>
+    	</action>
+    	
+    	<action name="WorkInfo" class="GzfkWorkInfoAction">
+    		<result name="updateWorkInfo">/9_genzongfankui_system/Student/StudentWork.jsp</result>
+    	    <result name="findWorkInfoByID">/9_genzongfankui_system/Student/updateWorkstudent.jsp</result>
+    	</action>
+    	
+    	<action name="KaoyanInfo" class="GzfkKaoyanInfoAction">
+        	<result name="findKaoyanInfoByID">/9_genzongfankui_system/Student/updateKaoyanstudent.jsp</result>
+        	<result name="updateKaoyanInfo">/9_genzongfankui_system/Student/StudentKaoyan.jsp</result>
+        </action>
+    	
+    	<action name="ClassInfo" class="GzfkClassInfoAction">
+    		<result name="findGradeByNum">/9_genzongfankui_system/Student/GradeInfo.jsp</result>
+    	</action>
+    	
+    	<action name="OtherInfo" class="GzfkOtherInfoAction">
+         	<result name="findOtherInfoByID">/9_genzongfankui_system/Student/updateOtherstudent.jsp</result>
+         	<result name="updateOtherInfo">/9_genzongfankui_system/Student/StudentOther.jsp</result>
+    	</action>
+    	
+    	<action name="StudentQuxiang" class="GzfkStudentQuxiangAction">
+    		<result name="StudentKaoyan">/9_genzongfankui_system/Student/StudentKaoyan.jsp</result>
+    		<result name="StudentWork">/9_genzongfankui_system/Student/StudentWork.jsp</result>
+    		<result name="StudentOther">/9_genzongfankui_system/Student/StudentOther.jsp</result>    		
+    		<result name="noRecord">/9_genzongfankui_system/Student/noQuxiang.jsp</result>
+    	</action>
+    	
+    	<action name="StudentInfo" class="GzfkStudentInfoAction">
+    		<result name="findStudentbyNum">/9_genzongfankui_system/Student/updateStudent.jsp</result>
+    		<result name="updateStudentInfo">/9_genzongfankui_system/Student/StudentSelf.jsp</result>
+    	</action>
+    	
+    </package>
+</struts>

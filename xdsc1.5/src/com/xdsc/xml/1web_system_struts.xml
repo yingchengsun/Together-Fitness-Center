@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+	<package name="wzmh" extends="struts-default" namespace="/">
+		
+		<!--新闻相关控制  -->
+		<!--前台新闻显示  -->
+		<action name="information" class="TabInformationAction">
+			<result name="findAllSuccess">/index2.jsp</result>
+			
+			<result name="showContentTableSuccess">/1_mhqx/detail/TableContent.jsp</result>	
+			<result name="showMenuNewsDetailSuccess">/1_mhqx/detail/MenuDetail.jsp</result>				
+			<result name="showContentDetailSuccess">/1_mhqx/detail/Content.jsp</result>
+			<result name="showMenuNewsTableSuccess">/1_mhqx/detail/MenuNewsTableDetail.jsp</result>
+			<result name="showDetailSuccess">/1_mhqx/detail/NewsDetail.jsp</result>
+			<param name="savePath">/upfile</param>
+			<result name="yjs" type="redirect">/yjssxCommon/YjssxFirstPage!showFirstPageInfo.action</result>	
+			<result name="bks">/bksx/index.jsp</result>	
+			
+			<!--后台新闻管理  -->
+			
+			<!--新闻部分 -->
+			<result name="addInformatinSuccess" type="redirect">information!showMenuToNews.action</result>
+			<result name="updateInformationRedirectSuccess">/1_mhqx/admin/News/NewsUpdate.jsp</result>
+			<result name="updateInformationSuccess" type="redirect">information!showMenuToNews.action</result>
+			<result name="deleteInformationSuccess" type="redirect">information!showMenuToNews.action</result>
+			<result name="showMenuToNewsSuccess"   >/1_mhqx/admin/News/MenuToNews.jsp</result>
+			<result name="showNewsByTitleSuccess">/1_mhqx/admin/News/MenuToNewsByTitle.jsp</result>
+			<result name="NewsAdvanceSearchSuccess">/1_mhqx/admin/News/MenuToNewsByTitle.jsp</result>
+
+			
+			<!--通知通告部分-->
+			<result name="readTZGGSuccess">/1_mhqx/admin/Notice/NoticeList.jsp</result>
+			<result name="showNoticeByTitleSuccess" >/1_mhqx/admin/Notice/NoticeListByTitle.jsp</result>
+			<result name="addTZGGSuccess" type="redirect">information!notice.action</result>
+			<result name="updateTZGGRedirectSuccess">/1_mhqx/admin/Notice/NoticeUpdate.jsp</result>		
+			<result name="updateTZGGSuccess" type="redirect">information!notice.action</result>
+			<result name="deleteTZGGSuccess" type="redirect">information!notice.action</result>
+			
+		</action>
+		
+
+
+			<!--菜单相关控制-->
+		<action name="menu" class="MhqxTabMenuAction">
+			<result name="menuListLeft">/1_mhqx/admin/left_management.jsp</result>
+			<result name="menuListRight">/1_mhqx/admin/Menu/MenuList.jsp</result>
+			<result name="menuAddSuccess" type="redirect">menu!menuManagement.action</result>
+			<result name="menuAddRedirectSuccess">/1_mhqx/admin/Menu/MenuAdd.jsp</result>
+			<result name="menuDeleteSuccess" type="redirect">menu!menuManagement.action</result>
+			<result name="menuUpdateRedirectSuccess">/1_mhqx/admin/Menu/MenuUpdate.jsp</result>
+			<result name="menuUpdateSuccess" type="redirect">menu!menuManagement.action</result>
+			
+			<result name="findMenuBySuperIdSuccess">/1_mhqx/detail/MenuDetail.jsp</result>
+		</action>
+		
+		
+			<!--快速导航相关控制-->
+		<action name="navigation" class="MhqxTabNavigationAction">
+			<result name="listAllSUCCESS">/1_mhqx/admin/Navigation/NavigationList.jsp</result>
+			<result name="listByNameSUCCESS">/1_mhqx/admin/Navigation/NavigationList.jsp</result>
+			<result name="addSUCCESS" type="redirect">navigation!listAll.action</result>
+			<result name="deleteSUCCESS" type="redirect">navigation!listAll.action</result>
+			<result name="preUpdateSUCCESS" >/1_mhqx/admin/Navigation/NavigationUpdate.jsp</result>
+			<result name="updateSUCCESS" type="redirect">navigation!listAll.action</result>
+	          <param name="savePath">/upfile</param>
+			
+		</action>
+		
+			<!--友情链接相关控制-->
+		<action name="link" class="MhqxTabLinkAction">
+			<result name="listAllSUCCESS">/1_mhqx/admin/Link/LinkList.jsp</result>
+			<result name="listByTitleSUCCESS">/1_mhqx/admin/Link/LinkList.jsp</result>
+			<result name="addSUCCESS" type="redirect">link!listAll.action</result>
+			<result name="deleteSUCCESS" type="redirect">link!listAll.action</result>
+			<result name="preUpdateSUCCESS" >/1_mhqx/admin/Link/LinkUpdate.jsp</result>
+			<result name="updateSUCCESS" type="redirect">link!listAll.action</result>
+			<result name="fail">/1_mhqx/admin/Link/LinkFail.jsp</result>
+			<result name="input">/1_mhqx/admin/Link/LinkFail.jsp</result>
+			 <param name="savePath">/upfile</param>
+			</action>
+			
+			<!--图片新闻相关控制-->
+		     <action name="picture" class="MhqxTabPictureAction">
+		      <result name="addSUCCESS" type="redirect">information!showMenuToNews.action
+		      </result>
+		      <result name="fail">information!showMenuToNews.action</result>
+			<result name="input">information!showMenuToNews.action</result>
+		       <param name="savePath">/upfile</param>
+		     </action>
+		<!-- 文件下载配置 -->
+		<action name="download" class="com.xdsc.util.DownloadAction">
+			<!--设置一个stream类型的result目标-->
+			<result name="success" type="stream">
+				<!--设置下载文件的输入流属性名-->
+				<param name="inputName">application</param>
+				<!--设置下载文件的文件名-->
+				<param name="contentDisposition">
+					filename="xidian.gif"
+				</param>
+			</result>
+		</action>
+		<!-- 文件上传配置 -->
+		<action name="upload" class="com.xdsc.util.UploadAction">
+	  <!--path变量指定上传文件保存的位置，所建文件夹为upfile-->
+			<param name="path">/WEB-INF/upfile</param>
+		</action>
+		
+
+	</package>
+
+</struts>

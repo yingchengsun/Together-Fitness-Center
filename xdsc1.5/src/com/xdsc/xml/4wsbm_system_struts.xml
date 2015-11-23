@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="xsgl" extends="struts-default" namespace="/">
+		<!-- 用户登录配置 -->
+		<action name="login" class="WsbmCommonLoginAction">
+			<result name="appLogin">
+				/4_wangshangbaoming_system/appLogPage/welcome.jsp
+			</result>
+			<result name="adminLogin">
+				/4_wangshangbaoming_system/adPage/welcome.jsp
+			</result>
+			<result name="nouser">
+				/4_wangshangbaoming_system/visitorPage/loginFalse.jsp
+			</result>
+			<result name="norole">
+				/4_wangshangbaoming_system/visitorPage/loginFalse.jsp
+			</result>
+			<result name="loginFalse">
+				/4_wangshangbaoming_system/visitorPage/loginFalse.jsp
+			</result>
+			<result name="input">
+				/4_wangshangbaoming_system/visitorPage/registerFail.jsp
+			</result>
+		</action>
+
+		<action name="register" class="WsbmRegisterAction">
+			<result name="success">
+				/4_wangshangbaoming_system/appLogPage/welcome.jsp
+			</result>
+			<result name="input">
+				/4_wangshangbaoming_system/visitorPage/Register.jsp
+			</result>
+			<result name="youla">
+				/4_wangshangbaoming_system/visitorPage/youla.jsp
+			</result>
+		</action>
+
+		<!-- 游客注册配置 -->
+		<action name="apreg" class="WsbmTabRegapplicantAction">
+			<result name="valuesGot1">
+				/4_wangshangbaoming_system/visitorPage/CA2.jsp
+			</result>
+			<result name="valuesGot2">
+				/4_wangshangbaoming_system/visitorPage/CA3.jsp
+			</result>
+			<result name="valuesGot3">
+				/4_wangshangbaoming_system/visitorPage/CA4.jsp
+			</result>
+			<result name="valuesGot4">
+				/4_wangshangbaoming_system/visitorPage/registerSuccess.jsp
+			</result>
+			<result name="register">
+				/4_wangshangbaoming_system/visitorPage/registerSuccess.jsp
+			</result>
+			<result name="input">
+				/4_wangshangbaoming_system/visitorPage/registerFail.jsp
+			</result>
+		</action>
+
+		<!-- 考生查询配置 -->
+		<action name="ksCheck" class="WsbmKsCheckAction">
+			<result name="success">
+				/4_wangshangbaoming_system/appLogPage/kscList.jsp
+			</result>
+			<result name="state">
+				/4_wangshangbaoming_system/appLogPage/MyState.jsp
+			</result>
+			<result name="fail">
+				/4_wangshangbaoming_system/appLogPage/CheckFail.jsp
+			</result>
+			<result name="findMyExams">
+				/4_wangshangbaoming_system/appLogPage/findMyExams.jsp
+			</result>
+			<result name="input">
+				/4_wangshangbaoming_system/visitorPage/registerFail.jsp
+			</result>
+		</action>
+		<!-- 管理员查询配置 -->
+		<action name="adAllCheck" class="WsbmAdAllCheckAction">
+			<result name="success">
+				/4_wangshangbaoming_system/adPage/BigList.jsp
+			</result>
+			
+			<result name="AuthPass">
+				/4_wangshangbaoming_system/adPage/AuthPass.jsp
+			</result>
+			<result name="feed">
+				/4_wangshangbaoming_system/adPage/feed.jsp
+			</result>
+			<result name="PrePass">
+				/4_wangshangbaoming_system/adPage/PrePass.jsp
+			</result>
+			<result name="unfeed">
+				/4_wangshangbaoming_system/adPage/unfeed.jsp
+			</result>
+			<result name="Authing">
+				/4_wangshangbaoming_system/adPage/Authing.jsp
+			</result>
+			<result name="Preing">
+				/4_wangshangbaoming_system/adPage/Preing.jsp
+			</result>
+			<result name="PrePassNot">
+				/4_wangshangbaoming_system/adPage/PrePassNot.jsp
+			</result>
+			<result name="FinPassNot">
+				/4_wangshangbaoming_system/adPage/FinPassNot.jsp
+			</result>
+			<result name="FinPass">
+				/4_wangshangbaoming_system/adPage/FinPass.jsp
+			</result>
+			<result name="Fining">
+				/4_wangshangbaoming_system/adPage/Fining.jsp
+			</result>
+			<result name="AuthPassNot">
+				/4_wangshangbaoming_system/adPage/AuthPassNot.jsp
+			</result>
+			
+			<result name="successDelete">
+				/4_wangshangbaoming_system/adPage/BigListDelete.jsp
+			</result>
+			<result name="fail">
+				/4_wangshangbaoming_system/adPage/CheckFail.jsp
+			</result>
+			<result name="sepFindByNum">
+				/4_wangshangbaoming_system/adPage/SmallList.jsp
+			</result>
+			<result name="sepFindByNumSeeCheckList">
+				/4_wangshangbaoming_system/adPage/AuthPaper.jsp
+			</result>
+			<result name="SeeCheckList">
+				/4_wangshangbaoming_system/adPage/AuthPaper.jsp
+			</result>
+			<result name="sepFindByNoticeNum">
+				/4_wangshangbaoming_system/adPage/NMSmallList.jsp
+			</result>
+			<result name="sepFindByNoticeNumVisitor">
+				/4_wangshangbaoming_system/visitorPage/Kaoshengxuzhi2.jsp
+			</result>
+			<result name="sepFindByNoticeNumToUpdate">
+				/4_wangshangbaoming_system/adPage/NoticeUpdate.jsp
+			</result>
+			<result name="Notice">
+				/4_wangshangbaoming_system/adPage/NoticeManage.jsp
+			</result>
+			<result name="NoticeApp">
+				/4_wangshangbaoming_system/appLogPage/Notice.jsp
+			</result>
+			<result name="NoticeUpdated">
+				/4_wangshangbaoming_system/adPage/NoticeManage.jsp
+			</result>
+			<result name="findAppToUpdate">
+				/4_wangshangbaoming_system/adPage/findAppToUpdate.jsp
+			</result>
+			<result name="findMeToUpdate">
+				/4_wangshangbaoming_system/appLogPage/findMeToUpdate.jsp
+			</result>
+			<result name="appUpdated">
+				/4_wangshangbaoming_system/adPage/SmallList.jsp
+			</result>
+			<result name="appMeUpdated">
+				/4_wangshangbaoming_system/appLogPage/kscList.jsp
+			</result>
+			<result name="adFindByNoticeNumToReply">
+				/4_wangshangbaoming_system/adPage/MessageAdReply.jsp
+			</result>
+			<result name="noticeVisitor">
+				/4_wangshangbaoming_system/visitorPage/Kaoshengxuzhi.jsp
+			</result>
+			<result name="noticeVisitor1">
+				/4_wangshangbaoming_system/visitorPage/welcome.jsp
+			</result>
+			<result name="input">
+				/4_wangshangbaoming_system/visitorPage/registerFail.jsp
+			</result>
+			<result name="sepFindByNumSeeZhunkaozheng">
+				/4_wangshangbaoming_system/adPage/zhunkaozheng.jsp
+			</result>
+			
+		</action>
+		<!-- 发送消息配置 -->
+		<action name="message" class="WsbmMegAction">
+			<result name="success">
+				/4_wangshangbaoming_system/adPage/MessageView.jsp
+			</result>
+			<result name="appMsgSent">
+				/4_wangshangbaoming_system/appLogPage/AppMsgSent.jsp
+			</result>
+			<result name="pubNoticeSent">
+				/4_wangshangbaoming_system/adPage/NoticeManage.jsp
+			</result>
+			<result name="input">
+				/4_wangshangbaoming_system/adPage/MessageSend.jsp
+			</result>
+		</action>
+		<!-- 消息查看配置 -->
+		<action name="msgCheck" class="WsbmMsgCheckAction">
+			<result name="success">
+				/4_wangshangbaoming_system/appLogPage/myMessage.jsp
+			</result>
+			<result name="FoundByNum">
+				/4_wangshangbaoming_system/adPage/MsgDtl.jsp
+			</result>
+			<result name="AppFoundByNum">
+				/4_wangshangbaoming_system/appLogPage/MsgDtl.jsp
+			</result>
+			<result name="adChecking">
+				/4_wangshangbaoming_system/adPage/MessageView.jsp
+			</result>
+			<result name="input">
+				/4_wangshangbaoming_system/appLogPage/myMessage.jsp
+			</result>
+		</action>
+		<!-- 考生更新配置 -->
+		<action name="appUp" class="WsbmAppInfoUpdateAction">
+			<result name="ok">
+				/4_wangshangbaoming_system/appLogPage/InfoUpdate.jsp
+			</result>
+			<result name="okAD">
+				/4_wangshangbaoming_system/adPage/AppInfoAdUD.jsp
+			</result>
+			<result name="Updated">
+				/4_wangshangbaoming_system/appLogPage/OperationSuccess.jsp
+			</result>
+			<result name="UpdatedAd">
+				/4_wangshangbaoming_system/appLogPage/OperationSuccess.jsp
+			</result>
+			<result name="reg2">
+				/4_wangshangbaoming_system/appLogPage/reg3.jsp
+			</result>
+			<result name="reg3">
+				/4_wangshangbaoming_system/appLogPage/reg4.jsp
+			</result>
+			<result name="reg4">
+				/4_wangshangbaoming_system/appLogPage/kscList.jsp
+			</result>
+			<result name="input">
+				/4_wangshangbaoming_system/visitorPage/registerFail.jsp
+			</result>
+
+		</action>
+		<!-- 删除功能配置 -->
+		<action name="delete" class="WsbmDeleteAction">
+			<result name="AccDeleted">
+				/4_wangshangbaoming_system/adPage/BigListDelete.jsp
+			</result>
+			<result name="NoticeDeleted">
+				/4_wangshangbaoming_system/adPage/NoticeManage.jsp
+			</result>
+			<result name="MessageDeleted">
+				/4_wangshangbaoming_system/adPage/MessageView.jsp
+			</result>
+			<result name="MessageDeletedApp">
+				/4_wangshangbaoming_system/appLogPage/myMessage.jsp
+			</result>
+			<result name="AllDeleted">
+				/4_wangshangbaoming_system/adPage/BigListDelete.jsp
+			</result>
+			<result name="input">
+				/4_wangshangbaoming_system/visitorPage/registerFail.jsp
+			</result>
+		</action>
+		<!-- 上传excel表格配置 -->
+		<action name="subject" class="WsbmSubject">
+			<!--  path指定的是上传文件的地址 -->
+			<param name="path">
+				/WEB-INF
+			</param>
+			<param name="tableName">wsbm_tab_examsubject</param>
+			<param name="tableValue">
+				f_SubjectNumber,f_SubjectName,f_SubjectTime,f_SubjectAddress
+			</param>
+			<result name="success">
+				/4_wangshangbaoming_system/appLogPage/findMyExams.jsp
+			</result>
+			<result name="fail">/registerFail.jsp</result>
+			<result name="input">
+				/4_wangshangbaoming_system/visitorPage/registerFail.jsp
+			</result>
+		</action>
+
+		<!-- 产生excel表格配置 -->
+		<action name="generateExcel" class="WsbmgenerateExcelAction">
+			<result name="success" type="stream">
+				<param name="contentType">
+					application/vnd.ms-excel
+				</param>
+				<param name="contentDisposition">
+					attachment;filename="AllUsers.xls"
+				</param>
+				<param name="inputName">downloadFile</param>
+			</result>
+			<result name="input">
+				/4_wangshangbaoming_system/visitorPage/registerFail.jsp
+			</result>
+		</action>
+		<!-- 页面跳转功能配置 -->
+		<action name="tiaozhuan" class="WsbmTiaozhuanAction">
+			<result name="tiaozhuanForMessage">
+				/4_wangshangbaoming_system/adPage/MessageSend2.jsp
+			</result>
+			<result name="tiaozhuanForAdUpdate">
+				/4_wangshangbaoming_system/adPage/AppInfoAdUD.jsp
+			</result>
+			<result name="okToUpdate">
+				/4_wangshangbaoming_system/appLogPage/reg2.jsp
+			</result>
+			<result name="unableToUpdate">
+				/4_wangshangbaoming_system/appLogPage/unableToUpdate.jsp
+			</result>
+			<result name="input">
+				/4_wangshangbaoming_system/visitorPage/registerFail.jsp
+			</result>
+		</action>
+		<!-- 管理公告信息配置 -->
+		<action name="addNotice" class="WsbmAdminReleaseNoticeAction">
+			<param name="path">
+				/WEB-INF/classes/com/xdsc/service/wsbm/impl/uploadfile
+			</param>
+			<result name="saveNotice">
+				/4_wangshangbaoming_system/adPage/MessageSent.jsp
+			</result>
+			<result name="input">
+				/4_wangshangbaoming_system/visitorPage/registerFail.jsp
+			</result>
+		</action>
+		<!-- 上传excel更新数据库配置 -->
+		<action name="updateTabWsbmApp"
+			class="WsbmUpdateTabWsbmAppAction">
+			<param name="path">
+				/WEB-INF
+			</param>
+			<param name="tableName">wsbm_tab_regapplicant</param>
+			<param name="tableValue">
+				f_AppRegName,
+				f_AppRegEmail,
+				f_AppRegNum,
+				f_AppRegSex,
+				f_AppRegBirthday,
+				f_AppRegNation,
+				f_AppRegIdCard,
+				f_AppRegLocation,
+				f_AppRegWorkDuty,
+				f_AppRegWorkTitle,
+				f_AppRegTel,
+				f_AppRegAddress,
+				f_AppRegPostCode,
+				f_AppRegPolitical,
+				f_AppRegLastGraduInstitu,
+				f_AppRegLastGraduDate,
+				f_AppRegLastGraduMajor,
+				f_AppRegHomeTown,
+				f_AppRegLastBacheDegreeDate,
+				f_AppRegXueWeiZhengNum,
+				f_AppRegBiYeZhengNum,
+				f_AppRegQgtkaoNum,
+				f_AppRegQgtkao,
+				f_AppRegCet4,
+				f_AppRegCet6,
+				f_AppRegCv,
+				f_AppRegPassAuth,
+				f_AppRegPassPreAd,
+				f_AppRegPassFinAd,
+				f_AppRegBaoMingFei,
+				f_AppRegFuDaoBan,
+				f_AppRegZhuanYeKe,
+				f_AppRegQgtkaoZhengzhi,
+				f_AppRegQgtkaoEnglish,
+				f_AppRegQgtkaoZhuanYeKe,
+				f_AppRegCv1,
+				f_AppRegCv2,
+				f_AppRegCv3,
+				f_AppRegCv4,
+				f_AppRegCv5,
+				f_AppRegZhunKaoZhengHao,
+				f_AppRegBackUpChar,
+				f_AppRegBackUpText,
+				f_AppRegBackUpInt
+				
+			</param>
+			<result name="updateTabWsbmApp">
+				/4_wangshangbaoming_system/adPage/BigListDelete.jsp
+			</result>
+			<result name="input">
+				/4_wangshangbaoming_system/visitorPage/registerFail.jsp
+			</result>
+		</action>
+
+	</package>
+</struts>

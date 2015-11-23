@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+
+
+	<!--向DAO中注入hibernateTemplate对象 -->
+	
+	<bean name="GzfkUserLoginDao" class="com.xdsc.dao.gzfk_system.impl.UserLoginDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean name="GzfkTutorInfoDao" class="com.xdsc.dao.gzfk_system.impl.TutorInfoDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean id="GzfkOtherInfoDAO"
+		class="com.xdsc.dao.gzfk_system.impl.OtherInfoDAOImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	
+	<bean id="GzfkWorkInfoDAO"
+		class="com.xdsc.dao.gzfk_system.impl.WorkInfoDAOImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	
+	<bean id="GzfkCompanyInfoDAO"
+		class="com.xdsc.dao.gzfk_system.impl.CompanyInfoDAOImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean> 
+	
+	<bean id="GzfkStudentInfoDAO"
+		class="com.xdsc.dao.gzfk_system.impl.StudentInfoDAOImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	
+	<bean id="GzfkClassInfoDAO"
+		class="com.xdsc.dao.gzfk_system.impl.ClassInfoDAOImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	
+	<bean id="GzfkUniInfoDAO"
+		class="com.xdsc.dao.gzfk_system.impl.UniInfoDAOImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	
+	<bean id="GzfkKaoyanInfoDAO"
+		class="com.xdsc.dao.gzfk_system.impl.KaoyanInfoDAOImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	
+	<bean id="GzfkWorkyearDAO"
+		class="com.xdsc.dao.gzfk_system.impl.WorkyearDAOImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	
+	<bean id="GzfkUniyearDAO"
+		class="com.xdsc.dao.gzfk_system.impl.UniyearDAOImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	
+	<!--向Service中注入DAO对象 -->
+	
+	<bean name="GzfkUserLoginService" class="com.xdsc.service.gzfk_system.impl.UserLoginServiceImpl">
+		<property name="userLoginDao">
+			<ref bean="GzfkUserLoginDao"/>
+		</property>
+	</bean>
+	
+	<bean name="GzfkTutorInfoService" class="com.xdsc.service.gzfk_system.impl.TutorInfoServiceImpl">
+		<property name="tutorInfoDao">
+			<ref bean="GzfkTutorInfoDao"/>
+		</property>
+	</bean>
+	
+	<bean id="GzfkOtherInfoService"
+		class="com.xdsc.service.gzfk_system.impl.OtherInfoServiceImpl">
+		<property name="otherInfoDAO" ref="GzfkOtherInfoDAO" />
+	</bean>
+	
+	<bean id="GzfkWorkInfoService"
+		class="com.xdsc.service.gzfk_system.impl.WorkInfoServiceImpl">
+		<property name="workInfoDAO" ref="GzfkWorkInfoDAO" />
+	</bean>
+	
+	<bean id="GzfkCompanyInfoService"
+		class="com.xdsc.service.gzfk_system.impl.CompanyInfoServiceImpl">
+		<property name="companyInfoDAO" ref="GzfkCompanyInfoDAO"></property>
+	</bean>
+	
+	<bean id="GzfkStudentInfoService"
+		class="com.xdsc.service.gzfk_system.impl.StudentInfoServiceImpl">
+		<property name="studentInfoDAO" ref="GzfkStudentInfoDAO"></property>
+	</bean>
+	
+	<bean id="GzfkClassInfoService"
+		class="com.xdsc.service.gzfk_system.impl.ClassInfoServiceImpl">
+		<property name="classInfoDAO" ref="GzfkClassInfoDAO"></property>
+	</bean>
+	
+	<bean id="GzfkUniInfoService"
+		class="com.xdsc.service.gzfk_system.impl.UniInfoServiceImpl">
+		<property name="uniInfoDAO" ref="GzfkUniInfoDAO"></property>
+	</bean>
+	
+	<bean id="GzfkKaoyanInfoService"
+		class="com.xdsc.service.gzfk_system.impl.KaoyanInfoServiceImpl">
+		<property name="kaoyanInfoDAO" ref="GzfkKaoyanInfoDAO"></property>
+	</bean>
+	
+	<bean id="GzfkWorkyearService"
+		class="com.xdsc.service.gzfk_system.impl.WorkyearServiceImpl">
+		<property name="workyearDAO" ref="GzfkWorkyearDAO" />
+	</bean>
+	
+	<bean id="GzfkUniyearService"
+		class="com.xdsc.service.gzfk_system.impl.UniyearServiceImpl">
+		<property name="uniyearDAO" ref="GzfkUniyearDAO" />
+	</bean>
+	
+	<!--向Action中注入service对象 -->
+	
+	<bean name="GzfkCommonLoginAction" class="com.xdsc.action.gzfk_system.CommonLoginAction">
+	
+		<property name="userLoginService">
+			<ref bean="GzfkUserLoginService"/>
+		</property>
+		
+		<property name="studentInfoService">
+			<ref bean="GzfkStudentInfoService"/>
+		</property>
+		
+		<property name="tutorInfoService">
+			<ref bean="GzfkTutorInfoService"/>
+		</property>
+		
+	</bean>
+	
+	<bean id="GzfkStudentQuxiangAction" class="com.xdsc.action.gzfk_system.StudentQuxiangAction">
+		<property name="kaoyanInfoService" ref="GzfkKaoyanInfoService"></property>
+		<property name="workInfoService" ref="GzfkWorkInfoService"></property>
+		<property name="otherInfoService" ref="GzfkOtherInfoService"></property>
+	</bean>
+	
+	<bean id="GzfkStudentSelfAction" class="com.xdsc.action.gzfk_system.StudentSelfAction">
+		<property name="studentInfoService" ref="GzfkStudentInfoService"/>
+	</bean>
+	
+	<bean id="GzfkOtherInfoAction"
+		class="com.xdsc.action.gzfk_system.OtherInfoAction">
+		<property name="otherInfoService" ref="GzfkOtherInfoService" />
+		<property name="studentInfoService" ref="GzfkStudentInfoService" />
+		<property name="userLoginService" ref="GzfkUserLoginService" />
+		
+	</bean>
+	
+	
+	<bean id="GzfkWorkInfoAction"
+		class="com.xdsc.action.gzfk_system.WorkInfoAction">
+		<property name="workInfoService" ref="GzfkWorkInfoService" />
+		<property name="studentInfoService" ref="GzfkStudentInfoService" />
+		<property name="companyInfoService" ref="GzfkCompanyInfoService" />
+	</bean>
+	
+	<bean id="GzfkCompanyInfoAction"
+		class="com.xdsc.action.gzfk_system.CompanyInfoAction">
+		<property name="companyInfoService" ref="GzfkCompanyInfoService" />
+		<property name="userLoginService" ref="GzfkUserLoginService" />
+		
+	</bean>
+	
+	<bean id="GzfkStudentInfoAction"
+		class="com.xdsc.action.gzfk_system.StudentInfoAction">
+		<property name="studentInfoService" ref="GzfkStudentInfoService" />
+		<property name="classInfoService" ref="GzfkClassInfoService" />
+		<property name="userLoginService" ref="GzfkUserLoginService" />
+		
+	</bean>
+	
+    <bean id="GzfkClassInfoAction"
+		class="com.xdsc.action.gzfk_system.ClassInfoAction">
+		<property name="classInfoService" ref="GzfkClassInfoService" />
+	</bean>
+	
+    <bean id="GzfkUniInfoAction"
+		class="com.xdsc.action.gzfk_system.UniInfoAction">
+		<property name="uniInfoService" ref="GzfkUniInfoService" />
+	</bean>
+	
+	<bean id="GzfkKaoyanInfoAction"
+		class="com.xdsc.action.gzfk_system.KaoyanInfoAction">
+		<property name="kaoyanInfoService" ref="GzfkKaoyanInfoService" />
+		<property name="studentInfoService" ref="GzfkStudentInfoService" />
+		<property name="uniInfoService" ref="GzfkUniInfoService" />
+	</bean>
+	
+	<bean id="GzfkWorkyearAction" class="com.xdsc.action.gzfk_system.WorkyearAction">
+		<property name="workyearService" ref="GzfkWorkyearService" />
+		<property name="companyInfoService" ref="GzfkCompanyInfoService" />
+	</bean>
+	
+	<bean id="GzfkUniyearAction" class="com.xdsc.action.gzfk_system.UniyearAction">
+		<property name="uniyearService" ref="GzfkUniyearService" />
+		<property name="uniInfoService" ref="GzfkUniInfoService" />
+	</bean>
+</beans>

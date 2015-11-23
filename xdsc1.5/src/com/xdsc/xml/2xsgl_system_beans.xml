@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	
+	<!--向DAO中注入sessionFactory对象 -->
+	<bean id="loginDAO"
+		class="com.xdsc.dao.xsgl_system.impl.LoginDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="xsglTabStudentsDAO"
+		class="com.xdsc.dao.xsgl_system.impl.XsglTabStudentsDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="xsglTabClassesDAO"
+		class="com.xdsc.dao.xsgl_system.impl.XsglTabClassesDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="xsglTabPartygatherDAO"
+		class="com.xdsc.dao.xsgl_system.impl.XsglTabPartygatherDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="xsglTabJiangzhuDAO"
+		class="com.xdsc.dao.xsgl_system.impl.XsglTabJiangzhuDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="xsglTabJiangzhugatherDAO"
+		class="com.xdsc.dao.xsgl_system.impl.XsglTabJiangzhugatherDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="xsglTabStuorgadepartDAO"
+		class="com.xdsc.dao.xsgl_system.impl.XsglTabStuorgadepartDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="xsglTabXiaoyouDAO"
+		class="com.xdsc.dao.xsgl_system.impl.XsglTabXiaoyouDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="xsglTabJiaofeiDAO"
+		class="com.xdsc.dao.xsgl_system.impl.XsglTabJiaofeiDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="xsglTabPostgraduateDAO"
+		class="com.xdsc.dao.xsgl_system.impl.XsglTabPostgraduateDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="xsglTabUndergraduateDAO"
+		class="com.xdsc.dao.xsgl_system.impl.XsglTabUndergraduateDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="xsglTabGradeDAO"
+		class="com.xdsc.dao.xsgl_system.impl.XsglTabGradeDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="xsglTabParentsDAO"
+		class="com.xdsc.dao.xsgl_system.impl.XsglTabParentsDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="xsglTabTeachersDAO"
+		class="com.xdsc.dao.xsgl_system.impl.XsglTabTeachersDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="xsglTabPartyDAO"
+		class="com.xdsc.dao.xsgl_system.impl.XsglTabPartyDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="xsglTabKaoqinDAO"
+		class="com.xdsc.dao.xsgl_system.impl.XsglTabKaoqinDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="xsglTabKaoqingatherDAO"
+		class="com.xdsc.dao.xsgl_system.impl.XsglTabKaoqingatherDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="xsglTabDepartmentDAO"
+		class="com.xdsc.dao.xsgl_system.impl.XsglTabDepartmentDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="xsglTabOrganizationsDAO"
+		class="com.xdsc.dao.xsgl_system.impl.XsglTabOrganizationsDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="xsglTabCourseDAO"
+		class="com.xdsc.dao.xsgl_system.impl.XsglTabCourseDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!--向Manager中注入DAO对象 -->
+	<bean id="loginManager"
+		class="com.xdsc.service.xsgl_system.impl.LoginManagerImpl">
+		<property name="loginDAO" ref="loginDAO" />
+	</bean>
+	<bean id="xsglTabStudentsManager"
+		class="com.xdsc.service.xsgl_system.impl.XsglTabStudentsManagerImpl">
+		<property name="xsglTabStudentsDAO" ref="xsglTabStudentsDAO" />
+	</bean>
+	<bean id="xsglTabClassesManager"
+		class="com.xdsc.service.xsgl_system.impl.XsglTabClassesManagerImpl">
+		<property name="xsglTabClassesDAO" ref="xsglTabClassesDAO" />
+	</bean>
+	<bean id="xsglTabPartygatherManager"
+		class="com.xdsc.service.xsgl_system.impl.XsglTabPartygatherManagerImpl">
+		<property name="xsglTabPartygatherDAO" ref="xsglTabPartygatherDAO" />
+	</bean>
+	<bean id="xsglTabJiangzhuManager"
+		class="com.xdsc.service.xsgl_system.impl.XsglTabJiangzhuManagerImpl">
+		<property name="xsglTabJiangzhuDAO" ref="xsglTabJiangzhuDAO" />
+	</bean>
+	<bean id="xsglTabJiangzhugatherManager"
+		class="com.xdsc.service.xsgl_system.impl.XsglTabJiangzhugatherManagerImpl">
+		<property name="xsglTabJiangzhugatherDAO" ref="xsglTabJiangzhugatherDAO" />
+	</bean>
+	<bean id="xsglTabStuorgadepartManager"
+		class="com.xdsc.service.xsgl_system.impl.XsglTabStuorgadepartManagerImpl">
+		<property name="xsglTabStuorgadepartDAO" ref="xsglTabStuorgadepartDAO" />
+	</bean>
+	<bean id="xsglTabXiaoyouManager"
+		class="com.xdsc.service.xsgl_system.impl.XsglTabXiaoyouManagerImpl">
+		<property name="xsglTabXiaoyouDAO" ref="xsglTabXiaoyouDAO" />
+	</bean>
+	<bean id="xsglTabJiaofeiManager"
+		class="com.xdsc.service.xsgl_system.impl.XsglTabJiaofeiManagerImpl">
+		<property name="xsglTabJiaofeiDAO" ref="xsglTabJiaofeiDAO" />
+	</bean>
+	<bean id="xsglTabPostgraduateManager"
+		class="com.xdsc.service.xsgl_system.impl.XsglTabPostgraduateManagerImpl">
+		<property name="xsglTabPostgraduateDAO" ref="xsglTabPostgraduateDAO" />
+	</bean>
+	<bean id="xsglTabUndergraduateManager"
+		class="com.xdsc.service.xsgl_system.impl.XsglTabUndergraduateManagerImpl">
+		<property name="xsglTabUndergraduateDAO" ref="xsglTabUndergraduateDAO" />
+	</bean>
+	<bean id="xsglTabGradeManager"
+		class="com.xdsc.service.xsgl_system.impl.XsglTabGradeManagerImpl">
+		<property name="xsglTabGradeDAO" ref="xsglTabGradeDAO" />
+	</bean>
+	<bean id="xsglTabParentsManager"
+		class="com.xdsc.service.xsgl_system.impl.XsglTabParentsManagerImpl">
+		<property name="xsglTabParentsDAO" ref="xsglTabParentsDAO" />
+	</bean>
+	<bean id="xsglTabTeachersManager"
+		class="com.xdsc.service.xsgl_system.impl.XsglTabTeachersManagerImpl">
+		<property name="xsglTabTeachersDAO" ref="xsglTabTeachersDAO" />
+	</bean>
+	<bean id="xsglTabPartyManager"
+		class="com.xdsc.service.xsgl_system.impl.XsglTabPartyManagerImpl">
+		<property name="xsglTabPartyDAO" ref="xsglTabPartyDAO" />
+	</bean>
+	<bean id="xsglTabKaoqinManager"
+		class="com.xdsc.service.xsgl_system.impl.XsglTabKaoqinManagerImpl">
+		<property name="xsglTabKaoqinDAO" ref="xsglTabKaoqinDAO" />
+	</bean>
+	<bean id="xsglTabKaoqingatherManager"
+		class="com.xdsc.service.xsgl_system.impl.XsglTabKaoqingatherManagerImpl">
+		<property name="xsglTabKaoqingatherDAO" ref="xsglTabKaoqingatherDAO" />
+	</bean>
+	<bean id="xsglTabDepartmentManager"
+		class="com.xdsc.service.xsgl_system.impl.XsglTabDepartmentManagerImpl">
+		<property name="xsglTabDepartmentDAO" ref="xsglTabDepartmentDAO" />
+	</bean>
+	<bean id="xsglTabOrganizationsManager"
+		class="com.xdsc.service.xsgl_system.impl.XsglTabOrganizationsManagerImpl">
+		<property name="xsglTabOrganizationsDAO" ref="xsglTabOrganizationsDAO" />
+	</bean>
+	<bean id="xsglTabCourseManager"
+		class="com.xdsc.service.xsgl_system.impl.XsglTabCourseManagerImpl">
+		<property name="xsglTabCourseDAO" ref="xsglTabCourseDAO" />
+	</bean>
+
+
+	<!--向Action中注入Manager对象 -->
+	<bean id="loginAction"
+		class="com.xdsc.action.xsgl_system.LoginAction">
+		<property name="loginManager" ref="loginManager" />
+		<property name="xsglTabParentsManager" ref="xsglTabParentsManager" />
+		<property name="xsglTabTeachersManager" ref="xsglTabTeachersManager" />
+	</bean>
+	<bean id="xsglTabStudentsAction"
+		class="com.xdsc.action.xsgl_system.XsglTabStudentsAction">
+		<property name="xsglTabStudentsManager" ref="xsglTabStudentsManager" />
+	</bean>
+	<bean id="xsglTabClassesAction"
+		class="com.xdsc.action.xsgl_system.XsglTabClassesAction">
+		<property name="xsglTabClassesManager" ref="xsglTabClassesManager" />
+		<property name="xsglTabGradeManager" ref="xsglTabGradeManager" />
+	</bean>
+	<bean id="xsglTabPartygatherAction"
+		class="com.xdsc.action.xsgl_system.XsglTabPartygatherAction">
+		<property name="xsglTabPartygatherManager" ref="xsglTabPartygatherManager" />
+		<property name="xsglTabClassesManager" ref="xsglTabClassesManager" />
+	</bean>
+	<bean id="xsglTabJiangzhuAction"
+		class="com.xdsc.action.xsgl_system.XsglTabJiangzhuAction">
+		<property name="xsglTabJiangzhuManager" ref="xsglTabJiangzhuManager" />
+		<property name="xsglTabJiangzhugatherManager" ref="xsglTabJiangzhugatherManager" />
+		<property name="xsglTabStudentsManager" ref="xsglTabStudentsManager" />
+		<property name="xsglTabClassesManager" ref="xsglTabClassesManager" />
+	</bean>
+	<bean id="xsglTabJiangzhugatherAction"
+		class="com.xdsc.action.xsgl_system.XsglTabJiangzhugatherAction">
+		<property name="xsglTabJiangzhugatherManager" ref="xsglTabJiangzhugatherManager" />
+		<property name="xsglTabClassesManager" ref="xsglTabClassesManager" />
+	</bean>
+	<bean id="xsglTabStuorgadepartAction"
+		class="com.xdsc.action.xsgl_system.XsglTabStuorgadepartAction">
+		<property name="xsglTabStuorgadepartManager" ref="xsglTabStuorgadepartManager" />
+	        <property name="xsglTabStudentsManager" ref="xsglTabStudentsManager" />
+	        <property name="xsglTabClassesManager" ref="xsglTabClassesManager" />
+	        <property name="xsglTabDepartmentManager" ref="xsglTabDepartmentManager" />
+	</bean>
+	<bean id="xsglTabXiaoyouAction"
+		class="com.xdsc.action.xsgl_system.XsglTabXiaoyouAction">
+		<property name="xsglTabXiaoyouManager" ref="xsglTabXiaoyouManager" />
+	</bean>
+	<bean id="xsglTabJiaofeiAction"
+		class="com.xdsc.action.xsgl_system.XsglTabJiaofeiAction">
+		<property name="xsglTabJiaofeiManager" ref="xsglTabJiaofeiManager" />
+		<property name="xsglTabStudentsManager" ref="xsglTabStudentsManager" />
+		<property name="xsglTabClassesManager" ref="xsglTabClassesManager" />
+	</bean>
+	<bean id="xsglTabPostgraduateAction"
+		class="com.xdsc.action.xsgl_system.XsglTabPostgraduateAction">
+		<property name="xsglTabPostgraduateManager" ref="xsglTabPostgraduateManager" />
+		<property name="xsglTabStudentsManager" ref="xsglTabStudentsManager" />
+		<property name="xsglTabTeachersManager" ref="xsglTabTeachersManager" />
+		<property name="xsglTabClassesManager" ref="xsglTabClassesManager" />
+		<property name="xsglTabGradeManager" ref="xsglTabGradeManager" />
+	</bean>
+	<bean id="xsglTabUndergraduateAction"
+		class="com.xdsc.action.xsgl_system.XsglTabUndergraduateAction">
+		<property name="xsglTabUndergraduateManager" ref="xsglTabUndergraduateManager" />
+		<property name="xsglTabStudentsManager" ref="xsglTabStudentsManager" />
+		<property name="xsglTabTeachersManager" ref="xsglTabTeachersManager" />
+		<property name="xsglTabClassesManager" ref="xsglTabClassesManager" />
+		<property name="xsglTabGradeManager" ref="xsglTabGradeManager" />
+	</bean>
+	<bean id="xsglTabGradeAction"
+		class="com.xdsc.action.xsgl_system.XsglTabGradeAction">
+		<property name="xsglTabGradeManager" ref="xsglTabGradeManager" />
+		<property name="xsglTabTeachersManager" ref="xsglTabTeachersManager" />
+	</bean>
+	<bean id="xsglTabParentsAction"
+		class="com.xdsc.action.xsgl_system.XsglTabParentsAction">
+		<property name="xsglTabParentsManager" ref="xsglTabParentsManager" />
+		<property name="xsglTabStudentsManager" ref="xsglTabStudentsManager" />
+	</bean>
+	<bean id="xsglTabPartyAction"
+		class="com.xdsc.action.xsgl_system.XsglTabPartyAction">
+		<property name="xsglTabPartyManager" ref="xsglTabPartyManager" />
+		<property name="xsglTabStudentsManager" ref="xsglTabStudentsManager" />
+		<property name="xsglTabClassesManager" ref="xsglTabClassesManager" />
+		<property name="xsglTabGradeManager" ref="xsglTabGradeManager" />
+		<property name="xsglTabTeachersManager" ref="xsglTabTeachersManager" />
+		<property name="xsglTabPartygatherManager" ref="xsglTabPartygatherManager" />
+	</bean>
+	<bean id="xsglTabKaoqinAction"
+		class="com.xdsc.action.xsgl_system.XsglTabKaoqinAction">
+		<property name="xsglTabKaoqinManager" ref="xsglTabKaoqinManager" />
+		<property name="xsglTabKaoqingatherManager" ref="xsglTabKaoqingatherManager" />
+		<property name="xsglTabStudentsManager" ref="xsglTabStudentsManager" />
+		<property name="xsglTabCourseManager" ref="xsglTabCourseManager" />
+	</bean>
+	<bean id="xsglTabKaoqingatherAction"
+		class="com.xdsc.action.xsgl_system.XsglTabKaoqingatherAction">
+		<property name="xsglTabKaoqingatherManager" ref="xsglTabKaoqingatherManager" />
+		<property name="xsglTabClassesManager" ref="xsglTabClassesManager" />
+		<property name="xsglTabCourseManager" ref="xsglTabCourseManager" />
+	</bean> 
+	<bean id="xsglTabDepartmentAction"
+		class="com.xdsc.action.xsgl_system.XsglTabDepartmentAction">
+		<property name="xsglTabDepartmentManager" ref="xsglTabDepartmentManager" />
+		<property name="xsglTabOrganizationsManager" ref="xsglTabOrganizationsManager" />
+	</bean>
+	<bean id="xsglTabOrganizationsAction"
+		class="com.xdsc.action.xsgl_system.XsglTabOrganizationsAction">
+		<property name="xsglTabOrganizationsManager" ref="xsglTabOrganizationsManager" />
+	</bean>
+	 <bean id="uploadAction" class="com.xdsc.util.UploadAction">      
+	</bean>
+	<bean id="xsglExcelInAction" class="com.xdsc.util.XsglExcelInAction">
+	      <property name="xsglTabGradeManager" ref="xsglTabGradeManager" />
+	      <property name="xsglTabDepartmentManager" ref="xsglTabDepartmentManager" />
+	</bean>
+</beans>
+

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+    <struts>
+    	<package name="struts2" extends="struts-default">
+    	
+    	<!-- 与邮件管理有关的action -->
+    	<action name="deletedremove" class="mailmanageAction" method="deletedRemove">
+    		<result name="success" type="chain">emailshow</result>
+    	</action>
+    	<action name="rubbishremove" class="mailmanageAction" method="rubbishRemove">
+    		<result name="success" type="chain">emailshow</result>
+    	</action>
+    	<action name="rubbishmail" class="mailmanageAction" method="rubbishMail">
+    		<result name="success">/8_mail_system/rubbishMail.jsp</result>
+    	</action>
+    	<action name="seenmail" class="mailmanageAction" method="seenMail">
+    		<result name="success">/8_mail_system/seenMail.jsp</result>
+    	</action>
+    	<action name="deletemail" class="mailmanageAction" method="deleteMail">
+    		<result name="success" type="chain">emailshow</result>
+    	</action>
+    	<action name="deletedmail" class="mailmanageAction" method="deletedMail">
+    		<result name="success">/8_mail_system/deletedMail.jsp</result>
+    	</action>
+    	
+    	<action name="filedownload" class="com.xdsc.action.mail_system.FileDownloadAction">
+    			<!-- 指定inputPath -->
+    			<result name="success" type="stream">
+    				
+				<!-- inputName默认值是inputStream，如果action中用于读取下载文件内容的属性名
+					是inputStream，那么可以省略这个参数 -->
+				<param name="inputName">inputStream</param>
+				
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				
+				<param name="bufferSize">4096</param>
+    				
+    			</result>
+    		</action>
+    		
+    		<action name="mailmanage" class="emailAction" method="manageMail">
+    		</action>
+    		<action name="showinfo" class="userinfoAction" method="find">
+    			<result name="success">/8_mail_system/userInfo.jsp</result>
+    		</action>
+    		<action name="showselfinfo" class="userinfoAction" method="findSelf">
+    			<result name="success">/8_mail_system/userInfo.jsp</result>
+    		</action>
+    		<action name="modifyinfo" class="userinfoAction" method="modifyInfo">
+    			<result name="success">/8_mail_system/modifyInfo.jsp</result>
+    		</action>
+    		<action name="updateinfo" class="userinfoAction" method="updateInfo">
+    			<result name="success" type="chain">showselfinfo</result>
+    		</action>
+    		
+    		<action name="manager" class="managerAction">
+    			<result name="success">/8_mail_system/mail_system.jsp</result>
+    			<result name="input">/8_mail_system/login.jsp</result>
+    		</action>
+    		
+    		<!-- email action -->
+    		<action name="newmail1" class="emailAction" method="countNew">
+    			<result name="success" type="chain">emailshow</result>
+    		</action>
+    		<action name="tagmail" class="emailAction" method="tagMail">
+    			<result name="success" type="chain">newmail</result>
+    		</action>
+    		<action name="newmail" class="emailAction" method="countNew">
+    			<result name="success">/8_mail_system/welcome_page.jsp</result>
+    		</action> 
+    		<action name="emailshow" class="emailAction" method="showEmail">
+    			<result name="success">/8_mail_system/receiveMail.jsp</result>
+    		</action>
+    		<action name="sendemail" class="emailAction" method="sendEmail">
+    			<result name="success">/8_mail_system/sentStatus.jsp</result>
+    			<result name="input">/8_mail_system/error.jsp</result>
+    		</action>
+    		<action name="searchmail" class="emailAction" method="searchMail">
+    			<result name="success">/8_mail_system/searchMailResult.jsp</result>
+    		</action>
+    		
+    		
+    		<!-- RemindAction -->
+    		<action name="queryremind" class="remindAction" method="selectAll">
+    			<result name="success">/8_mail_system/wakeUp.jsp</result>
+    		</action>
+    		<action name="addremind" class="remindAction" method="addNewRemind">
+    			<result name="success">/8_mail_system/remindSuccess.jsp</result>
+    		</action>
+    		<action name="deleteremind" class="remindAction" method="deleteRemind">
+    			<result name="success" type="chain">queryremind</result>
+    		</action>
+    		
+    		<!-- ContactAction -->
+    		<action name="updatecontact" class="contactAction" method="updateContact">
+    			<result name="success">/8_mail_system/newContactSuccess.jsp</result>
+    		</action>
+    		<action name="addcontact" class="contactAction" method="addContact">
+    			<result name="success">/8_mail_system/newContactSuccess.jsp</result>
+    		</action>
+    		<action name="deletecontact" class="contactAction" method="deleteContact">
+    			<result name="success" type="chain">contact</result>
+    		</action>
+    		<action name="preupdatecontact" class="contactAction" method="preupdateContact">
+    			<result name="success">/8_mail_system/preupdateContact.jsp</result>
+    		</action>
+    		
+    		<action name="previous" class="contactAction" method="previous">
+    			<result name="success">/8_mail_system/allContact.jsp</result>
+    		</action>
+    		<action name="next" class="contactAction" method="next">
+    			<result name="success">/8_mail_system/allContact.jsp</result>
+    		</action>
+    		<action name="contact" class="contactAction" method="contactAll">
+    			<result name="success">/8_mail_system/allContact.jsp</result>
+    		</action>
+    		<action name="contactconfigbyrole" class="contactAction" method="contactConfigByRole">
+    			<result name="success">/8_mail_system/groupContact.jsp</result>
+    		</action>
+    		<action name="contactconfig" class="contactAction" method="contactConfig">
+    			<result name="success">/8_mail_system/contact.jsp</result>
+    		</action>
+    		
+    		
+    		
+    		
+    		<action name="showtopic" class="topicAction" method="showTopic">
+    			<result name="showtopic">/8_mail_system/showall.jsp</result>
+    		</action>
+    		
+    		<action name="addtopic" class="topicAction" method="addTopic" >
+    			<result name="success" type="chain">showtopic</result>
+    		</action>
+    		
+    		<action name="delete" class="topicAction" method="deleteTopic">
+    			<result name="success" type="chain">showtopic</result>
+    		</action>
+  
+    		<action name="addreply" class="replyAction" method="addreply">
+    			<result name="success" type="chain">showtopic</result>
+    		</action>
+    			
+    	</package>
+    </struts>

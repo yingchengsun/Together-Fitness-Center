@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+<session-factory>
+
+	<property name="connection.driver_class">
+		com.mysql.jdbc.Driver
+	</property>
+	<property name="connection.url">
+		jdbc:mysql://localhost:3306/software_infoplatform
+	</property>
+	<property name="connection.username">root</property>
+	<property name="connection.password">root</property>
+	<property name="dialect">
+		org.hibernate.dialect.MySQLDialect
+	</property>
+
+	<!-- JDBC connection pool (use the built-in) -->
+
+
+	<!-- Enable Hibernate's automatic session context management -->
+
+	<!-- Disable the second-level cache  -->
+
+	<!-- Echo all executed SQL to stdout -->
+	<property name="show_sql">false</property>
+
+	<property name="myeclipse.connection.profile">mysql</property>
+	<mapping resource="com/xdsc/model/BksxTabAchievement.hbm.xml" />
+	<mapping resource="com/xdsc/model/BksxTabGanttplan.hbm.xml" />
+	<mapping resource="com/xdsc/model/BksxTabMember.hbm.xml" />
+	<mapping resource="com/xdsc/model/BksxTabProject.hbm.xml" />
+	<mapping resource="com/xdsc/model/BksxTabProjectapply.hbm.xml" />
+	<mapping resource="com/xdsc/model/BksxTabSearchplan.hbm.xml" />
+	<mapping resource="com/xdsc/model/BksxTabStagereport.hbm.xml" />
+	<mapping resource="com/xdsc/model/BksxTabSubjectapply.hbm.xml" />
+	<mapping resource="com/xdsc/model/BksxTabSubstugui.hbm.xml" />
+	<mapping resource="com/xdsc/model/BksxTabTeam.hbm.xml" />
+	<mapping resource="com/xdsc/model/BksxTabTeamapply.hbm.xml" />
+	<mapping resource="com/xdsc/model/BksxTabWorkdiary.hbm.xml" />
+	<mapping resource="com/xdsc/model/BksxTabWorksummary.hbm.xml" />
+	<mapping resource="com/xdsc/model/GzfkTabComnums.hbm.xml" />
+	<mapping resource="com/xdsc/model/GzfkTabKaoyanstudent.hbm.xml" />
+	<mapping resource="com/xdsc/model/GzfkTabOtherstudent.hbm.xml" />
+	<mapping resource="com/xdsc/model/GzfkTabStudyuniversity.hbm.xml" />
+	<mapping resource="com/xdsc/model/GzfkTabUninums.hbm.xml" />
+	<mapping resource="com/xdsc/model/GzfkTabWorkstudent.hbm.xml" />
+	<mapping resource="com/xdsc/model/JfptTabAssistantapply.hbm.xml" />
+	<mapping resource="com/xdsc/model/JfptTabChooseassociate.hbm.xml" />
+	<mapping resource="com/xdsc/model/JfptTabCourseaskquestion.hbm.xml" />
+	<mapping resource="com/xdsc/model/JfptTabCoursenotice.hbm.xml" />
+	<mapping
+		resource="com/xdsc/model/JfptTabCoursereplyquestion.hbm.xml" />
+	<mapping resource="com/xdsc/model/JfptTabExamination.hbm.xml" />
+	<mapping resource="com/xdsc/model/JfptTabHomenotice.hbm.xml" />
+	<mapping
+		resource="com/xdsc/model/JfptTabHomenoticetoreceive.hbm.xml" />
+	<mapping resource="com/xdsc/model/JfptTabHomeupload.hbm.xml" />
+	<mapping resource="com/xdsc/model/JfptTabNoticetoreceive.hbm.xml" />
+	<mapping resource="com/xdsc/model/JfptTabOtherassist.hbm.xml" />
+	<mapping resource="com/xdsc/model/JfptTabStudentassociate.hbm.xml" />
+	<mapping resource="com/xdsc/model/JfptTabStudentteacher.hbm.xml" />
+	<mapping resource="com/xdsc/model/JfptTabTeacherassociate.hbm.xml" />
+	<mapping resource="com/xdsc/model/JfptTabUploadfile.hbm.xml" />
+	<mapping resource="com/xdsc/model/JfptTabUsualscore.hbm.xml" />
+	<mapping resource="com/xdsc/model/JfptTabZiwoanpai.hbm.xml" />
+	<mapping resource="com/xdsc/model/MhqxTabFunction.hbm.xml" />
+	<mapping resource="com/xdsc/model/MhqxTabLink.hbm.xml" />
+	<mapping resource="com/xdsc/model/MhqxTabMenu.hbm.xml" />
+	<mapping resource="com/xdsc/model/MhqxTabModule.hbm.xml" />
+	<mapping resource="com/xdsc/model/MhqxTabModuleuser.hbm.xml" />
+	<mapping resource="com/xdsc/model/MhqxTabNavigation.hbm.xml" />
+	<mapping resource="com/xdsc/model/MhqxTabPicture.hbm.xml" />
+	<mapping resource="com/xdsc/model/MhqxTabRemind.hbm.xml" />
+	<mapping resource="com/xdsc/model/MhqxTabRole.hbm.xml" />
+	<mapping resource="com/xdsc/model/MhqxTabRolefunction.hbm.xml" />
+	<mapping resource="com/xdsc/model/MhqxTabRolemodule.hbm.xml" />
+	<mapping resource="com/xdsc/model/MhqxTabRoleuser.hbm.xml" />
+	<mapping resource="com/xdsc/model/MhqxTabUser.hbm.xml" />
+	<mapping resource="com/xdsc/model/MhqxTabUserfunction.hbm.xml" />
+	<mapping resource="com/xdsc/model/SjjxTabAttendance.hbm.xml" />
+	<mapping resource="com/xdsc/model/SjjxTabCourselab.hbm.xml" />
+	<mapping resource="com/xdsc/model/SjjxTabEquipment.hbm.xml" />
+	<mapping resource="com/xdsc/model/SjjxTabEquipmentdetail.hbm.xml" />
+	<mapping resource="com/xdsc/model/SjjxTabEquipmenttype.hbm.xml" />
+	<mapping resource="com/xdsc/model/SjjxTabLab.hbm.xml" />
+	<mapping resource="com/xdsc/model/SjjxTabTest.hbm.xml" />
+	<mapping resource="com/xdsc/model/SjjxTabUsualexperiment.hbm.xml" />
+	<mapping resource="com/xdsc/model/TabAdministrator.hbm.xml" />
+	<mapping resource="com/xdsc/model/TabClasses.hbm.xml" />
+	<mapping resource="com/xdsc/model/TabCompany.hbm.xml" />
+	<mapping resource="com/xdsc/model/TabCourse.hbm.xml" />
+	<mapping resource="com/xdsc/model/TabCoursetype.hbm.xml" />
+	<mapping resource="com/xdsc/model/TabDirection.hbm.xml" />
+	<mapping resource="com/xdsc/model/TabGrade.hbm.xml" />
+	<mapping resource="com/xdsc/model/TabInformation.hbm.xml" />
+	<mapping resource="com/xdsc/model/TabInformationimage.hbm.xml" />
+	<mapping resource="com/xdsc/model/TabNotice.hbm.xml" />
+	<mapping resource="com/xdsc/model/TabNoticetosb.hbm.xml" />
+	<mapping resource="com/xdsc/model/TabPostgraduate.hbm.xml" />
+	<mapping resource="com/xdsc/model/TabStudents.hbm.xml" />
+	<mapping resource="com/xdsc/model/TabTeachers.hbm.xml" />
+	<mapping resource="com/xdsc/model/TabTeacherstotype.hbm.xml" />
+	<mapping resource="com/xdsc/model/TabTeacherstype.hbm.xml" />
+	<mapping resource="com/xdsc/model/TabUndergraduate.hbm.xml" />
+	<mapping resource="com/xdsc/model/WsbmTabExamresult.hbm.xml" />
+	<mapping resource="com/xdsc/model/WsbmTabExamsubject.hbm.xml" />
+	<mapping resource="com/xdsc/model/WsbmTabFinadnot.hbm.xml" />
+	<mapping resource="com/xdsc/model/WsbmTabInstruction.hbm.xml" />
+	<mapping resource="com/xdsc/model/WsbmTabPreadnot.hbm.xml" />
+	<mapping resource="com/xdsc/model/WsbmTabProgress.hbm.xml" />
+	<mapping resource="com/xdsc/model/WsbmTabRegapplicant.hbm.xml" />
+	<mapping resource="com/xdsc/model/XsglTabDepartment.hbm.xml" />
+	<mapping resource="com/xdsc/model/XsglTabJiangzhu.hbm.xml" />
+	<mapping resource="com/xdsc/model/XsglTabJiangzhugather.hbm.xml" />
+	<mapping resource="com/xdsc/model/XsglTabJiaofei.hbm.xml" />
+	<mapping resource="com/xdsc/model/XsglTabJiaofeigather.hbm.xml" />
+	<mapping resource="com/xdsc/model/XsglTabKaoqin.hbm.xml" />
+	<mapping resource="com/xdsc/model/XsglTabKaoqingather.hbm.xml" />
+	<mapping resource="com/xdsc/model/XsglTabOrganizations.hbm.xml" />
+	<mapping resource="com/xdsc/model/XsglTabParents.hbm.xml" />
+	<mapping resource="com/xdsc/model/XsglTabParty.hbm.xml" />
+	<mapping resource="com/xdsc/model/XsglTabPartygather.hbm.xml" />
+	<mapping resource="com/xdsc/model/XsglTabStuorgadepart.hbm.xml" />
+	<mapping resource="com/xdsc/model/XsglTabXiaoyou.hbm.xml" />
+	<mapping resource="com/xdsc/model/YjssxTabResume.hbm.xml" />
+	<mapping resource="com/xdsc/model/YjssxTabReturnthesis.hbm.xml" />
+	<mapping resource="com/xdsc/model/YjssxTabSubmitthesis.hbm.xml" />
+	<mapping resource="com/xdsc/model/YjssxTabTutorselect.hbm.xml" />
+	<mapping
+		resource="com/xdsc/model/YjssxTabTutorselectdispach.hbm.xml" />
+	<mapping resource="com/xdsc/model/Contact.hbm.xml" />
+	<mapping resource="com/xdsc/model/Mailmanager.hbm.xml" />
+	<mapping resource="com/xdsc/model/Remind.hbm.xml" />
+	<mapping resource="com/xdsc/model/Reply.hbm.xml" />
+	<mapping resource="com/xdsc/model/Topic.hbm.xml" />
+	<mapping resource="com/xdsc/model/User.hbm.xml" />
+	<mapping resource="com/xdsc/model/UserInfo.hbm.xml" />
+
+
+</session-factory>
+
+</hibernate-configuration>

@@ -1,0 +1,1464 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+   
+   <package name="login1" extends="struts-default">
+   <!-- 登录 -->
+   <action name="userLogin" class="loginAction" method="userLogin">
+   <result name="parentLogin">/2_xsgl_system/parent/welcome.jsp</result>
+   <result name="teacherLogin">/2_xsgl_system/instructor/welcome.jsp</result>
+   <result name="managerLogin">/2_xsgl_system/administrator/welcome.jsp</result>
+   <result name="error">/2_xsgl_system/loginError.jsp</result>
+   </action>
+   </package>
+   
+	<package name="student" extends="struts-default">
+	    <!--显示所有学生信息  -->
+		<action name="showStudentList" class="xsglTabStudentsAction"
+			method="getStudentsList">
+			<result>/2_xsgl_system/system/xsgk/StudentList.jsp</result>
+		</action>
+		<!--显示一个学生信息  -->
+		<action name="showStudent" class="xsglTabStudentsAction"
+			method="showStudent">
+			<result>/2_xsgl_system/system/grxx/Student.jsp</result>
+		</action>
+		<!--显示一个学生的基本信息  -->
+		<action name="showStudentArchives" class="xsglTabStudentsAction"
+			method="showStudentArchives">
+			<result>/2_xsgl_system/system/grxx/Archives.jsp</result>
+		</action>
+		<!--按学生学号或姓名查找学生  -->
+		<action name="selectStudent" class="xsglTabStudentsAction"
+			method="selectStudent">
+			<result>/2_xsgl_system/system/xsgk/Class1.jsp</result>
+		</action>
+		<!--按学生学号查找学生  -->
+		<action name="getStudentByStuNum" class="xsglTabStudentsAction"
+			method="getStudentByStuNum">
+			<result type="chain">showStudent</result>
+		</action>
+		<!--删除一个学生  -->
+		<action name="deleteStudent" class="xsglTabStudentsAction"
+			method="deleteStudent">
+			<result type="chain">showStudentList</result>
+		</action>
+		<!--预更新一个学生  -->
+		<action name="preUpdateStudent" class="xsglTabStudentsAction"
+			method="preUpdateStudent">
+			<result>/updateStudent.jsp</result>
+		</action>
+		<!--更新一个学生  -->
+		<action name="updateStudent" class="xsglTabStudentsAction"
+			method="updateStudent">
+			<result type="chain">showStudentList</result>
+		</action>
+		<!--显示一个班级的学生信息  -->
+		<action name="showClassStudent" class="xsglTabStudentsAction"
+			method="showClassStudent">
+			<result name="success">/2_xsgl_system/system/xsgk/Class1.jsp</result>
+		</action>
+		<!--显示一个年级的学生信息  -->
+		<action name="getStudentByGrade" class="xsglTabStudentsAction"
+			method="getStudentByGrade">
+			<result>/2_xsgl_system/system/xsgk/GradeStudent.jsp</result>
+		</action>
+		<!--年级学生信息前翻页  -->
+		<action name="gradeStuPrevious" class="xsglTabStudentsAction"
+			method="gradeStuPrevious">
+			<result>/2_xsgl_system/system/xsgk/GradeStudent.jsp</result>
+		</action>
+		<!--年级学生后翻页  -->
+		<action name="gradeStuNext" class="xsglTabStudentsAction"
+			method="gradeStuNext">
+			<result>/2_xsgl_system/system/xsgk/GradeStudent.jsp</result>
+		</action>
+	</package>
+	
+	<package name="postgraduate" extends="struts-default">
+	    <!--按年级显示研究生信息  -->
+		<action name="getPostgraduateListByGrade" class="xsglTabPostgraduateAction"
+			method="getPostgraduateListByGrade">
+			<result>/2_xsgl_system/system/xsgk/StudentList_p1.jsp</result>
+		</action>
+		<!--按年级显示研究生信息前翻页  -->
+		<action name="postgraGradePrevious" class="xsglTabPostgraduateAction"
+			method="postgraPrevious">
+			<result>/2_xsgl_system/system/xsgk/StudentList_p1.jsp</result>
+		</action>
+		<!--按年级显示研究生信息后翻页  -->
+		<action name="postgraGradeNext" class="xsglTabPostgraduateAction"
+			method="postgraNext">
+			<result>/2_xsgl_system/system/xsgk/StudentList_p1.jsp</result>
+		</action>
+		<!--显示一个研究生信息  -->
+		<action name="showPostgraduate" class="xsglTabPostgraduateAction"
+			method="showPostgraduate">
+			<result>/2_xsgl_system/system/xsgk/StudentDetails_p.jsp</result>
+		</action>
+		<!--显示所有研究生信息  -->
+		<action name="getPostgraduateList" class="xsglTabPostgraduateAction"
+			method="getPostgraduateList">
+			<result>/2_xsgl_system/administrator/Postgraduate.jsp</result>
+		</action>   
+		<!--显示所有研究生信息前翻页  --> 
+		<action name="postgraNext" class="xsglTabPostgraduateAction"
+			method="postgraNext">
+			<result>/2_xsgl_system/administrator/Postgraduate.jsp</result>
+		</action>
+		<!--显示所有研究生信息后翻页  -->
+		<action name="postgraPrevious" class="xsglTabPostgraduateAction"
+			method="postgraPrevious">
+			<result>/2_xsgl_system/administrator/Postgraduate.jsp</result>
+		</action> 
+		<!--按班级查找研究生信息  -->
+		<action name="selectPostgraduateByClass" class="xsglTabPostgraduateAction"
+			method="selectPostgraduateByClass">
+			<result>/2_xsgl_system/administrator/Postgraduate.jsp</result>
+		</action>
+		<!--添加一个研究生  -->
+		<action name="savePostgraduate" class="xsglTabPostgraduateAction"
+			method="savePostgraduate">
+			<result type="chain">getPostgraduateList</result>
+			<result name="input">/2_xsgl_system/administrator/AddError.jsp</result>
+		</action>
+		<!--删除一个研究生  -->
+		<action name="deletePostgraduate" class="xsglTabPostgraduateAction"
+			method="deletePostgraduate">
+			<result type="chain">getPostgraduateList</result>
+		</action>
+		<!--预更新一个研究生信息  -->
+		<action name="preUpdatePostgraduate" class="xsglTabPostgraduateAction"
+			method="preUpdatePostgraduate">
+			<result>/2_xsgl_system/administrator/UpdatePostgraduate.jsp</result>
+		</action>
+		<!--更新一个研究生信息  -->
+		<action name="updatePostgraduate" class="xsglTabPostgraduateAction"
+			method="updatePostgraduate">
+			<result type="chain">getPostgraduateList</result>
+			<result name="input">/2_xsgl_system/administrator/AddError.jsp</result>
+		</action>
+		<!--按学号或姓名查找一个研究生  -->
+		<action name="selectPostgraduateByStu" class="xsglTabPostgraduateAction"
+			method="selectPostgraduateByStu">
+			<result>/2_xsgl_system/administrator/Postgraduate.jsp</result>
+		</action>
+	</package>
+	
+	<package name="undergraduate" extends="struts-default">
+	   <!--显示一个本科生信息  -->
+		<action name="showUndergraduate" class="xsglTabUndergraduateAction"
+			method="showUndergraduate">
+			<result>/2_xsgl_system/system/xsgk/StudentDetails_u.jsp</result>
+		</action>
+		<!--按年级显示本科生信息  -->
+		<action name="getUndergraduateListByGrade" class="xsglTabUndergraduateAction"
+			method="getUndergraduateListByGrade">
+			<result>/2_xsgl_system/system/xsgk/StudentList_u1.jsp</result>
+		</action>
+		<!--按年级显示本科生信息前翻页  -->
+		<action name="ungraGradePrevious" class="xsglTabUndergraduateAction"
+			method="ungraPrevious">
+			<result>/2_xsgl_system/system/xsgk/StudentList_u1.jsp</result>
+		</action>
+		<!--按年级显示本科生信息后翻页  -->
+		<action name="ungraGradeNext" class="xsglTabUndergraduateAction"
+			method="ungraNext">
+			<result>/2_xsgl_system/system/xsgk/StudentList_u1.jsp</result>
+		</action>
+		<!--显示所有本科生信息  -->
+		<action name="getUndergraduateList" class="xsglTabUndergraduateAction"
+			method="getUndergraduateList">
+			<result>/2_xsgl_system/administrator/Undergraduate.jsp</result>
+		</action>   
+		<!--显示所有本科生信息前翻页  -->
+		<action name="ungraPrevious" class="xsglTabUndergraduateAction"
+			method="ungraPrevious">
+			<result>/2_xsgl_system/administrator/Undergraduate.jsp</result>
+		</action> 
+		<!--显示所有本科生信息后翻页  -->
+		<action name="ungraNext" class="xsglTabUndergraduateAction"
+			method="ungraNext">
+			<result>/2_xsgl_system/administrator/Undergraduate.jsp</result>
+		</action> 
+		<!--添加一个本科生  -->
+		<action name="saveUndergraduate" class="xsglTabUndergraduateAction"
+			method="saveUndergraduate">
+			<result type="chain">getUndergraduateList</result>
+			<result name="input">/2_xsgl_system/administrator/AddError.jsp</result>
+		</action>
+		<!--删除一个本科生  -->
+		<action name="deleteUndergraduate" class="xsglTabUndergraduateAction"
+			method="deleteUndergraduate">
+			<result type="chain">getUndergraduateList</result>
+		</action>
+		<!--预更新一个本科生信息  -->
+		<action name="preUpdateUndergraduate" class="xsglTabUndergraduateAction"
+			method="preUpdateUndergraduate">
+			<result>/2_xsgl_system/administrator/UpdateUndergraduate.jsp</result>
+		</action>
+		<!--更新一个本科生信息  -->
+		<action name="updateUndergraduate" class="xsglTabUndergraduateAction"
+			method="updateUndergraduate">
+			<result type="chain">getUndergraduateList</result>
+			<result name="input">/2_xsgl_system/administrator/UpdatePostgraduate.jsp</result>
+		</action>
+		<!--按学生学号或姓名搜索本科生  -->
+		<action name="selectUndergraduateByStu" class="xsglTabUndergraduateAction"
+			method="selectUndergraduateByStu">
+			<result>/2_xsgl_system/administrator/Undergraduate.jsp</result>
+		</action> 
+	</package>
+	
+		<package name="class" extends="struts-default">
+		<!--显示所有班级信息  -->
+		<action name="getClassList" class="xsglTabClassesAction"
+			method="getClassList">   
+			<result>/2_xsgl_system/administrator/ClassList.jsp</result>
+		</action> 
+		<!--显示所有班级信息前翻页  -->
+		<action name="classPrevious" class="xsglTabClassesAction"
+			method="classPrevious">   
+			<result>/2_xsgl_system/administrator/ClassList.jsp</result>
+		</action>
+		<!--显示所有班级信息后翻页  -->
+		<action name="classNext" class="xsglTabClassesAction"
+			method="classNext">   
+			<result>/2_xsgl_system/administrator/ClassList.jsp</result>
+		</action>
+		<!--预更新一个班级信息  -->
+		<action name="preUpdateClass" class="xsglTabClassesAction"
+			method="preUpdateClass">
+			<result>/2_xsgl_system/administrator/UpdateClass.jsp</result>
+		</action>
+		<!--更新一个班级信息  -->
+		<action name="updateClass" class="xsglTabClassesAction"
+			method="updateClass">
+			<result type="chain">getClassList</result>
+		</action>
+		<!--添加一个班级  -->
+		<action name="saveClass" class="xsglTabClassesAction"
+			method="saveClass">
+			<result type="chain">getClassList</result>
+			<result name="input">/2_xsgl_system/Fail.jsp</result>
+		</action>
+		<!--删除一个班级  -->
+		<action name="deleteClass" class="xsglTabClassesAction"
+			method="deleteClass">
+			<result type="chain">getClassList</result>
+		</action>
+		<!--按班级号查找班级信息  -->
+		<action name="getClassByClassNum" class="xsglTabClassesAction"
+			method="getClassByClassNum">
+			<result>/2_xsgl_system/system/xsgk/StudentList_p1.jsp</result>
+		</action>
+	</package>
+	
+	<package name="partygather" extends="struts-default">
+	    <!--显示所有学生党建统计信息  -->
+		<action name="getPartyList" class="xsglTabPartygatherAction"
+			method="getPartyList">
+			<result>/2_xsgl_system/system/bjgz/Party_l.jsp</result>
+		</action>  
+		<!--显示所有学生党建统计信息前翻页  -->
+		<action name="parStuPrevious" class="xsglTabPartygatherAction"
+			method="partyPrevious">
+			<result>/2_xsgl_system/system/bjgz/Party_l.jsp</result>
+		</action> 
+		<!--显示所有学生党建统计信息后翻页  -->
+		<action name="parStuFeeNext" class="xsglTabPartygatherAction"
+			method="partyFeeNext">
+			<result>/2_xsgl_system/system/bjgz/Party_l.jsp</result>
+		</action> 
+		<!--按类别名称、年份、班级查找学生党建统计信息  -->
+		<action name="selectPartyByNameYearClass" class="xsglTabPartygatherAction"
+			method="selectPartyByYearClass">
+			<result>/2_xsgl_system/system/bjgz/Party_l.jsp</result>
+		</action> 
+		<!--显示所有学生党建统计信息  -->
+		<action name="showPartyList" class="xsglTabPartygatherAction"
+			method="getPartyList">
+			<result>/2_xsgl_system/administrator/Party.jsp</result>
+		</action> 
+		<!--显示所有学生党建统计信息前翻页  -->
+		<action name="partyPrevious" class="xsglTabPartygatherAction"
+			method="partyPrevious">
+			<result>/2_xsgl_system/administrator/Party.jsp</result>
+		</action>
+		<!--显示所有学生党建统计信息后翻页  -->
+		<action name="partyFeeNext" class="xsglTabPartygatherAction"
+			method="partyFeeNext">
+			<result>/2_xsgl_system/administrator/Party.jsp</result>
+		</action>
+		<!--按年份、班级、类别名称查找学生党建统计信息  -->
+		<action name="selectPartyByYearClass" class="xsglTabPartygatherAction"
+			method="selectPartyByYearClass">
+			<result>/2_xsgl_system/administrator/Party.jsp</result>
+		</action> 
+		<!--添加一条学生党建统计信息  -->
+		<action name="saveParty" class="xsglTabPartygatherAction"
+			method="saveParty">
+			<result type="chain">showPartyList</result>
+			<result name="input">/2_xsgl_system/administrator/AddError.jsp</result>
+		</action>
+		<!--预更新一条学生党建统计信息  -->
+		<action name="preUpdateParty" class="xsglTabPartygatherAction"
+			method="preUpdateParty">
+			<result>/2_xsgl_system/administrator/UpdateParty.jsp</result>
+		</action>
+		<!--更新一条学生党建统计信息  -->
+		<action name="updateParty" class="xsglTabPartygatherAction"
+			method="updateParty">
+			<result type="chain">showPartyList</result>
+			<result name="input">/2_xsgl_system/administrator/AddError.jsp</result>
+		</action>
+		<!--删除一条学生党建统计信息  -->
+		<action name="deleteParty" class="xsglTabPartygatherAction"
+			method="deleteParty">
+			<result type="chain">showPartyList</result>
+		</action>
+	</package>
+	<package name="party" extends="struts-default">
+	   <!--按年级显示学生党建详细信息  -->
+		<action name="getPartyMemberListByGrade" class="xsglTabPartyAction"
+			method="getPartyMemberListByGrade">
+			<result>/2_xsgl_system/system/bjgz/Party_i.jsp</result>
+		</action>
+		 <!--按年级显示学生党建详细信息前翻页  -->
+		<action name="gradePartyPrevious" class="xsglTabPartyAction"
+			method="gradePartyPrevious">
+			<result>/2_xsgl_system/system/bjgz/Party_i.jsp</result>
+		</action>
+		 <!--按年级显示学生党建详细信息后翻页  -->
+		<action name="gradePartyNext" class="xsglTabPartyAction"
+			method="gradePartyNext">
+			<result>/2_xsgl_system/system/bjgz/Party_i.jsp</result>
+		</action>
+		 <!--按类别名称、年份、班级查找学生党建详细信息  -->
+		<action name="getPartyMemberByNameYearClass" class="xsglTabPartyAction"
+			method="getPartyMemberByNameYearClass">
+			<result>/2_xsgl_system/system/bjgz/Party_i.jsp</result>
+		</action>
+		 <!--按班级、类别名称查找学生党建详细信息  -->
+		<action name="getPartyMemberListByClassAndName" class="xsglTabPartyAction"
+			method="getPartyMemberListByClassAndName">
+			<result>/2_xsgl_system/system/bjgz/PartyList_l.jsp</result>
+		</action>
+		<!--按班级、类别名称查找学生党建详细信息前翻页  -->
+		<action name="partyStuPrevious" class="xsglTabPartyAction"
+			method="partyStuPrevious">
+			<result>/2_xsgl_system/system/bjgz/PartyList_l.jsp</result>
+		</action>
+		<!--按班级、类别名称查找学生党建详细信息后翻页  -->
+		<action name="partyStuNext" class="xsglTabPartyAction"
+			method="partyStuNext">
+			<result>/2_xsgl_system/system/bjgz/PartyList_l.jsp</result>
+		</action>
+		<!--添加一条学生党建详细信息  -->
+		<action name="savePartyMember" class="xsglTabPartyAction"
+			method="savePartyMember">
+			<result>/2_xsgl_system/system/bjgz/Success.jsp</result>
+			<result name="input">/2_xsgl_system/system/bjgz/Fail.jsp</result>
+		</action>  
+		<!--删除一条学生党建详细信息  -->
+		<action name="deletePartyMember" class="xsglTabPartyAction"
+			method="deletePartyMember">
+			<result>/2_xsgl_system/system/bjgz/Success.jsp</result>
+		</action>
+		<!--按预更新一条学生党建详细信息  -->
+		<action name="preUpdatePartyMember" class="xsglTabPartyAction"
+			method="preUpdatePartyMember">
+			<result>/2_xsgl_system/system/bjgz/UpdateParty.jsp</result>
+		</action>
+		<!--更新一条学生党建详细信息  -->
+		<action name="updatePartyMember" class="xsglTabPartyAction"
+			method="updatePartyMember">
+			<result>/2_xsgl_system/system/bjgz/Success.jsp</result>
+			<result name="input">/2_xsgl_system/system/bjgz/Fail.jsp</result>
+		</action>
+		<!--按班级显示学生党建详细信息  -->
+		<action name="getPartyMemberListByClass" class="xsglTabPartyAction"
+			method="getPartyMemberListByClass">
+			<result>/2_xsgl_system/system/bjgz/Party_s.jsp</result>
+		</action>
+		<!--按班级显示学生党建详细信息前翻页  -->
+		<action name="parStuSPrevious" class="xsglTabPartyAction"
+			method="partyStuPrevious">
+			<result>/2_xsgl_system/system/bjgz/Party_s.jsp</result>
+		</action>
+		<!--按班级显示学生党建详细信息后翻页  -->
+		<action name="parStuSNext" class="xsglTabPartyAction"
+			method="partyStuNext">
+			<result>/2_xsgl_system/system/bjgz/Party_s.jsp</result>
+		</action>
+	</package>
+	
+	<package name="fund" extends="struts-default">
+	<!--删除一条资助及奖学金详细信息  -->
+	<action name="deleteFundStudent" class="xsglTabJiangzhuAction"
+			method="deleteFundStudent">
+			<result>/2_xsgl_system/system/zz/Success.jsp</result>
+		</action>
+		<!--添加一条资助及奖学金详细信息  -->
+		<action name="saveFundStudent" class="xsglTabJiangzhuAction"
+			method="saveFundStudent">
+			<result name="success">/2_xsgl_system/system/zz/Success.jsp</result>
+			<result name="input">/2_xsgl_system/system/zz/Fail.jsp</result>
+		</action>
+		<!--预更新一条资助及奖学金详细信息  -->
+		<action name="preUpdateFundStudent" class="xsglTabJiangzhuAction"
+			method="preUpdateFundStudent">
+			<result>/2_xsgl_system/system/zz/updateFundList.jsp</result>
+		</action>
+		<!--更新一条资助及奖学金详细信息  -->
+		<action name="updateFundStudent" class="xsglTabJiangzhuAction"
+			method="updateFundStudent">
+			<result>/2_xsgl_system/system/zz/Success.jsp</result>
+			<result name="input">/2_xsgl_system/system/zz/Fail.jsp</result>
+		</action>
+		<!--显示所有助学贷款详细信息  -->
+		<action name="getFStudentListByLoan" class="xsglTabJiangzhuAction"
+			method="getFStudentListByLoan">
+			<result name="success">/2_xsgl_system/system/zz/ClassList_1.jsp</result>
+		</action>
+		<!--显示所有助学贷款详细信息前翻页  -->
+		<action name="loanStuPrevious" class="xsglTabJiangzhuAction"
+			method="fundStuPrevious">
+			<result name="success">/2_xsgl_system/system/zz/Ss_i.jsp</result>
+		</action>
+		<!--显示所有助学贷款详细信息后翻页  -->
+		<action name="loanStuNext" class="xsglTabJiangzhuAction"
+			method="fundStuNext">
+			<result name="success">/2_xsgl_system/system/zz/Ss_i.jsp</result>
+		</action>
+		<!--按年级显示助学贷款详细信息  -->
+		<action name="getGradeStudentByLoan" class="xsglTabJiangzhuAction"
+			method="getGradeStudentByLoan">
+			<result name="success">/2_xsgl_system/system/zz/Ss_i.jsp</result>
+		</action>
+		<!--显示所有助学金详细信息  -->
+		<action name="getFStudentListByStipend" class="xsglTabJiangzhuAction"
+			method="getFStudentListByStipend">
+			<result name="success">/2_xsgl_system/system/zz/ClassList_2.jsp</result>
+		</action>
+		<!--显示所有助学金详细信息前翻页  -->
+		<action name="stiStuPrevious" class="xsglTabJiangzhuAction"
+			method="fundStuPrevious">
+			<result name="success">/2_xsgl_system/system/zz/Ss_i2.jsp</result>
+		</action>
+		<!--显示所有助学金详细信息后翻页  -->
+		<action name="stiStuNext" class="xsglTabJiangzhuAction"
+			method="fundStuNext">
+			<result name="success">/2_xsgl_system/system/zz/Ss_i2.jsp</result>
+		</action>
+		<!--按年级显示助学金详细信息  -->
+		<action name="getGradeStudentByStipend" class="xsglTabJiangzhuAction"
+			method="getGradeStudentByStipend">
+			<result name="success">/2_xsgl_system/system/zz/Ss_i2.jsp</result>
+		</action>
+		<!--显示所有奖学金详细信息  -->
+		<action name="getFStudentListByScholarship" class="xsglTabJiangzhuAction"
+			method="getFStudentListByScholarship">
+			<result name="success">/2_xsgl_system/system/zz/ClassList_3.jsp</result>
+		</action>
+		<!--显示所有奖学金详细信息前翻页  -->
+		<action name="schStuPrevious" class="xsglTabJiangzhuAction"
+			method="fundStuPrevious">
+			<result name="success">/2_xsgl_system/system/zz/Ss_i3.jsp</result>
+		</action>
+		<!--显示所有奖学金详细信息后翻页  -->
+		<action name="schStuNext" class="xsglTabJiangzhuAction"
+			method="fundStuNext">
+			<result name="success">/2_xsgl_system/system/zz/Ss_i3.jsp</result>
+		</action>
+		<!--按年级显示奖学金详细信息  -->
+		<action name="getGradeStudentByScholarship" class="xsglTabJiangzhuAction"
+			method="getGradeStudentByScholarship">
+			<result name="success">/2_xsgl_system/system/zz/Ss_i3.jsp</result>
+		</action>
+		<!--按年份、班级查找助学贷款详细信息  -->
+		<action name="getFStudentListByOption" class="xsglTabJiangzhuAction"
+			method="getFStudentListByOption">
+			<result name="success">/2_xsgl_system/system/zz/Ss_i.jsp</result>
+		</action>
+		<!--按年份、班级查找奖学金详细信息  -->
+		<action name="getFStudentListBySchOption" class="xsglTabJiangzhuAction"
+			method="getFStudentListBySchOption">
+			<result name="success">/2_xsgl_system/system/zz/Ss_i3.jsp</result>
+		</action>
+		<!--按年份、班级查找助学金详细信息  -->
+		<action name="getFStudentListByStiOption" class="xsglTabJiangzhuAction"
+			method="getFStudentListByStiOption">
+			<result name="success">/2_xsgl_system/system/zz/Ss_i2.jsp</result>
+		</action>
+		<!--按班级显示助学贷款详细信息  -->
+		<action name="getClassStudentByLoan" class="xsglTabJiangzhuAction"
+			method="getClassStudentByLoan">
+			<result>/2_xsgl_system/system/zz/Ss_s.jsp</result>
+		</action>
+		<!--按班级显示助学贷款详细信息前翻页  -->
+		<action name="loanStuPrevious" class="xsglTabJiangzhuAction"
+			method="fundStuPrevious">
+			<result>/2_xsgl_system/system/zz/Ss_s.jsp</result>
+		</action>
+		<!--按班级显示助学贷款详细信息后翻页  -->
+		<action name="loanStuNext" class="xsglTabJiangzhuAction"
+			method="fundStuNext">
+			<result>/2_xsgl_system/system/zz/Ss_s.jsp</result>
+		</action>
+		<!--按班级显示助学金详细信息  -->
+		<action name="getClassStudentByStipend" class="xsglTabJiangzhuAction"
+			method="getClassStudentByStipend">
+			<result>/2_xsgl_system/system/zz/Ss2_s.jsp</result>
+		</action>
+		<!--按班级显示助学金详细信息前翻页  -->
+		<action name="stiStuPrevious" class="xsglTabJiangzhuAction"
+			method="fundStuPrevious">
+			<result>/2_xsgl_system/system/zz/Ss2_s.jsp</result>
+		</action>
+		<!--按班级显示助学金详细信息后翻页  -->
+		<action name="stiStuNext" class="xsglTabJiangzhuAction"
+			method="fundStuNext">
+			<result>/2_xsgl_system/system/zz/Ss2_s.jsp</result>
+		</action>
+		<!--按班级显示奖学金详细信息  -->
+		<action name="getClassStudentBySholarship" class="xsglTabJiangzhuAction"
+			method="getClassStudentBySholarship">
+			<result>/2_xsgl_system/system/zz/Ss3_s.jsp</result>
+		</action>
+		<!--按班级显示奖学金详细信息前翻页  -->
+		<action name="schStuPrevious" class="xsglTabJiangzhuAction"
+			method="fundStuPrevious">
+			<result>/2_xsgl_system/system/zz/Ss3_s.jsp</result>
+		</action>
+		<!--按班级显示奖学金详细信息后翻页  -->
+		<action name="schStuNext" class="xsglTabJiangzhuAction"
+			method="fundStuNext">
+			<result>/2_xsgl_system/system/zz/Ss3_s.jsp</result>
+		</action>
+		<!--家长页面中按年份、班级查找助学贷款详细信息  -->
+		<action name="getSStudentListByOption" class="xsglTabJiangzhuAction"
+			method="getFStudentListByOption">
+			<result name="success">/2_xsgl_system/system/zz/Ss_s.jsp</result>
+		</action>
+		<!--家长页面中按年份、班级查找奖学金详细信息  -->
+		<action name="getSStudentListBySchOption" class="xsglTabJiangzhuAction"
+			method="getFStudentListBySchOption">
+			<result name="success">/2_xsgl_system/system/zz/Ss2_s.jsp</result>
+		</action>
+		<!--家长页面中按年份、班级查找助学金详细信息  -->
+		<action name="getSStudentListByStiOption" class="xsglTabJiangzhuAction"
+			method="getFStudentListByStiOption">
+			<result name="success">/2_xsgl_system/system/zz/Ss3_s.jsp</result>
+		</action>
+		<!--按类别名称、年份、班级查找资助及奖学金详细信息  -->
+		<action name="getStudentByNYC" class="xsglTabJiangzhuAction"
+			method="getStudentByNYC">
+			<result name="success">/2_xsgl_system/administrator/FundClassList.jsp</result>
+		</action>
+		<!--按学生学号或姓名查找资助及奖学金详细信息  -->
+		<action name="getFundStuByStu" class="xsglTabJiangzhuAction"
+			method="getFundStuByStu">
+			<result name="success">/2_xsgl_system/administrator/FundClassList.jsp</result>
+		</action>
+	</package>
+	
+	<package name="jiangzhugather" extends="struts-default">
+	   <!--显示所有助学贷款统计信息  -->
+		<action name="getLoanList" class="xsglTabJiangzhugatherAction"
+			method="getLoanList">
+			<result>/2_xsgl_system/system/zz/Ss_l1.jsp</result>
+		</action>
+		<!--显示所有助学金统计信息  -->
+		<action name="getStipendList" class="xsglTabJiangzhugatherAction"
+			method="getStipendList">
+			<result>/2_xsgl_system/system/zz/Ss_l2.jsp</result>
+		</action>
+		<!--显示所有奖学金统计信息  -->
+		<action name="getScholarshipList" class="xsglTabJiangzhugatherAction"
+			method="getScholarshipList">
+			<result>/2_xsgl_system/system/zz/Ss_l3.jsp</result>
+		</action>  
+		<!--添加一条资助及奖学金统计信息  --> 
+		<action name="saveFund" class="xsglTabJiangzhugatherAction"
+			method="saveFund">
+			<result type="chain">getFundList</result>
+			<result name="input">/2_xsgl_system/administrator/AddError.jsp</result>
+		</action>
+		<!--删除一条资助及奖学金统计信息  --> 
+		<action name="deleteFund" class="xsglTabJiangzhugatherAction"
+			method="deleteFund">
+			<result type="chain">getFundList</result>
+		</action>
+		<!--预更新一条资助及奖学金统计信息  --> 
+		<action name="preUpdateFund" class="xsglTabJiangzhugatherAction"
+			method="preUpdateFund">
+			<result>/2_xsgl_system/administrator/UpdateFund.jsp</result>
+		</action>
+		<!--更新一条资助及奖学金统计信息  --> 
+		<action name="updateFund" class="xsglTabJiangzhugatherAction"
+			method="updateFund">
+			<result type="chain">getFundList</result>
+			<result name="input">/2_xsgl_system/administrator/AddError.jsp</result>
+		</action>
+		<!--显示所有资助及奖学金统计信息  --> 
+		<action name="getFundList" class="xsglTabJiangzhugatherAction"
+			method="getFundList">
+			<result name="success">/2_xsgl_system/administrator/Fund.jsp</result>
+		</action> 
+		<!--显示所有资助及奖学金统计信息前翻页  --> 
+		<action name="fundPrevious" class="xsglTabJiangzhugatherAction"
+			method="fundPrevious">
+			<result name="success">/2_xsgl_system/administrator/Fund.jsp</result>
+		</action> 
+		<!--显示所有资助及奖学金统计信息后翻页  -->
+		<action name="fundNext" class="xsglTabJiangzhugatherAction"
+			method="fundNext">
+			<result name="success">/2_xsgl_system/administrator/Fund.jsp</result>
+		</action> 
+		<!--按类别名称、班级、年份查询资助及奖学金统计信息  -->
+		<action name="selectFundByNameClassYear" class="xsglTabJiangzhugatherAction"
+			method="selectFundByNameClassYear">
+			<result name="success">/2_xsgl_system/administrator/Fund.jsp</result>
+		</action>
+	</package>
+	
+	<package name="organization" extends="struts-default">
+	<!--显示所有学生组织信息  -->
+		<action name="getOrganizationList" class="xsglTabOrganizationsAction"
+			method="getOrganizationList">
+			<result>/2_xsgl_system/administrator/OrgDetail.jsp</result>
+		</action>
+		<!--添加一个学生组织  -->
+		<action name="saveOrganization" class="xsglTabOrganizationsAction"
+			method="saveOrganization">
+			<result type="chain">getOrganizationList</result>
+		</action>
+		<!--删除一个学生组织  -->
+		<action name="deleteOrganization" class="xsglTabOrganizationsAction"
+			method="deleteOrganization">
+			<result type="chain">getOrganizationList</result>
+		</action>
+		<!--预更新一个学生组织信息  -->
+		<action name="preUpdateOrganization" class="xsglTabOrganizationsAction"
+			method="preUpdateOrganization">
+			<result>/2_xsgl_system/administrator/UpdateOrgDetail.jsp</result>
+		</action>
+		<!--更新一个学生组织信息  -->
+		<action name="updateOrganization" class="xsglTabOrganizationsAction"
+			method="updateOrganization">
+			<result type="chain">getOrganizationList</result>
+		</action>
+	</package>
+	
+	<package name="department" extends="struts-default">
+	    <!--显示所有学生组织各部门信息  -->
+		<action name="getDepartmentList" class="xsglTabDepartmentAction"
+			method="getDepartmentList">
+			<result>/2_xsgl_system/administrator/Orgnization.jsp</result>
+		</action>
+		<!--显示所有学生组织各部门信息前翻页  -->
+		<action name="departmentPrevious" class="xsglTabDepartmentAction"
+			method="departmentPrevious">
+			<result>/2_xsgl_system/administrator/Orgnization.jsp</result>
+		</action>
+		<!--显示所有学生组织各部门信息后翻页  -->
+		<action name="departmentNext" class="xsglTabDepartmentAction"
+			method="departmentNext">
+			<result>/2_xsgl_system/administrator/Orgnization.jsp</result>
+		</action>
+		<!--添加一个部门  -->
+		<action name="saveDepartment" class="xsglTabDepartmentAction"
+			method="saveDepartment">
+			<result type="chain">getDepartmentList</result>
+			<result name="input">/2_xsgl_system/administrator/AddError.jsp</result>
+		</action>
+		<!--删除一个部门  -->
+		<action name="deleteDepartment" class="xsglTabDepartmentAction"
+			method="deleteDepartment">
+			<result type="chain">getDepartmentList</result>
+		</action>
+		<!--预更新一个部门信息  -->
+		<action name="preUpdateDepartment" class="xsglTabDepartmentAction"
+			method="preUpdateDepartment">
+			<result>/2_xsgl_system/administrator/UpdateOrg.jsp</result>
+		</action>
+		<!--更新一个部门信息  -->
+		<action name="updateDepartment" class="xsglTabDepartmentAction"
+			method="updateDepartment">
+			<result type="chain">getDepartmentList</result>
+			<result name="input">/2_xsgl_system/administrator/AddError.jsp</result>
+		</action>
+	</package>
+	
+	<package name="organizationstudent" extends="struts-default">
+	   <!--显示所有学生组织成员信息  -->
+	   <action name="getOrgStudentList" class="xsglTabStuorgadepartAction"
+			method="getOrgStudentList">
+			<result>/2_xsgl_system/administrator/OrgStuList.jsp</result>
+		</action>
+		<!--显示所有学生组织成员信息前翻页  -->
+		<action name="orgStuPrevious" class="xsglTabStuorgadepartAction"
+			method="orgStuPrevious">
+			<result>/2_xsgl_system/administrator/OrgStuList.jsp</result>
+		</action>
+		<!--显示所有学生组织成员信息后翻页  -->
+		<action name="orgStuNext" class="xsglTabStuorgadepartAction"
+			method="orgStuNext">
+			<result>/2_xsgl_system/administrator/OrgStuList.jsp</result>
+		</action>  
+		<!--按部门名称查找成员信息  -->
+		<action name="selectStudentByOrgDep" class="xsglTabStuorgadepartAction"
+			method="selectStudentByOrgDep">
+			<result>/2_xsgl_system/administrator/OrgStuList.jsp</result>
+		</action>
+		<!--按学生学号或姓名查找成员信息  -->
+		<action name="selectDepStudentByStu" class="xsglTabStuorgadepartAction"
+			method="selectDepStudentByStu">
+			<result>/2_xsgl_system/administrator/OrgStuList.jsp</result>
+		</action>
+		<!--添加一个成员  -->
+	    <action name="saveOrgStu" class="xsglTabStuorgadepartAction"
+			method="saveOrgStu">
+			<result type="chain">getOrgStudentList</result>
+			<result name="input">/2_xsgl_system/administrator/AddError.jsp</result>
+		</action>
+		<!--预更新一个成员信息  -->
+		<action name="preUpdateOrgStu" class="xsglTabStuorgadepartAction"
+			method="preUpdateOrgStu">
+			<result>/2_xsgl_system/administrator/UpdateOrgStu.jsp</result>
+		</action>
+		<!--更新一个成员信息  -->
+		<action name="updateOrgStu" class="xsglTabStuorgadepartAction"
+			method="updateOrgStu">
+			<result type="chain">getOrgStudentList</result>
+			<result name="input">/2_xsgl_system/administrator/AddError.jsp</result>
+		</action>
+		<!--删除一个成员  -->
+		<action name="deleteOrgStu" class="xsglTabStuorgadepartAction"
+			method="deleteOrgStu">
+			<result type="chain">getOrgStudentList</result>
+		</action>
+		<!--显示学生会所有成员信息  -->
+		<action name="getStudentByStudentUnion" class="xsglTabStuorgadepartAction"
+			method="getStudentByStudentUnion">
+			<result>/2_xsgl_system/system/xszz/StudentUnion.jsp</result>
+		</action>
+		<!--显示学生会所有成员信息前翻页  -->
+		<action name="stuUnionPrevious" class="xsglTabStuorgadepartAction"
+			method="orgStuPrevious">
+			<result>/2_xsgl_system/system/xszz/StudentUnion.jsp</result>
+		</action>
+		<!--显示学生会所有成员信息后翻页  -->
+		<action name="stuUnionNext" class="xsglTabStuorgadepartAction"
+			method="orgStuNext">
+			<result>/2_xsgl_system/system/xszz/StudentUnion.jsp</result>
+		</action>
+		<!--显示科协所有成员信息  -->
+		<action name="getStudentByKeXie" class="xsglTabStuorgadepartAction"
+			method="getStudentByKeXie">
+			<result>/2_xsgl_system/system/xszz/KeXie.jsp</result>
+		</action>
+		<!--显示科协所有成员信息前翻页  -->
+		<action name="kexiePrevious" class="xsglTabStuorgadepartAction"
+			method="orgStuPrevious">
+			<result>/2_xsgl_system/system/xszz/KeXie.jsp</result>
+		</action>
+		<!--显示科协所有成员信息后翻页  -->
+		<action name="kexieNext" class="xsglTabStuorgadepartAction"
+			method="orgStuNext">
+			<result>/2_xsgl_system/system/xszz/KeXie.jsp</result>
+		</action>
+		<!--显示团委所有成员信息  -->
+		<action name="getStudentByTuanWei" class="xsglTabStuorgadepartAction"
+			method="getStudentByTuanWei">
+			<result>/2_xsgl_system/system/xszz/TuanWei.jsp</result>
+		</action>
+		<!--显示团委所有成员信息前翻页  -->
+		<action name="tuanweiPrevious" class="xsglTabStuorgadepartAction"
+			method="orgStuPrevious">
+			<result>/2_xsgl_system/system/xszz/TuanWei.jsp</result>
+		</action>
+		<!--显示团委所有成员信息后翻页  -->
+		<action name="tuanweiNext" class="xsglTabStuorgadepartAction"
+			method="orgStuNext">
+			<result>/2_xsgl_system/system/xszz/TuanWei.jsp</result>
+		</action>
+		
+		<!--按部门名称查找学生会成员信息  -->
+		<action name="getStudentByDepartment" class="xsglTabStuorgadepartAction"
+			method="selectStudentByOrgDep">
+			<result>/2_xsgl_system/system/xszz/StudentUnion.jsp</result>
+		</action>
+		<!--按部门名称查找科协成员信息  -->
+		<action name="getStudentByKXDepartment" class="xsglTabStuorgadepartAction"
+			method="selectStudentByOrgDep">
+			<result>/2_xsgl_system/system/xszz/KeXie.jsp</result>
+		</action>
+		<!--按部门名称查找团委成员信息  -->
+		<action name="getStudentByTWDepartment" class="xsglTabStuorgadepartAction"
+			method="selectStudentByOrgDep">
+			<result>/2_xsgl_system/system/xszz/TuanWei.jsp</result>
+		</action>
+		
+		<!--家长页面显示学生会所有成员信息  -->
+		<action name="getSStudentByStudentUnion" class="xsglTabStuorgadepartAction"
+			method="getStudentByStudentUnion">
+			<result>/2_xsgl_system/system/xszz/StudentUnion_s.jsp</result>
+		</action>
+		<!--家长页面显示学生会所有成员信息前翻页  -->
+		<action name="stuUnStuPrevious" class="xsglTabStuorgadepartAction"
+			method="orgStuPrevious">
+			<result>/2_xsgl_system/system/xszz/StudentUnion_s.jsp</result>
+		</action>
+		<!--家长页面显示学生会所有成员信息后翻页  -->
+		<action name="stuUnStuNext" class="xsglTabStuorgadepartAction"
+			method="orgStuNext">
+			<result>/2_xsgl_system/system/xszz/StudentUnion_s.jsp</result>
+		</action>
+		<!--家长页面显示科协所有成员信息  -->
+		<action name="getSStudentByKeXie" class="xsglTabStuorgadepartAction"
+			method="getStudentByKeXie">
+			<result>/2_xsgl_system/system/xszz/KeXie_s.jsp</result>
+		</action>
+		<!--家长页面显示科协所有成员信息前翻页  -->
+		<action name="kexieStuPrevious" class="xsglTabStuorgadepartAction"
+			method="orgStuPrevious">
+			<result>/2_xsgl_system/system/xszz/KeXie_s.jsp</result>
+		</action>
+		<!--家长页面显示科协所有成员信息后翻页  -->
+		<action name="kexieStuNext" class="xsglTabStuorgadepartAction"
+			method="orgStuNext">
+			<result>/2_xsgl_system/system/xszz/KeXie_s.jsp</result>
+		</action>
+		<!--家长页面显示团委所有成员信息  -->
+		<action name="getSStudentByTuanWei" class="xsglTabStuorgadepartAction"
+			method="getStudentByTuanWei">
+			<result>/2_xsgl_system/system/xszz/TuanWei_s.jsp</result>
+		</action>
+		<!--家长页面显示团委所有成员信息前翻页  -->
+		<action name="tuanweiStuPrevious" class="xsglTabStuorgadepartAction"
+			method="orgStuPrevious">
+			<result>/2_xsgl_system/system/xszz/TuanWei_s.jsp</result>
+		</action>
+		<!--家长页面显示团委所有成员信息后翻页  -->
+		<action name="tuanweiStuNext" class="xsglTabStuorgadepartAction"
+			method="orgStuNext">
+			<result>/2_xsgl_system/system/xszz/TuanWei_s.jsp</result>
+		</action>
+		<!--家长页面按学生会部门名称搜索成员信息  -->
+		<action name="getSStudentByDepartment" class="xsglTabStuorgadepartAction"
+			method="selectStudentByOrgDep">
+			<result>/2_xsgl_system/system/xszz/StudentUnion_s.jsp</result>
+		</action>
+		<!--家长页面按科协部门名称搜索成员信息  -->
+		<action name="getSStudentByKXDepartment" class="xsglTabStuorgadepartAction"
+			method="selectStudentByOrgDep">
+			<result>/2_xsgl_system/system/xszz/KeXie_s.jsp</result>
+		</action>
+		<!--家长页面按学团委部门名称搜索成员信息  -->
+		<action name="getSStudentByTWDepartment" class="xsglTabStuorgadepartAction"
+			method="selectStudentByOrgDep">
+			<result>/2_xsgl_system/system/xszz/TuanWei_s.jsp</result>
+		</action>
+	</package>
+	
+	<package name="xiaoyou" extends="struts-default">
+		<action name="getXStudentList" class="xsglTabXiaoyouAction"
+			method="getXStudentList">
+			<result>/2_xsgl_system/system/xyzz/SchFellow.jsp</result>
+		</action>
+		<action name="getMXStudentList" class="xsglTabXiaoyouAction"
+			method="getXStudentList">
+			<result>/2_xsgl_system/administrator/SchFellow.jsp</result>
+		</action>
+		<action name="getXStudentByName" class="xsglTabXiaoyouAction"
+			method="getXStudentByName">
+			<result>/2_xsgl_system/system/xyzz/SchFellow.jsp</result>
+		</action>
+		<action name="getXStudentByOption" class="xsglTabXiaoyouAction"
+			method="getXStudentByOption">
+			<result>/2_xsgl_system/system/xyzz/SchFellow.jsp</result>
+		</action>
+		<action name="showXStudentDetails" class="xsglTabXiaoyouAction"
+			method="showXStudentDetails">
+			<result>/2_xsgl_system/system/xyzz/SchFellowDetails.jsp</result>
+		</action>
+		
+	</package>
+	
+	<package name="jiaofei" extends="struts-default">
+	    <!--按年级显示学生欠费信息  -->
+		<action name="getStudentListByGrade" class="xsglTabJiaofeiAction"
+			method="getStudentListByGrade">
+			<result>/2_xsgl_system/system/bjgz/FeeManage_i.jsp</result>
+		</action>
+		<!--按年级显示学生欠费信息前翻页  -->
+		<action name="gradeFeePrevious" class="xsglTabJiaofeiAction"
+			method="gradeFeePrevious">
+			<result>/2_xsgl_system/system/bjgz/FeeManage_i.jsp</result>
+		</action>
+		<!--按年级显示学生欠费信息后翻页  -->
+		<action name="gradeFeeNext" class="xsglTabJiaofeiAction"
+			method="gradeFeeNext">
+			<result>/2_xsgl_system/system/bjgz/FeeManage_i.jsp</result>
+		</action>
+		<!--按班级、年份显示学生欠费信息  -->
+		<action name="selectFeeByClassYear" class="xsglTabJiaofeiAction"
+			method="selectFeeByYear">
+			<result>/2_xsgl_system/system/bjgz/FeeManage_i.jsp</result>
+		</action>
+		<!--添加一条学生欠费信息  -->
+		<action name="saveFee" class="xsglTabJiaofeiAction"
+			method="saveFee">
+			<result type="chain">getMStudentList</result>
+			<result name="input">/2_xsgl_system/administrator/AddError.jsp</result>
+		</action>
+		<!--删除一条学生欠费信息  -->
+		<action name="deleteFee" class="xsglTabJiaofeiAction"
+			method="deleteFee">
+			<result type="chain">getMStudentList</result>
+		</action>
+		<!--预更新一条学生欠费信息  -->
+		<action name="preUpdateFee" class="xsglTabJiaofeiAction"
+			method="preUpdateFee">
+			<result>/2_xsgl_system/administrator/FeeUpdate.jsp</result>
+		</action>
+		<!--更新一条学生欠费信息  -->
+		<action name="updateFee" class="xsglTabJiaofeiAction"
+			method="updateFee">
+			<result type="chain">getMStudentList</result>
+			<result name="input">/2_xsgl_system/administrator/AddError.jsp</result>
+		</action>
+		<!--显示所有学生欠费信息  -->
+		<action name="getMStudentList" class="xsglTabJiaofeiAction"
+			method="getMStudentList">
+			<result>/2_xsgl_system/administrator/Fee.jsp</result>
+		</action> 
+		<!--显示所有学生欠费信息前翻页  -->
+		<action name="feePrevious" class="xsglTabJiaofeiAction"
+			method="feePrevious">
+			<result>/2_xsgl_system/administrator/Fee.jsp</result>
+		</action> 
+		<!--显示所有学生欠费信息后翻页  -->
+		<action name="feeNext" class="xsglTabJiaofeiAction"
+			method="feeNext">
+			<result>/2_xsgl_system/administrator/Fee.jsp</result>
+		</action> 
+		<!--搜索某个欠费学生信息  -->
+		<action name="selectFee" class="xsglTabJiaofeiAction"
+			method="selectFee">
+			<result>/2_xsgl_system/administrator/Fee.jsp</result>
+		</action>
+		<!--按年份搜索学生欠费信息  -->
+		<action name="selectFeeByYear" class="xsglTabJiaofeiAction"
+			method="selectFeeByYear">
+			<result>/2_xsgl_system/administrator/Fee.jsp</result>
+		</action>
+	</package>
+	
+	<package name="parent" extends="struts-default">
+	    <!--按学生家长ID获取学生信息  -->
+		<action name="getParentByPId" class="xsglTabParentsAction"
+			method="getParentByPId">
+			<result>/2_xsgl_system/system/grxx/StudentDetails.jsp</result>
+		</action>
+		<!--添加一个家长  -->
+		<action name="saveParent" class="xsglTabParentsAction"
+			method="saveParent">
+			<result type="chain">getParentList</result>
+			<result name="input">/2_xsgl_system/administrator/AddError.jsp</result>
+		</action>
+		<!--删除一个家长  -->
+		<action name="deleteParent" class="xsglTabParentsAction"
+			method="deleteParent">
+			<result type="chain">getParentList</result>
+		</action>
+		<!--预更新一个家长信息  -->
+		<action name="preUpdateParent" class="xsglTabParentsAction"
+			method="preUpdateParent">
+			<result>/2_xsgl_system/administrator/UpdateParent.jsp</result>
+		</action>
+		<!--更新一个家长信息  -->
+		<action name="updateParent" class="xsglTabParentsAction"
+			method="updateParent">
+			<result type="chain">getParentList</result>
+			<result name="input">/2_xsgl_system/administrator/AddError.jsp</result>
+		</action>
+		<!--显示所有学生家长信息  -->
+		<action name="getParentList" class="xsglTabParentsAction"
+			method="getParentList">
+			<result>/2_xsgl_system/administrator/Parent.jsp</result>
+		</action>
+		<!--显示所有学生家长信息前翻页  -->
+		<action name="parentPrevious" class="xsglTabParentsAction"
+			method="parentPrevious">
+			<result>/2_xsgl_system/administrator/Parent.jsp</result>
+		</action>
+		<!--显示所有学生家长信息后翻页  -->
+		<action name="parentNext" class="xsglTabParentsAction"
+			method="parentNext">
+			<result>/2_xsgl_system/administrator/Parent.jsp</result>
+		</action>
+		<!--按学生学号或姓名或家长ID或姓名搜索家长信息  -->
+		<action name="selectParent" class="xsglTabParentsAction"
+			method="selectParent">
+			<result>/2_xsgl_system/administrator/Parent.jsp</result>
+		</action>
+	</package>
+	
+	<package name="grade" extends="struts-default">
+	    <!--按年级显示所有本科生信息  -->
+		<action name="getGradeListByUndergraduate" class="xsglTabGradeAction"
+			method="getGradeListByUndergraduate">
+			<result>/2_xsgl_system/system/xsgk/StudentList_u.jsp</result>
+		</action>
+		<!--按年级显示所有研究科生信息  -->
+		<action name="getGradeListByPostgraduate" class="xsglTabGradeAction"
+			method="getGradeListByPostgraduate">
+			<result>/2_xsgl_system/system/xsgk/StudentList_p.jsp</result>
+		</action>
+		<!--显示所有年级信息  -->
+		<action name="getGradeList" class="xsglTabGradeAction"
+			method="getGradeList">
+			<result>/2_xsgl_system/administrator/GradeList.jsp</result>
+		</action>  
+		<!--显示所有年级信息前翻页  -->
+		<action name="gradePrevious" class="xsglTabGradeAction"
+			method="gradePrevious">
+			<result>/2_xsgl_system/administrator/GradeList.jsp</result>
+		</action>
+		<!--显示所有年级信息后翻页  -->
+		<action name="gradeNext" class="xsglTabGradeAction"
+			method="gradeNext">
+			<result>/2_xsgl_system/administrator/GradeList.jsp</result>
+		</action>
+		<!--预更新一个年级信息  --> 
+		<action name="preUpdateGrade" class="xsglTabGradeAction"
+			method="preUpdateGrade">
+			<result>/2_xsgl_system/administrator/UpdateGrade.jsp</result>
+		</action>
+		<!--更新一个年级信息  -->
+		<action name="updateGrade" class="xsglTabGradeAction"
+			method="updateGrade">
+			<result type="chain">getGradeList</result>
+			<result name="input">/2_xsgl_system/administrator/AddError.jsp</result>
+		</action>
+		<!--删除一个年级  -->
+		<action name="deleteGrade" class="xsglTabGradeAction"
+			method="deleteGrade">
+			<result type="chain">getGradeList</result>
+		</action>
+		<!--添加一个年级  -->
+		<action name="addGrade" class="xsglTabGradeAction"
+			method="addGrade">
+			<result type="chain">getGradeList</result>
+			<result name="input">/2_xsgl_system/administrator/AddError.jsp</result>
+		</action>
+	</package>
+	
+	<package name="kaoqin" extends="struts-default">
+	    <!--按日期、班级、课程获取考勤详细信息  -->
+		<action name="getAttendanceByDCC" class="xsglTabKaoqinAction"
+			method="getAttendanceByDCC">
+			<result>/2_xsgl_system/system/bjgz/EditAttendance.jsp</result>
+		</action>
+		<!--按日期、班级、课程获取考勤详细信息  -->
+		<action name="showAttendanceByDCC" class="xsglTabKaoqinAction"
+			method="getAttendanceByDCC">
+			<result>/2_xsgl_system/system/bjgz/ClassAttendance.jsp</result>
+		</action>
+		<!--按日期、班级、课程获取考勤详细信息前翻页  -->
+		<action name="classAttPrevious" class="xsglTabKaoqinAction"
+			method="classAttPrevious">
+			<result>/2_xsgl_system/system/bjgz/ClassAttendance.jsp</result>
+		</action>
+		<!--按日期、班级、课程获取考勤详细信息后翻页  -->
+		<action name="classAttNext" class="xsglTabKaoqinAction"
+			method="classAttNext">
+			<result>/2_xsgl_system/system/bjgz/ClassAttendance.jsp</result>
+		</action>
+		<!--显示班级考勤详细信息  -->
+		<action name="showAttendByClass" class="xsglTabKaoqinAction"
+			method="getAttendanceByClass">
+			<result>/2_xsgl_system/system/bjgz/EditAttendance.jsp</result>
+		</action>
+		<!--搜索某个学生考勤详细信息  -->
+		<action name="selectAttendanceByStudent" class="xsglTabKaoqinAction"
+			method="selectAttendanceByStudent">
+			<result>/2_xsgl_system/system/bjgz/EditAttendance.jsp</result>
+		</action>
+		<!--按日期课程搜索某个班级考勤详细信息  -->
+		<action name="selectAttendanceByDateCourse" class="xsglTabKaoqinAction"
+			method="selectAttendanceByDateCourse">
+			<result>/2_xsgl_system/system/bjgz/EditAttendance.jsp</result>
+		</action>
+		<!--显示某个学生考勤详细信息  -->
+		<action name="getAttendByStuNum" class="xsglTabKaoqinAction"
+			method="getAttendByStuNum">
+			<result>/2_xsgl_system/system/bjgz/Attendance_s.jsp</result>
+		</action>  
+		<!--显示某个学生考勤详细信息前翻页  --> 
+		<action name="stuAttPrevious" class="xsglTabKaoqinAction"
+			method="classAttPrevious">
+			<result>/2_xsgl_system/system/bjgz/Attendance_s.jsp</result>
+		</action> 
+		<!--显示某个学生考勤详细信息后翻页  -->
+		<action name="stuAttNext" class="xsglTabKaoqinAction"
+			method="classAttNext">
+			<result>/2_xsgl_system/system/bjgz/Attendance_s.jsp</result>
+		</action> 
+		<!--按日期课程搜索某个学生考勤详细信息  -->
+		<action name="selectAttendBySDC" class="xsglTabKaoqinAction"
+			method="selectAttendBySDC">
+			<result>/2_xsgl_system/system/bjgz/Attendance_s.jsp</result>
+		</action>
+		<!--添加一条考勤详细信息  -->
+		<action name="saveAttend" class="xsglTabKaoqinAction"
+			method="saveAttend">
+			<result>/2_xsgl_system/system/bjgz/Success.jsp</result>
+		</action>
+		<!--删除一条考勤详细信息  -->
+		<action name="deleteAttend" class="xsglTabKaoqinAction"
+			method="deleteAttend">
+			<result>/2_xsgl_system/system/bjgz/Success.jsp</result>
+		</action>
+		<!--预更新一条考勤详细信息  -->
+		<action name="preUpdateAttend" class="xsglTabKaoqinAction"
+			method="preUpdateAttend">
+			<result>/2_xsgl_system/system/bjgz/UpdateAttendance.jsp</result>
+		</action>
+		<!--更新一条考勤详细信息  -->
+		<action name="updateAttend" class="xsglTabKaoqinAction"
+			method="updateAttend">
+			<result>/2_xsgl_system/system/bjgz/Success.jsp</result>
+		</action>
+		</package>
+		
+		<package name="kaoqingather" extends="struts-default">
+		<!--按年级显示考勤统计信息  -->
+		<action name="getTotalAttendanceByGrade" class="xsglTabKaoqingatherAction"
+			method="getTotalAttendanceByGrade">
+			<result>/2_xsgl_system/system/bjgz/GradeAttendance.jsp</result>
+		</action>
+		<!--按年级显示考勤统计信息前翻页  -->
+		<action name="gradeAttPrevious" class="xsglTabKaoqingatherAction"
+			method="gradeAttPrevious">
+			<result>/2_xsgl_system/system/bjgz/GradeAttendance.jsp</result>
+		</action>
+		<!--按年级显示考勤统计信息后翻页  -->
+		<action name="gradeAttNext" class="xsglTabKaoqingatherAction"
+			method="gradeAttNext">
+			<result>/2_xsgl_system/system/bjgz/GradeAttendance.jsp</result>
+		</action>
+		<!--显示所有考勤统计信息  -->
+		<action name="getTotalAttendanceList" class="xsglTabKaoqingatherAction"
+			method="getTotalAttendanceList">
+			<result>/2_xsgl_system/system/bjgz/Attendance_l.jsp</result>
+		</action>  
+		<!--显示所有考勤统计信息前翻页  --> 
+		<action name="toAttPrevious" class="xsglTabKaoqingatherAction"
+			method="totalAttPrevious">
+			<result>/2_xsgl_system/system/bjgz/Attendance_l.jsp</result>
+		</action>
+		<!--显示所有考勤统计信息 后翻页 -->
+		<action name="toAttNext" class="xsglTabKaoqingatherAction"
+			method="totalAttNext">
+			<result>/2_xsgl_system/system/bjgz/Attendance_l.jsp</result>
+		</action>
+		<!--显示所有考勤统计信息  -->
+		<action name="showTotalAttendanceList" class="xsglTabKaoqingatherAction"
+			method="getTotalAttendanceList">
+			<result>/2_xsgl_system/administrator/Attendance.jsp</result>
+		</action>
+		<!--显示所有考勤统计信息前翻页  -->
+		<action name="totalAttPrevious" class="xsglTabKaoqingatherAction"
+			method="totalAttPrevious">
+			<result>/2_xsgl_system/administrator/Attendance.jsp</result>
+		</action>
+		<!--显示所有考勤统计信息后翻页  -->
+		<action name="totalAttNext" class="xsglTabKaoqingatherAction"
+			method="totalAttNext">
+			<result>/2_xsgl_system/administrator/Attendance.jsp</result>
+		</action>
+		<!--添加一条考勤统计信息  -->
+		<action name="saveTotalAttend" class="xsglTabKaoqingatherAction"
+			method="saveTotalAttend">
+			<result type="chain">showTotalAttendanceList</result>
+			<result name="input">/2_xsgl_system/administrator/AddError.jsp</result>
+		</action>
+		<!--辅导员添加一条考勤统计信息  -->
+		<action name="addTotalAttend" class="xsglTabKaoqingatherAction"
+			method="saveTotalAttend">
+			<result>/2_xsgl_system/system/bjgz/Success.jsp</result>
+			<result name="input">/2_xsgl_system/system/bjgz/Fail.jsp</result>
+		</action>
+		
+		<!--删除一条考勤统计信息  -->
+		<action name="deleteTotalAttend" class="xsglTabKaoqingatherAction"
+			method="deleteTotalAttend">
+			<result type="chain">showTotalAttendanceList</result>
+		</action>
+		<!--预更新一条考勤统计信息  -->
+		<action name="preUpdateTotalAttend" class="xsglTabKaoqingatherAction"
+			method="preUpdateTotalAttend">
+			<result>/2_xsgl_system/administrator/UpdateAttendance.jsp</result>
+		</action>
+		<!--辅导员预更新一条考勤统计信息  -->
+		<action name="preUpdTotalAttend" class="xsglTabKaoqingatherAction"
+			method="preUpdateTotalAttend">
+			<result>/2_xsgl_system/administrator/UpdateAttendance.jsp</result>
+		</action>
+		<!--更新一条考勤统计信息  -->
+		<action name="updateTotalAttend" class="xsglTabKaoqingatherAction"
+			method="updateTotalAttend">
+			<result type="chain">showTotalAttendanceList</result>
+			<result name="input">/2_xsgl_system/administrator/AddError.jsp</result>
+		</action>
+		<!--辅导员更新一条考勤统计信息  -->
+		<action name="modifyTotalAttend" class="xsglTabKaoqingatherAction"
+			method="updateTotalAttend">
+			<result>/2_xsgl_system/system/bjgz/Success.jsp</result>
+			<result name="input">/2_xsgl_system/system/bjgz/Fail.jsp</result>
+		</action>
+		<!--按日期、班级、课程搜索考勤统计信息  -->
+		<action name="selectTotalAttendByDCC" class="xsglTabKaoqingatherAction"
+			method="selectTotalAttendByDCC">
+			<result>/2_xsgl_system/administrator/Attendance.jsp</result>
+		</action>
+	</package>
+	
+	<package name="common" extends="struts-default">
+		
+		<action name="upload" class="uploadAction">
+		<!-- 限制上传文件类型仅为Excel -->
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">
+					application/vnd.ms-excel
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="defaultStack" />
+		</action>
+		
+		<!-- 年级学生信息文件上传配置 -->
+		<action name="excelInGrade" class="xsglExcelInAction" method="excelIn">
+		<!--  path指定的是上传文件的地址 -->
+			<param name="path">
+			files\2xsgl_system\uploadFiles
+			</param>
+		<param name="tableName">tab_grade</param>
+		<param name="tableValue">
+			f_GradeNum,f_GradeName,f_GradeMaleNum,f_GradeFemaleNum,f_GradeTotalNum
+			</param>
+			<result type="chain">getGradeList</result>
+			<result name="error">/2_xsgl_system/administrator/GradeList.jsp</result>
+		</action>
+		
+		<!-- 班级学生信息文件上传配置 -->
+		<action name="excelInClass" class="xsglExcelInAction" method="excelInClass">
+		<!--  path指定的是上传文件的地址 -->
+			<param name="path">
+			files\2xsgl_system\uploadFiles
+			</param>
+		<param name="tableName">tab_classes</param>
+		<param name="tableValue">
+			f_ClassNumber,f_ClassName,f_ClassMaleNum,f_ClassFemaleNum,f_ClassTotalNum,f_ClassCapacity,f_ClassWorkNum,f_ClassKaoYanNum,f_ClassAbroadNum,f_ClassOtherNum,f_CalssLocation,f_GradeId
+			</param>
+			<result type="chain">getClassList</result>
+			<result name="error">/2_xsgl_system/administrator/ClassList.jsp</result>
+		</action>
+		
+		<!-- 本科生信息文件上传配置 -->
+		
+		<action name="excelInUndergraduate" class="xsglExcelInAction" method="excelInUndergraduate">
+		<!--  path指定的是上传文件的地址 -->
+			<param name="path">
+			files\2xsgl_system\uploadFiles
+			</param>
+		<param name="tableName">tab_students</param>
+		<param name="tableValue">
+			f_StudentNumber,f_StudentName,f_IsLocked,f_StudentSex,f_StudentBirthday,f_StudentIdCard,f_StudentNation,f_StudentRegData,f_StudentTel,f_StudentEmail,f_StudentPostcode,f_StudentNativeplace,f_HomeTel,f_StudentAddress,f_StudentPoliStatus,f_StudentDormitory,f_DirectionId,f_StudentMajor,f_RewardPunish,f_QuXiang,f_ClassNumber,f_CardNumber
+			</param>
+			<result name="success" type="chain">getUndergraduateList</result>
+			<result name="error">/2_xsgl_system/administrator/Undergraduate.jsp</result>
+		</action>
+		
+		<!-- 研究生信息文件上传配置 -->
+		
+		<action name="excelInPostgraduate" class="xsglExcelInAction" method="excelInPostgraduate">
+		<!--  path指定的是上传文件的地址 -->
+			<param name="path">
+			files\2xsgl_system\uploadFiles
+			</param>
+		<param name="tableName">tab_students</param>
+		<param name="tableValue">
+			f_StudentNumber,f_StudentName,f_IsLocked,f_StudentSex,f_StudentBirthday,f_StudentIdCard,f_StudentNation,f_StudentRegData,f_StudentTel,f_StudentEmail,f_StudentPostcode,f_StudentNativeplace,f_HomeTel,f_StudentAddress,f_StudentPoliStatus,f_StudentDormitory,f_StudentMajor,f_RewardPunish,f_QuXiang,f_ClassNumber,f_CardNumber
+		</param>
+			<result type="chain">getPostgraduateList</result>
+			<result name="error">/2_xsgl_system/administrator/Postgraduate.jsp</result>
+		</action>
+		
+		<!-- 学生家长信息文件上传配置 -->
+		<action name="excelInParent" class="xsglExcelInAction" method="excelIn1">
+		<!--  path指定的是上传文件的地址 -->
+			<param name="path">
+			files\2xsgl_system\uploadFiles
+			</param>
+		<param name="tableName">xsgl_tab_parents</param>
+		<param name="tableValue">
+			f_ParentId,f_ParentName,f_StudentNumber
+			</param>
+			<result type="chain">getParentList</result>
+			<result name="error">/2_xsgl_system/administrator/Parent.jsp</result>
+		</action>
+		
+			<!-- 学生党建统计信息文件上传配置 -->
+		<action name="excelInParty" class="xsglExcelInAction" method="excelIn">
+		<!--  path指定的是上传文件的地址 -->
+			<param name="path">
+			files\2xsgl_system\uploadFiles
+			</param>
+		    <param name="tableName">xsgl_tab_partygather</param>
+		    <param name="tableValue">
+			   f_ClassNumber,f_Name,f_MaleNum,f_FemaleNum,f_TotalNum,f_Year
+			</param>
+			<result name="success" type="chain">showPartyList</result>
+			<result name="error">/2_xsgl_system/administrator/Party.jsp</result>
+		</action>
+		
+		
+		
+		<!-- 学生考勤统计信息文件上传配置 -->
+		<action name="excelInAttend" class="xsglExcelInAction" method="excelIn">
+		<!--  path指定的是上传文件的地址 -->
+			<param name="path">
+			files\2xsgl_system\uploadFiles
+			</param>
+		<param name="tableName">xsgl_tab_kaoqingather</param>
+		<param name="tableValue">
+			f_ClassNumber,f_Data,f_CourseNumber,f_Tnumber,f_Rnumber,f_Remark
+			</param>
+			<result type="chain">showTotalAttendanceList</result>
+			<result name="error">/2_xsgl_system/administrator/Attendance.jsp</result>
+		</action>
+		
+		
+		<!-- 学生欠费信息文件上传配置 -->
+		<action name="excelInFee" class="xsglExcelInAction" method="excelIn">
+		<!--  path指定的是上传文件的地址 -->
+			<param name="path">
+			files\2xsgl_system\uploadFiles
+			</param>
+		<param name="tableName">xsgl_tab_jiaofei</param>
+		<param name="tableValue">
+			f_StudentNumber,f_Year,f_Tuition,f_Accommodation,f_Total
+			</param>
+			<result type="chain">getMStudentList</result>
+			<result name="error">/2_xsgl_system/administrator/Fee.jsp</result>
+		</action>
+		
+		
+		<!-- 资助及奖学金统计信息文件上传配置 -->
+		<action name="excelInFund" class="xsglExcelInAction" method="excelIn">
+		<!--  path指定的是上传文件的地址 -->
+			<param name="path">
+			files\2xsgl_system\uploadFiles
+			</param>
+		<param name="tableName">xsgl_tab_jiangzhugather</param>
+		<param name="tableValue">
+			f_ClassNumber,f_Name,f_Year,f_Amount,f_TotalNum
+			</param>
+			<result type="chain">getFundList</result>
+			<result name="error">/2_xsgl_system/administrator/Fund.jsp</result>
+		</action>
+		
+		<!-- 学生组织信息文件上传配置 -->
+		<action name="excelInOrg" class="xsglExcelInAction" method="excelIn">
+		<!--  path指定的是上传文件的地址 -->
+			<param name="path">
+			files\2xsgl_system\uploadFiles
+			</param>
+		<param name="tableName">xsgl_tab_organizations</param>
+		<param name="tableValue">
+			f_OName,f_BuildTime,f_Introduce,f_Total
+			</param>
+			<result type="chain">getOrganizationList</result>
+			<result name="error">/2_xsgl_system/administrator/OrgDetail.jsp</result>
+		</action>
+		
+		<!-- 学生组织部门信息文件上传配置 -->
+		<action name="excelInDepartment" class="xsglExcelInAction" method="excelIn">
+		<!--  path指定的是上传文件的地址 -->
+			<param name="path">
+			files\2xsgl_system\uploadFiles
+			</param>
+		<param name="tableName">xsgl_tab_department</param>
+		<param name="tableValue">
+			f_DName,f_BuildTime,f_Introduce,f_OId,f_Total
+			</param>
+			<result type="chain">getDepartmentList</result>
+			<result name="error">/2_xsgl_system/administrator/Orgnization.jsp</result>
+		</action>
+		
+		<!-- 学生组织成员信息文件上传配置 -->
+		<action name="excelInOrgStu" class="xsglExcelInAction" method="excelInStuOrg">
+		<!--  path指定的是上传文件的地址 -->
+			<param name="path">
+			files\2xsgl_system\uploadFiles
+			</param>
+		<param name="tableName">xsgl_tab_stuorgadepart</param>
+		<param name="tableValue">
+			f_DId,f_StudentNumber,f_OId,f_Position
+			</param>
+			<result type="chain">getOrgStudentList</result>
+			<result name="error">/2_xsgl_system/administrator/OrgStuList.jsp</result>
+		</action>
+		
+		<!-- 班级党建信息文件上传配置 -->
+		<action name="excelInGradeParty" class="xsglExcelInAction" method="excelIn">
+		<!--  path指定的是上传文件的地址 -->
+			<param name="path">
+			files\2xsgl_system\uploadFiles
+			</param>
+		<param name="tableName">xsgl_tab_party</param>
+		<param name="tableValue">
+			f_StudentNumber,f_Year,f_Name
+			</param>
+			<result name="success">/2_xsgl_system/system/bjgz/Success.jsp</result>
+			<result name="error">/2_xsgl_system/system/bjgz/Fail.jsp</result>
+		</action>
+		
+		<!-- 学生考勤详细信息文件上传配置 -->
+		<action name="excelInAttendance" class="xsglExcelInAction" method="excelIn">
+		<!--  path指定的是上传文件的地址 -->
+			<param name="path">
+			files\2xsgl_system\uploadFiles
+			</param>
+		<param name="tableName">xsgl_tab_kaoqin</param>
+		<param name="tableValue">
+			f_StudentNumber,f_Data,f_CourseNumber,f_Absence,f_Remark
+			</param>
+			<result name="success">/2_xsgl_system/system/bjgz/Success.jsp</result>
+			<result name="error">/2_xsgl_system/system/bjgz/Fail.jsp</result>
+		</action>
+		
+		
+		<!-- 班级奖助信息文件上传配置 -->
+		<action name="excelInGradeFund" class="xsglExcelInAction" method="excelIn">
+		<!--  path指定的是上传文件的地址 -->
+			<param name="path">
+			files\2xsgl_system\uploadFiles
+			</param>
+		<param name="tableName">xsgl_tab_jiangzhu</param>
+		<param name="tableValue">
+			f_StudentNumber,f_Name,f_Year,f_Amount
+			</param>
+			<result name="success">/2_xsgl_system/system/zz/Success.jsp</result>
+			<result name="error">/2_xsgl_system/system/zz/Fail.jsp</result>
+		</action>
+	</package>
+</struts>

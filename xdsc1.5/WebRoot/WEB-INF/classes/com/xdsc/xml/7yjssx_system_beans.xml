@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	
+<!-- ******************************Dao的配置**************************************** -->	
+	<bean name="YjssxPostgraduateInfoDao" class="com.xdsc.dao.yjssx_system.impl.PostgraduateInfoDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxPostgraduateTutorSelectDao" class="com.xdsc.dao.yjssx_system.impl.PostgraduateTutorSelectDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxCompanyInfoDao" class="com.xdsc.dao.yjssx_system.impl.CompanyInfoDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxCompanyZhaoPinInfoDao" class="com.xdsc.dao.yjssx_system.impl.CompanyZhaoPinInfoDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxUploadResumeDao" class="com.xdsc.dao.yjssx_system.impl.UploadResumeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxSystomNoticeDao" class="com.xdsc.dao.yjssx_system.impl.SystomNoticeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxTutorInfoDao" class="com.xdsc.dao.yjssx_system.impl.TutorInfoDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxPostgraduateThesisDao" class="com.xdsc.dao.yjssx_system.impl.PostgraduateThesisDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxSystemInfomationDao" class="com.xdsc.dao.yjssx_system.impl.SystemInfomationDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxStudentSelectTutorDispachDao" class="com.xdsc.dao.yjssx_system.impl.StudentSelectTutorDispachDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxUserLoginDao" class="com.xdsc.dao.yjssx_system.impl.UserLoginDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxSystemFunctionDao" class="com.xdsc.dao.yjssx_system.impl.SystemFunctionDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	
+	
+	<bean name="YjssxMhqxTabUserDao" class="com.xdsc.dao.yjssx_system.impl.MhqxTabUserDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+<!-- ******************************service的配置************************************ -->	
+	<bean name="YjssxPostgraduateInfoService" class="com.xdsc.service.yjssx_system.impl.PostgraduateInfoServiceImpl">
+		<property name="postgraduateInfoDao">
+			<ref bean="YjssxPostgraduateInfoDao"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxPostgraduateTutorSelectService" class="com.xdsc.service.yjssx_system.impl.PostgraduateTutorSelectServiceImpl">
+		<property name="postgraduateTutorSelectDao">
+			<ref bean="YjssxPostgraduateTutorSelectDao"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxCompanyInfoService" class="com.xdsc.service.yjssx_system.impl.CompanyInfoServiceImpl">
+		<property name="companyInfoDao">
+			<ref bean="YjssxCompanyInfoDao"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxCompanyZhaoPinInfoService" class="com.xdsc.service.yjssx_system.impl.CompanyZhaoPinInfoServiceImpl">
+		<property name="companyZhaoPinInfoDao">
+			<ref bean="YjssxCompanyZhaoPinInfoDao"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxUploadResumeService" class="com.xdsc.service.yjssx_system.impl.UploadResumeServiceImpl">
+		<property name="uploadResumeDao">
+			<ref bean="YjssxUploadResumeDao"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxSystomNoticeService" class="com.xdsc.service.yjssx_system.impl.SystomNoticeServiceImpl">
+		<property name="systomNoticeDao">
+			<ref bean="YjssxSystomNoticeDao"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxTutorInfoService" class="com.xdsc.service.yjssx_system.impl.TutorInfoServiceImpl">
+		<property name="tutorInfoDao">
+			<ref bean="YjssxTutorInfoDao"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxPostgraduateThesisService" class="com.xdsc.service.yjssx_system.impl.PostgraduateThesisServiceImpl">
+		<property name="postgraduateThesisDao">
+			<ref bean="YjssxPostgraduateThesisDao"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxSystemInfomationService" class="com.xdsc.service.yjssx_system.impl.SystemInfomationServiceImpl">
+		<property name="systemInfomationDao">
+			<ref bean="YjssxSystemInfomationDao"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxSystemFunctionService" class="com.xdsc.service.yjssx_system.impl.SystemFunctionServiceImpl">
+		<property name="systemFunctionDao">
+			<ref bean="YjssxSystemFunctionDao"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxStudentSelectTutorDispachService" class="com.xdsc.service.yjssx_system.impl.StudentSelectTutorDispachServiceImpl">
+		<property name="studentSelectTutorDispachDao">
+			<ref bean="YjssxStudentSelectTutorDispachDao"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxUserLoginService" class="com.xdsc.service.yjssx_system.impl.UserLoginServiceImpl">
+		<property name="userLoginDao">
+			<ref bean="YjssxUserLoginDao"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxMhqxTabUserService" class="com.xdsc.service.yjssx_system.impl.MhqxTabUserServiceImpl">
+		<property name="mhqxTabUserDao">
+			<ref bean="YjssxMhqxTabUserDao"/>
+		</property>
+	</bean>
+	
+<!-- ******************************action的配置************************************ -->	
+
+	<bean name="YjssxFirstPageAction" class="com.xdsc.action.yjssx_system.YjssxFirstPageAction">
+		<property name="systemInfomationService">
+			<ref bean="YjssxSystemInfomationService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxCommonOperationAction" class="com.xdsc.action.yjssx_system.CommonOperationAction">
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+		<property name="tutorInfoService">
+			<ref bean="YjssxTutorInfoService"/>
+		</property>
+		<property name="companyInfoService">
+			<ref bean="YjssxCompanyInfoService"/>
+		</property>
+		<property name="systemInfomationService">
+			<ref bean="YjssxSystemInfomationService"/>
+		</property>
+		<property name="postgraduateThesisService">
+			<ref bean="YjssxPostgraduateThesisService"/>
+		</property>
+	</bean>
+	<bean name="YjssxPostgraudateSelfInfoAction" class="com.xdsc.action.yjssx_system.PostgraudateSelfInfoAction">
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxPostgraduateAllTutorInfoForSelectAction" class="com.xdsc.action.yjssx_system.PostgraduateAllTutorInfoForSelectAction">
+		<property name="postgraduateTutorSelectService">
+			<ref bean="YjssxPostgraduateTutorSelectService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxPostgraduatePreSelectTutorAction" class="com.xdsc.action.yjssx_system.PostgraduatePreSelectTutorAction">
+		<property name="postgraduateTutorSelectService">
+			<ref bean="YjssxPostgraduateTutorSelectService"/>
+		</property>
+		<property name="systemFunctionService">
+			<ref bean="YjssxSystemFunctionService"/>
+		</property>
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxPostgraduateSelectTutorAction" class="com.xdsc.action.yjssx_system.PostgraduateSelectTutorAction">
+		<property name="postgraduateTutorSelectService">
+			<ref bean="YjssxPostgraduateTutorSelectService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxPostgraduateZhaoPinInfoAction" class="com.xdsc.action.yjssx_system.PostgraduateZhaoPinInfoAction">
+		<property name="companyZhaoPinInfoService">
+			<ref bean="YjssxCompanyZhaoPinInfoService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxCompanySelfInfoAction" class="com.xdsc.action.yjssx_system.CompanySelfInfoAction">
+		<property name="companyInfoService">
+			<ref bean="YjssxCompanyInfoService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxCompanyModifySelfInfoAction" class="com.xdsc.action.yjssx_system.CompanyModifySelfInfoAction">
+		<property name="companyInfoService">
+			<ref bean="YjssxCompanyInfoService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxCompanyReleaseZhaoPinAction" class="com.xdsc.action.yjssx_system.CompanyReleaseZhaoPinAction">
+		<property name="companyZhaoPinInfoService">
+			<ref bean="YjssxCompanyZhaoPinInfoService"/>
+		</property>
+		<property name="systemFunctionService">
+			<ref bean="YjssxSystemFunctionService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxCompanyZhaoPinOperationAction" class="com.xdsc.action.yjssx_system.CompanyZhaoPinOperationAction">
+		<property name="companyZhaoPinInfoService">
+			<ref bean="YjssxCompanyZhaoPinInfoService"/>
+		</property>
+		<property name="companyInfoService">
+			<ref bean="YjssxCompanyInfoService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxCompanyModifyZhaoPinAction" class="com.xdsc.action.yjssx_system.CompanyModifyZhaoPinAction">
+		<property name="companyZhaoPinInfoService">
+			<ref bean="YjssxCompanyZhaoPinInfoService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxPostgraduateUploadResumeAction" class="com.xdsc.action.yjssx_system.PostgraduateUploadResumeAction">
+		<property name="companyInfoService">
+			<ref bean="YjssxCompanyInfoService"/>
+		</property>
+		<property name="uploadResumeService">
+			<ref bean="YjssxUploadResumeService"/>
+		</property>
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxCompanyCheckResumeAction" class="com.xdsc.action.yjssx_system.CompanyCheckResumeAction">
+		<property name="uploadResumeService">
+			<ref bean="YjssxUploadResumeService"/>
+		</property>
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxCompanyNoticeToStudentAction" class="com.xdsc.action.yjssx_system.CompanyNoticeToStudentAction">
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+		<property name="systomNoticeService">
+			<ref bean="YjssxSystomNoticeService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxCompanyAcceptStuAction" class="com.xdsc.action.yjssx_system.CompanyAcceptStuAction">
+		<property name="uploadResumeService">
+			<ref bean="YjssxUploadResumeService"/>
+		</property>
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+		<property name="companyInfoService">
+			<ref bean="YjssxCompanyInfoService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxPostgraduateYingPinInfoAction" class="com.xdsc.action.yjssx_system.PostgraduateYingPinInfoAction">
+		<property name="systomNoticeService">
+			<ref bean="YjssxSystomNoticeService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxCompanySelectedStudentAction" class="com.xdsc.action.yjssx_system.CompanySelectedStudentAction">
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+		<property name="systomNoticeService">
+			<ref bean="YjssxSystomNoticeService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxTutorSelfInfoAction" class="com.xdsc.action.yjssx_system.TutorSelfInfoAction">
+		<property name="tutorInfoService">
+			<ref bean="YjssxTutorInfoService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxPostgraduateSubmitThesisAction" class="com.xdsc.action.yjssx_system.PostgraduateSubmitThesisAction">
+		<property name="postgraduateThesisService">
+			<ref bean="YjssxPostgraduateThesisService"/>
+		</property>
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+		<property name="systemFunctionService">
+			<ref bean="YjssxSystemFunctionService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxTutorReceiveThesisAction" class="com.xdsc.action.yjssx_system.TutorReceiveThesisAction">
+		<property name="postgraduateThesisService">
+			<ref bean="YjssxPostgraduateThesisService"/>
+		</property>
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+		<property name="tutorInfoService">
+			<ref bean="YjssxTutorInfoService"/>
+		</property>
+		<property name="systemFunctionService">
+			<ref bean="YjssxSystemFunctionService"/>
+		</property>
+		<property name="systomNoticeService">
+			<ref bean="YjssxSystomNoticeService"/>
+		</property>
+		<property name="mhqxTabUserService">
+			<ref bean="YjssxMhqxTabUserService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxTutorNoticeTuStudentAction" class="com.xdsc.action.yjssx_system.TutorNoticeTuStudentAction">
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+		<property name="systomNoticeService">
+			<ref bean="YjssxSystomNoticeService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxTutorReturnThesisAction" class="com.xdsc.action.yjssx_system.TutorReturnThesisAction">
+		<property name="postgraduateThesisService">
+			<ref bean="YjssxPostgraduateThesisService"/>
+		</property>
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+		<property name="systemFunctionService">
+			<ref bean="YjssxSystemFunctionService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxTutorStuInfoForNoticeAction" class="com.xdsc.action.yjssx_system.TutorStuInfoForNoticeAction">
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxPostgraduateReceiveThesisAction" class="com.xdsc.action.yjssx_system.PostgraduateReceiveThesisAction">
+		<property name="postgraduateThesisService">
+			<ref bean="YjssxPostgraduateThesisService"/>
+		</property>
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxPostgraduateReceiveNoticeAction" class="com.xdsc.action.yjssx_system.PostgraduateReceiveNoticeAction">
+		<property name="systomNoticeService">
+			<ref bean="YjssxSystomNoticeService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxAdminReleaseFirstPageInfoAction" class="com.xdsc.action.yjssx_system.AdminReleaseFirstPageInfoAction">
+		<property name="systemInfomationService">
+			<ref bean="YjssxSystemInfomationService"/>
+		</property>
+		<property name="mhqxTabUserService">
+			<ref bean="YjssxMhqxTabUserService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxAdminNoticeOperationAction" class="com.xdsc.action.yjssx_system.AdminNoticeOperationAction">
+		<property name="systomNoticeService">
+			<ref bean="YjssxSystomNoticeService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxAdminReleaseNoticeAction" class="com.xdsc.action.yjssx_system.AdminReleaseNoticeAction">
+		<property name="systomNoticeService">
+			<ref bean="YjssxSystomNoticeService"/>
+		</property>
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+		<property name="companyInfoService">
+			<ref bean="YjssxCompanyInfoService"/>
+		</property>
+		<property name="tutorInfoService">
+			<ref bean="YjssxTutorInfoService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxAdminTutorInfoManageAction" class="com.xdsc.action.yjssx_system.AdminTutorInfoManageAction">
+		<property name="tutorInfoService">
+			<ref bean="YjssxTutorInfoService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxAdminStudentInfoManageAction" class="com.xdsc.action.yjssx_system.AdminStudentInfoManageAction">
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+		<property name="tutorInfoService">
+			<ref bean="YjssxTutorInfoService"/>
+		</property>
+		<property name="companyInfoService">
+			<ref bean="YjssxCompanyInfoService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxAdminCompanyInfoManageAction" class="com.xdsc.action.yjssx_system.AdminCompanyInfoManageAction">
+		<property name="companyInfoService">
+			<ref bean="YjssxCompanyInfoService"/>
+		</property>
+		<property name="tutorInfoService">
+			<ref bean="YjssxTutorInfoService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxAdminThesisManageAction" class="com.xdsc.action.yjssx_system.AdminThesisManageAction">
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+		<property name="postgraduateThesisService">
+			<ref bean="YjssxPostgraduateThesisService"/>
+		</property>
+		<property name="tutorInfoService">
+			<ref bean="YjssxTutorInfoService"/>
+		</property>
+		<property name="systomNoticeService">
+			<ref bean="YjssxSystomNoticeService"/>
+		</property>
+		<property name="mhqxTabUserService">
+			<ref bean="YjssxMhqxTabUserService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxAdminTutorSelectManageAction" class="com.xdsc.action.yjssx_system.AdminTutorSelectManageAction">
+		<property name="postgraduateTutorSelectService">
+			<ref bean="YjssxPostgraduateTutorSelectService"/>
+		</property>
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+		<property name="tutorInfoService">
+			<ref bean="YjssxTutorInfoService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxAdminTutorSelectDispachAction" class="com.xdsc.action.yjssx_system.AdminTutorSelectDispachAction">
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+		<property name="tutorInfoService">
+			<ref bean="YjssxTutorInfoService"/>
+		</property>
+		<property name="studentSelectTutorDispachService">
+			<ref bean="YjssxStudentSelectTutorDispachService"/>
+		</property>
+		<property name="postgraduateTutorSelectService">
+			<ref bean="YjssxPostgraduateTutorSelectService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxTutorReceiveStudentAction" class="com.xdsc.action.yjssx_system.TutorReceiveStudentAction">
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+		<property name="tutorInfoService">
+			<ref bean="YjssxTutorInfoService"/>
+		</property>
+		<property name="studentSelectTutorDispachService">
+			<ref bean="YjssxStudentSelectTutorDispachService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxTutorReceiveNoticeAction" class="com.xdsc.action.yjssx_system.TutorReceiveNoticeAction">
+		<property name="systomNoticeService">
+			<ref bean="YjssxSystomNoticeService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxCompanyReceiveNoticeAction" class="com.xdsc.action.yjssx_system.CompanyReceiveNoticeAction">
+		<property name="systomNoticeService">
+			<ref bean="YjssxSystomNoticeService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxAdminSystemFunctionDeployAction" class="com.xdsc.action.yjssx_system.AdminSystemFunctionDeployAction">
+		<property name="systemFunctionService">
+			<ref bean="YjssxSystemFunctionService"/>
+		</property>
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+		<property name="companyInfoService">
+			<ref bean="YjssxCompanyInfoService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxCommonLoginAction" class="com.xdsc.action.yjssx_system.CommonLoginAction">
+		<property name="userLoginService">
+			<ref bean="YjssxUserLoginService"/>
+		</property>
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+		<property name="companyInfoService">
+			<ref bean="YjssxCompanyInfoService"/>
+		</property>
+		<property name="tutorInfoService">
+			<ref bean="YjssxTutorInfoService"/>
+		</property>
+		<property name="systomNoticeService">
+			<ref bean="YjssxSystomNoticeService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxAdminPractingZhaoPinManageAction" class="com.xdsc.action.yjssx_system.AdminPractingZhaoPinManageAction">
+		<property name="postgraduateInfoService">
+			<ref bean="YjssxPostgraduateInfoService"/>
+		</property>
+		<property name="companyInfoService">
+			<ref bean="YjssxCompanyInfoService"/>
+		</property>
+	</bean>
+	
+	<bean name="YjssxAdminManageZhaoPinInfoAction" class="com.xdsc.action.yjssx_system.AdminManageZhaoPinInfoAction">
+		<property name="systemInfomationService">
+			<ref bean="YjssxSystemInfomationService"/>
+		</property>
+	</bean>
+	
+</beans>

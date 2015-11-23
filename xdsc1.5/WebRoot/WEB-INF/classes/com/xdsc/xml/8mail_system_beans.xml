@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	
+<!-- all actions -->
+	<bean id="mailmanageAction" class="com.xdsc.action.mail_system.MailManageAction">
+		<property name="mailmanagerDao" ref="mailmanagerDao"></property>
+	</bean>
+	<bean id="userinfoAction" class="com.xdsc.action.mail_system.UserInfoAction">
+		<property name="userinfoDao" ref="userinfoDao"></property>
+	</bean>
+	<bean id="managerAction" class="com.xdsc.action.mail_system.ManagerAction">
+		<property name="mailmanagerDao" ref="mailmanagerDao"></property>
+		<property name="managerDao" ref="managerDao"></property>
+		<property name="contactDao" ref="contactDao"></property>
+	</bean>
+	<bean id="contactAction" class="com.xdsc.action.mail_system.ContactAction">
+		<property name="contactDao" ref="contactDao"></property>
+	</bean>
+	<bean id="emailAction" class="com.xdsc.action.mail_system.EmailAction">
+		<property name="emailDao" ref="emailDao"></property>
+		<property name="mailmanagerDao" ref="mailmanagerDao"></property>
+		<property name="contactDao" ref="contactDao"></property>
+	</bean>
+	<bean id="remindAction" class="com.xdsc.action.mail_system.RemindAction">
+		<property name="remindDao" ref="remindDao"></property>
+		<property name="managerDao" ref="managerDao"></property>
+	</bean>
+	<bean id="topicAction" class="com.xdsc.action.mail_system.TopicAction">
+		<property name="topicDao" ref="topicDao"></property>
+	</bean>
+	<bean id="replyAction" class="com.xdsc.action.mail_system.ReplyAction">
+		<property name="replyDao" ref="replyDao"></property>
+		<property name="topicDao" ref="topicDao"></property>
+	</bean>
+	
+
+<!-- all Daos -->
+
+	<bean id="mailmanagerDao" class="com.xdsc.dao.mail_system.MailManagerDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="userinfoDao" class="com.xdsc.dao.mail_system.UserInfoDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="replyDao" class="com.xdsc.dao.mail_system.ReplyDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="contactDao" class="com.xdsc.dao.mail_system.ContactDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="emailDao" class="com.xdsc.dao.mail_system.EmailDao">
+		
+	</bean>
+	<bean id="remindDao" class="com.xdsc.dao.mail_system.RemindDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="managerDao" class="com.xdsc.dao.mail_system.ManagerDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="topicDao" class="com.xdsc.dao.mail_system.TopicDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation"
+			value="classpath:hibernate.cfg.xml">
+		</property>
+	</bean>
+	
+	<!-- Transaction Manager -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- propagation config -->
+	<tx:advice id="txadvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="find*" propagation="REQUIRED"/><!--if there already exists a transaction ,use it or else create one  -->
+			<tx:method name="add*" propagation="REQUIRED"/>
+			<tx:method name="delete*" propagation="REQUIRED"/>
+			<tx:method name="select*" propagation="REQUIRED"/>
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="*" read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- point cut -->
+	<aop:config>
+		<aop:pointcut id="allMailManagerMethod" expression="execution(* com.xdsc.dao.mail_system.MailManagerDao.*(..))"/>
+		<aop:advisor advice-ref="txadvice" pointcut-ref="allMailManagerMethod"/>
+	</aop:config>
+	<aop:config>
+		<aop:pointcut id="allUserInfoMethod" expression="execution(* com.xdsc.dao.mail_system.UserInfoDao.*(..))"/>
+		<aop:advisor advice-ref="txadvice" pointcut-ref="allUserInfoMethod"/>
+	</aop:config>
+	<aop:config>
+		<aop:pointcut id="allManagerMethod" expression="execution(* com.xdsc.dao.mail_system.ManagerDao.*(..))"/>
+		<aop:advisor advice-ref="txadvice" pointcut-ref="allManagerMethod"/>
+	</aop:config>
+	<aop:config>
+		<aop:pointcut id="allContactMethod" expression="execution(* com.xdsc.dao.mail_system.ContactDao.*(..))"/>
+		<aop:advisor advice-ref="txadvice" pointcut-ref="allContactMethod"/>
+	</aop:config>
+	<aop:config>
+		<aop:pointcut id="allRemindMethod" expression="execution(* com.xdsc.dao.mail_system.RemindDao.*(..))"/>
+		<aop:advisor advice-ref="txadvice" pointcut-ref="allRemindMethod"/>
+	</aop:config>
+	<aop:config>
+		<aop:pointcut id="allTopicMethod" expression="execution(* com.xdsc.dao.mail_system.TopicDao.*(..))"/>
+		<aop:advisor advice-ref="txadvice" pointcut-ref="allTopicMethod"/>
+	</aop:config>
+	<aop:config>
+		<aop:pointcut id="allReplyMethod" expression="execution(* com.xdsc.dao.mail_system.ReplyDao.*(..))"/>
+		<aop:advisor advice-ref="txadvice" pointcut-ref="allReplyMethod"/>
+	</aop:config>
+</beans>

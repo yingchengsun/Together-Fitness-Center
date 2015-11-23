@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+	<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+
+
+	<!-- ********************************配置DAO********************************-->
+	<!-- 考生注册 -->
+	<bean id="WsbmRegAppliDAO"
+		class="com.xdsc.dao.wsbm.impl.RegAppliDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- 考生查询 -->
+	<bean id="WsbmKsCheckDAO"
+		class="com.xdsc.dao.wsbm.impl.KsCheckDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- 管理员查询 -->
+	<bean id="WsbmAdAllCheckDAO"
+		class="com.xdsc.dao.wsbm.impl.AdAllCheckDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- 消息发送更新 -->
+	<bean id="WsbmMegDAO" class="com.xdsc.dao.wsbm.impl.MegDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- 消息查询 -->
+	<bean id="WsbmMsgCheckDAO"
+		class="com.xdsc.dao.wsbm.impl.MsgCheckDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- 上传excel表格考生信息更新 -->
+	<bean id="WsbmAppInfoUpdateDAO"
+		class="com.xdsc.dao.wsbm.impl.AppInfoUpdateDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- 删除网站信息 -->
+	<bean id="WsbmDeleteDAO"
+		class="com.xdsc.dao.wsbm.impl.DeleteDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	<!-- 考生帐号处理 -->
+	<bean id="WsbmTabRegapplicantDao" class="com.xdsc.dao.wsbm.impl.WsbmTabRegapplicantDAOImpl"
+		scope="singleton">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- 用户登录 -->
+	<bean id="WsbmUserLoginDao" class="com.xdsc.dao.wsbm.impl.UserLoginDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+
+	<!-- ********************************配置Service********************************-->
+	<!-- 考生注册 -->
+	<bean id="WsbmRegAppliMannager"
+		class="com.xdsc.service.wsbm.impl.RegAppliManagerImpl">
+		<property name="regAppliDAO">
+			<ref bean="WsbmRegAppliDAO" />
+		</property>
+	</bean>
+	<!-- 考生查询 -->
+	<bean id="WsbmKsCheckManager"
+		class="com.xdsc.service.wsbm.impl.KsCheckManagerImpl">
+		<property name="ksCheckDAO">
+			<ref bean="WsbmKsCheckDAO" />
+		</property>
+	</bean>
+	<!-- 管理员查询 -->
+	<bean id="WsbmAdAllCheckManager"
+		class="com.xdsc.service.wsbm.impl.AdAllCheckManagerImpl">
+		<property name="adAllCheckDAO">
+			<ref bean="WsbmAdAllCheckDAO" />
+		</property>
+	</bean>
+	<!-- 消息发送更新 -->
+	<bean id="WsbmMegManager"
+		class="com.xdsc.service.wsbm.impl.MegManagerImpl">
+		<property name="megDAO">
+			<ref bean="WsbmMegDAO" />
+		</property>
+	</bean>
+	<!-- 考生消息查询 -->
+	<bean id="WsbmMsgCheckManager"
+		class="com.xdsc.service.wsbm.impl.MsgCheckManagerImpl">
+		<property name="msgCheckDAO">
+			<ref bean="WsbmMsgCheckDAO" />
+		</property>
+	</bean>
+	<!-- 考生信息更新 -->
+	<bean id="WsbmAppInfoUpdateManager"
+		class="com.xdsc.service.wsbm.impl.AppInfoUpdateManagerImpl">
+		<property name="appInfoUpdateDAO">
+			<ref bean="WsbmAppInfoUpdateDAO" />
+		</property>
+	</bean>
+	<!-- 删除网站信息 -->
+	<bean id="WsbmDeleteManager" 
+		class="com.xdsc.service.wsbm.impl.DeleteManagerImpl">
+		<property name="deleteDAO">
+			<ref bean="WsbmDeleteDAO"/>
+		</property>
+		</bean>
+	<!-- 上传excel表格考生信息更新 -->
+	<bean id="WsbmTabRegapplicantService"
+		class="com.xdsc.service.wsbm.impl.WsbmTabRegapplicantServiceImpl">
+		<property name="wsbmTabRegapplicantDao" ref="WsbmTabRegapplicantDao"></property>
+	</bean>
+	
+	<bean id="WsbmUserLoginService"
+		class="com.xdsc.service.wsbm.impl.UserLoginServiceImpl">
+		<property name="userLoginDao" ref="WsbmUserLoginDao"></property>
+	</bean>
+	<!-- 用户登录 -->
+	<!-- ********************************配置Action********************************-->
+	<!-- 考生注册 -->
+	<bean id="WsbmRegisterAction" scope="prototype" class="com.xdsc.action.wsbm.RegisterAction">
+		<property name="raml">
+			<ref bean="WsbmRegAppliMannager" />
+		</property>
+		<property name="aacm">
+			<ref bean="WsbmAdAllCheckManager" />
+		</property>
+	</bean>
+	<bean id="WsbmTabRegapplicantAction"
+		class="com.xdsc.action.wsbm.WsbmTabRegapplicantAction">
+		<property name="raml">
+			<ref bean="WsbmRegAppliMannager" />
+		</property>
+	</bean>
+	<!-- 考生查询 -->
+
+	<bean id="WsbmKsCheckAction"
+		class="com.xdsc.action.wsbm.KsCheckAction">
+		<property name="ram">
+			<ref bean="WsbmKsCheckManager" />
+		</property>
+	</bean>
+	<!-- 管理员查询 -->
+
+	<bean id="WsbmAdAllCheckAction"
+		class="com.xdsc.action.wsbm.AdAllCheckAction">
+		<property name="aacm">
+			<ref bean="WsbmAdAllCheckManager" />
+		</property>
+		<property name="mm">
+			<ref bean="WsbmMegManager"/>
+		</property>
+		<property name="ram">
+			<ref bean="WsbmKsCheckManager"/>
+		</property>
+	</bean>
+	<!-- 发送更新消息 -->
+
+	<bean id="WsbmMegAction" class="com.xdsc.action.wsbm.MegAction">
+		<property name="mm">
+			<ref bean="WsbmMegManager" />
+		</property>
+		<property name="acm">
+			<ref bean="WsbmAdAllCheckManager"/>
+		</property>
+		<property name="mcm">
+			<ref bean="WsbmMsgCheckManager"/>
+		</property>
+		<property name="aacm">
+			<ref bean="WsbmAdAllCheckManager"/>
+		</property>
+	</bean>
+	<!-- 查看消息 -->
+
+	<bean id="WsbmMsgCheckAction"
+		class="com.xdsc.action.wsbm.MsgCheckAction">
+		<property name="mcm">
+			<ref bean="WsbmMsgCheckManager" />
+		</property>
+	</bean>
+	<!-- 更新考生信息 -->
+
+	<bean id="WsbmAppInfoUpdateAction"
+		class="com.xdsc.action.wsbm.AppInfoUpdateAction">
+		<property name="appInfoUpdateManager">
+			<ref bean="WsbmAppInfoUpdateManager" />
+		</property>
+	</bean>
+		<!-- 删除信息 -->
+	<bean id="WsbmDeleteAction"
+		class="com.xdsc.action.wsbm.DeleteAction">
+		<property name="deleteManager">
+			<ref bean="WsbmDeleteManager"/>
+		</property>
+		<property name="adAllCheckManager">
+			<ref bean="WsbmAdAllCheckManager"/>
+		</property>
+		<property name="msgCheckManager">
+			<ref bean="WsbmMsgCheckManager"/>
+		</property>
+		<property name="aacm">
+			<ref bean="WsbmAdAllCheckManager" />
+		</property>
+	</bean>
+	<!-- 生成excel表格 -->
+
+	<bean id="WsbmgenerateExcelAction"
+		class="com.xdsc.action.wsbm.GenerateExcelAction" scope="singleton">
+		<property name="service" ref="WsbmTabRegapplicantService"></property>
+	</bean>
+		<!-- 用户登录 -->
+	<bean id="WsbmCommonLoginAction" class="com.xdsc.action.wsbm.CommonLoginAction">
+		<property name="userLoginService" ref="WsbmUserLoginService"></property>
+		<property name="ksCheckManager" ref="WsbmKsCheckManager"></property>
+	</bean>
+		<!-- 跳转 -->
+	
+	<bean id="WsbmTiaozhuanAction" class="com.xdsc.action.wsbm.TiaozhuanAction">
+		<property name="aacm" ref="WsbmAdAllCheckManager">
+		</property>
+	</bean>
+		<!-- 上传文件 -->
+	
+	<bean id="WsbmAdminReleaseNoticeAction" class="com.xdsc.action.wsbm.AdminReleaseNoticeAction">
+	</bean>
+		<!-- 上传excel更新考生信息 -->
+	
+	<bean id="WsbmUpdateTabWsbmAppAction" class="com.xdsc.action.wsbm.UpdateTabWsbmAppAction">
+		<property name="deleteManager" ref="WsbmDeleteManager">
+		</property>
+		<property name="aacm" ref="WsbmAdAllCheckManager">
+		</property>
+	</bean>
+	
+	<bean id="WsbmSubject" class="com.xdsc.action.wsbm.SubjectAction">
+		<property name="ram" ref="WsbmKsCheckManager">
+		</property>
+		<property name="deleteManager" ref="WsbmDeleteManager">
+		</property>
+	</bean>
+
+
+</beans>

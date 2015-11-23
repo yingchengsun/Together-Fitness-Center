@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<!--向DAO中注入sessionFactory对象 -->
+	<bean id="bksxTabSubjectapplyDAO"
+		class="com.xdsc.dao.bksx_system.impl.BksxTabSubjectapplyDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="bksxTabProjectapplyDAO"
+		class="com.xdsc.dao.bksx_system.impl.BksxTabProjectapplyDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="bksxTabNoticeDAO"
+		class="com.xdsc.dao.bksx_system.impl.TabNoticeDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="bksxLoginDAO"
+		class="com.xdsc.dao.bksx_system.impl.LoginDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="bksxTabSubstuguiDAO"
+		class="com.xdsc.dao.bksx_system.impl.BksxTabSubstuguiDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="bksxTabStudentsDAO"
+		class="com.xdsc.dao.bksx_system.impl.TabStudentsDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="bksxTabTeachersDAO"
+		class="com.xdsc.dao.bksx_system.impl.TabTeachersDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="bksxTabAdministratorDAO"
+		class="com.xdsc.dao.bksx_system.impl.TabAdministratorDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="bksxTabProjectDAO"
+		class="com.xdsc.dao.bksx_system.impl.BksxTabProjectDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="bksxTabTeamDAO"
+		class="com.xdsc.dao.bksx_system.impl.BksxTabTeamDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="bksxTabTeamapplyDAO"
+		class="com.xdsc.dao.bksx_system.impl.BksxTabTeamapplyDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="bksxTabMemberDAO"
+		class="com.xdsc.dao.bksx_system.impl.BksxTabMemberDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="bksxTabGanttplanDAO"
+		class="com.xdsc.dao.bksx_system.impl.BksxTabGanttplanDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="bksxTabStagereportDAO"
+		class="com.xdsc.dao.bksx_system.impl.BksxTabStagereportDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="bksxTabWorkdiaryDAO"
+		class="com.xdsc.dao.bksx_system.impl.BksxTabWorkdiaryDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="bksxTabSearchplanDAO"
+		class="com.xdsc.dao.bksx_system.impl.BksxTabSearchplanDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="bksxTabWorksummaryDAO"
+		class="com.xdsc.dao.bksx_system.impl.BksxTabWorksummaryDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="bksxTabAchievementDAO"
+		class="com.xdsc.dao.bksx_system.impl.BksxTabAchievementDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!--向Manager中注入DAO对象 -->
+	<bean id="bksxTabSubjectapplyManager"
+		class="com.xdsc.service.bksx_system.impl.BksxTabSubjectapplyManagerImpl">
+		<property name="bksxTabSubjectapplyDAO"
+			ref="bksxTabSubjectapplyDAO" />
+	</bean>
+	<bean id="bksxTabProjectapplyManager"
+		class="com.xdsc.service.bksx_system.impl.BksxTabProjectapplyManagerImpl">
+		<property name="bksxTabProjectapplyDAO"
+			ref="bksxTabProjectapplyDAO" />
+	</bean>
+	<bean id="bksxTabNoticeManager"
+		class="com.xdsc.service.bksx_system.impl.TabNoticeManagerImpl">
+		<property name="tabNoticeDAO" ref="bksxTabNoticeDAO" />
+	</bean>
+	<bean id="bksxLoginManager"
+		class="com.xdsc.service.bksx_system.impl.LoginManagerImpl">
+		<property name="loginDAO" ref="bksxLoginDAO" />
+	</bean>
+	<bean id="bksxTabSubstuguiManager"
+		class="com.xdsc.service.bksx_system.impl.BksxTabSubstuguiManagerImpl">
+		<property name="bksxTabSubstuguiDAO" ref="bksxTabSubstuguiDAO" />
+	</bean>
+	<bean id="bksxTabStudentsManager"
+		class="com.xdsc.service.bksx_system.impl.TabStudentsManagerImpl">
+		<property name="tabStudentsDAO" ref="bksxTabStudentsDAO" />
+	</bean>
+	<bean id="bksxTabTeachersManager"
+		class="com.xdsc.service.bksx_system.impl.TabTeachersManagerImpl">
+		<property name="tabTeachersDAO" ref="bksxTabTeachersDAO" />
+	</bean>
+	<bean id="bksxTabAdministratorManager"
+		class="com.xdsc.service.bksx_system.impl.TabAdministratorManagerImpl">
+		<property name="tabAdministratorDAO"
+			ref="bksxTabAdministratorDAO" />
+	</bean>
+	<bean id="bksxTabProjectManager"
+		class="com.xdsc.service.bksx_system.impl.BksxTabProjectManagerImpl">
+		<property name="bksxTabProjectDAO" ref="bksxTabProjectDAO" />
+	</bean>
+	<bean id="bksxTabTeamManager"
+		class="com.xdsc.service.bksx_system.impl.BksxTabTeamManagerImpl">
+		<property name="bksxTabTeamDAO" ref="bksxTabTeamDAO" />
+	</bean>
+	<bean id="bksxTabTeamapplyManager"
+		class="com.xdsc.service.bksx_system.impl.BksxTabTeamapplyManagerImpl">
+		<property name="bksxTabTeamapplyDAO" ref="bksxTabTeamapplyDAO" />
+	</bean>
+	<bean id="bksxTabMemberManager"
+		class="com.xdsc.service.bksx_system.impl.BksxTabMemberManagerImpl">
+		<property name="bksxTabMemberDAO" ref="bksxTabMemberDAO" />
+	</bean>
+	<bean id="bksxTabGanttplanManager"
+		class="com.xdsc.service.bksx_system.impl.BksxTabGanttplanManagerImpl">
+		<property name="bksxTabGanttplanDAO" ref="bksxTabGanttplanDAO" />
+	</bean>
+	<bean id="bksxTabStagereportManager"
+		class="com.xdsc.service.bksx_system.impl.BksxTabStagereportManagerImpl">
+		<property name="bksxTabStagereportDAO"
+			ref="bksxTabStagereportDAO" />
+	</bean>
+	<bean id="bksxTabWorkdiaryManager"
+		class="com.xdsc.service.bksx_system.impl.BksxTabWorkdiaryManagerImpl">
+		<property name="bksxTabWorkdiaryDAO" ref="bksxTabWorkdiaryDAO" />
+	</bean>
+	<bean id="bksxTabSearchplanManager"
+		class="com.xdsc.service.bksx_system.impl.BksxTabSearchplanManagerImpl">
+		<property name="bksxTabSearchplanDAO"
+			ref="bksxTabSearchplanDAO" />
+	</bean>
+	<bean id="bksxTabWorksummaryManager"
+		class="com.xdsc.service.bksx_system.impl.BksxTabWorksummaryManagerImpl">
+		<property name="bksxTabWorksummaryDAO"
+			ref="bksxTabWorksummaryDAO" />
+	</bean>
+	<bean id="bksxTabAchievementManager"
+		class="com.xdsc.service.bksx_system.impl.BksxTabAchievementManagerImpl">
+		<property name="bksxTabAchievementDAO"
+			ref="bksxTabAchievementDAO" />
+	</bean>
+
+	<!--向Action中注入Manager对象 -->
+
+	<bean id="bksxTabNoticeAction"
+		class="com.xdsc.action.bksx_system.TabNoticeAction">
+		<property name="tabNoticeManager" ref="bksxTabNoticeManager" />
+		<property name="bksxTabSubstuguiManager"
+			ref="bksxTabSubstuguiManager" />
+	</bean>
+	<bean id="bksxLoginAction"
+		class="com.xdsc.action.bksx_system.LoginAction">
+		<property name="loginManager" ref="bksxLoginManager" />
+		<property name="tabStudentsManager"
+			ref="bksxTabStudentsManager" />
+		<property name="tabTeachersManager"
+			ref="bksxTabTeachersManager" />
+		<property name="tabAdministratorManager"
+			ref="bksxTabAdministratorManager" />
+		<property name="bksxTabSubstuguiManager"
+			ref="bksxTabSubstuguiManager" />
+	</bean>
+	<bean id="bksxTabSubstuguiAction"
+		class="com.xdsc.action.bksx_system.BksxTabSubstuguiAction">
+		<property name="bksxTabSubstuguiManager"
+			ref="bksxTabSubstuguiManager" />
+		<property name="tabTeachersManager"
+			ref="bksxTabTeachersManager" />
+		<property name="tabStudentsManager"
+			ref="bksxTabStudentsManager" />
+		<property name="bksxTabSearchplanManager"
+			ref="bksxTabSearchplanManager" />
+		<property name="bksxTabSubjectapplyManager"
+			ref="bksxTabSubjectapplyManager" />
+	</bean>
+	<bean id="exportAsExcelAction"
+		class="com.xdsc.action.bksx_system.ExportAsExcelAction">
+		<property name="bksxTabSubstuguiManager"
+			ref="bksxTabSubstuguiManager" />
+		<property name="bksxTabAchievementManager"
+			ref="bksxTabAchievementManager" />
+	</bean>
+	<bean id="bksxTabProjectAction"
+		class="com.xdsc.action.bksx_system.BksxTabProjectAction">
+		<property name="bksxTabTeamManager" ref="bksxTabTeamManager" />
+		<property name="bksxTabProjectManager"
+			ref="bksxTabProjectManager" />
+		<property name="tabStudentsManager"
+			ref="bksxTabStudentsManager" />
+		<property name="bksxTabSubstuguiManager"
+			ref="bksxTabSubstuguiManager" />
+		<property name="bksxTabMemberManager"
+			ref="bksxTabMemberManager" />
+		<property name="bksxTabTeamapplyManager"
+			ref="bksxTabTeamapplyManager" />
+		<property name="tabTeachersManager"
+			ref="bksxTabTeachersManager" />
+		<property name="bksxTabProjectapplyManager"
+			ref="bksxTabProjectapplyManager" />
+	</bean>
+	<bean id="bksxTabGanttplanAction"
+		class="com.xdsc.action.bksx_system.BksxTabGanttplanAction">
+		<property name="bksxTabGanttplanManager"
+			ref="bksxTabGanttplanManager" />
+		<property name="bksxTabProjectManager"
+			ref="bksxTabProjectManager" />
+		<property name="tabStudentsManager"
+			ref="bksxTabStudentsManager" />
+		<property name="bksxTabSubstuguiManager"
+			ref="bksxTabSubstuguiManager" />
+		<property name="bksxTabMemberManager"
+			ref="bksxTabMemberManager" />
+	</bean>
+	<bean id="bksxTabStagereportAction"
+		class="com.xdsc.action.bksx_system.BksxTabStagereportAction">
+		<property name="bksxTabStagereportManager"
+			ref="bksxTabStagereportManager" />
+		<property name="bksxTabSubstuguiManager"
+			ref="bksxTabSubstuguiManager" />
+		<property name="tabStudentsManager"
+			ref="bksxTabStudentsManager" />
+		<property name="bksxTabProjectManager"
+			ref="bksxTabProjectManager" />
+		<property name="bksxTabMemberManager"
+			ref="bksxTabMemberManager" />
+	</bean>
+	<bean id="bksxTabWorkdiaryAction"
+		class="com.xdsc.action.bksx_system.BksxTabWorkdiaryAction">
+		<property name="bksxTabWorkdiaryManager"
+			ref="bksxTabWorkdiaryManager" />
+		<property name="tabStudentsManager"
+			ref="bksxTabStudentsManager" />
+		<property name="bksxTabSubstuguiManager"
+			ref="bksxTabSubstuguiManager" />
+		<property name="bksxTabAchievementManager"
+			ref="bksxTabAchievementManager" />
+	</bean>
+	<bean id="bksxTabWorksummaryAction"
+		class="com.xdsc.action.bksx_system.BksxTabWorksummaryAction">
+		<property name="bksxTabWorksummaryManager"
+			ref="bksxTabWorksummaryManager" />
+		<property name="bksxTabSubstuguiManager"
+			ref="bksxTabSubstuguiManager" />
+	</bean>
+	<bean id="bksxTabAchievementAction"
+		class="com.xdsc.action.bksx_system.BksxTabAchievementAction">
+		<property name="bksxTabSubstuguiManager"
+			ref="bksxTabSubstuguiManager" />
+		<property name="bksxTabAchievementManager"
+			ref="bksxTabAchievementManager" />
+		<property name="tabStudentsManager"
+			ref="bksxTabStudentsManager" />
+	</bean>
+	<bean id="bksxTabMemberAction"
+		class="com.xdsc.action.bksx_system.BksxTabMemberAction">
+		<property name="bksxTabMemberManager"
+			ref="bksxTabMemberManager" />
+	</bean>
+	<bean id="bksxTabTeamAction"
+		class="com.xdsc.action.bksx_system.BksxTabTeamAction">
+		<property name="bksxTabTeamManager" ref="bksxTabTeamManager" />
+		<property name="bksxTabTeamapplyManager"
+			ref="bksxTabTeamapplyManager" />
+		<property name="tabStudentsManager"
+			ref="bksxTabStudentsManager" />
+		<property name="bksxTabSubstuguiManager"
+			ref="bksxTabSubstuguiManager" />
+		<property name="bksxTabMemberManager"
+			ref="bksxTabMemberManager" />
+	</bean>
+	<bean id="bksxTabSearchplanAction"
+		class="com.xdsc.action.bksx_system.BksxTabSearchplanAction">
+		<property name="bksxTabSearchplanManager"
+			ref="bksxTabSearchplanManager" />
+		<property name="bksxTabSubstuguiManager"
+			ref="bksxTabSubstuguiManager" />
+	</bean>
+	<bean id="getMyFilesAction"
+		class="com.xdsc.action.bksx_system.GetMyFliesAction">
+		<property name="bksxTabSubstuguiManager"
+			ref="bksxTabSubstuguiManager" />
+	</bean>
+	<bean id="bksxExcelInAction"
+		class="com.xdsc.action.bksx_system.ExcelInAction">
+		<property name="bksxTabSubstuguiManager"
+			ref="bksxTabSubstuguiManager" />
+		<property name="tabStudentsManager"
+			ref="bksxTabStudentsManager" />
+	</bean>
+</beans>
+

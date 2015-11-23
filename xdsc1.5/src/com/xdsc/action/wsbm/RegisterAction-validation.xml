@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.3//EN" "http://www.opensymphony.com/xwork/xwork-validator-1.0.3.dtd">
+
+<validators>
+
+	<field name="FAppRegIdCard">
+		<field-validator type="requiredstring" >
+			<param name="trim">true</param>
+			<message>身份证号不能为空!</message>
+		</field-validator>
+		<field-validator type="stringlength" >
+			<param name="trim">true</param>
+			<param name="minLength">15</param>
+			<param name="maxLength">18</param>
+			<message>身份证号长度错误，15或18位</message>
+		</field-validator>
+	</field>
+	
+	<field name="FAppRegName">
+		<field-validator type="requiredstring" >
+			<param name="trim">true</param>
+			<message>姓名不能为空!</message>
+		</field-validator>
+	</field>
+	
+	<field name="FUserPassword">
+		<field-validator type="requiredstring" >
+			<param name="trim">true</param>
+			<message>密码不能为空!</message>
+		</field-validator>
+	</field>
+	
+	<field name="FUserNumber">
+		<field-validator type="requiredstring"  >
+			<param name="trim">true</param>
+			<message>注册账户名不能为空!</message>
+		</field-validator>
+		<field-validator type="stringlength" >
+			<param name="trim">true</param>
+			<param name="minLength">11</param>
+			<param name="maxLength">11</param>
+			<message>手机号码长度错误，11位</message>
+		</field-validator>
+	</field>
+
+</validators>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE struts PUBLIC    
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="htgl" extends="struts-default">
+	
+<!-- role relative action -->
+
+		<action name="RolelistAction" class="HtglRoleAction" method="ShowRoleList">
+		   <result name="success">
+		      /11_BackGroundSystem/ManagerManagement/ManagerConfig.jsp
+		   </result>
+		   <result name="error">../11_BackGroundSystem/welcome_page.jsp</result>
+		</action>
+		<action name="delroleaction" class="HtglRoleAction" method="deleterole">
+		   <result type="redirect">RolelistAction.action</result>
+		</action>
+		<action name="AddRoleaction" class="HtglRoleAction" method="addrole">
+		   <result type="redirect">RolelistAction.action</result>
+		   <result name="input">/11_BackGroundSystem/ManagerManagement/ManagerConfig.jsp</result>
+		</action>
+		<action name="modrole"	class="HtglRoleAction" method="modrole">
+		   <result name="success">/11_BackGroundSystem/ManagerManagement/ModifyRole.jsp</result>
+		</action>
+		<action name="UpdateRole" class="HtglRoleAction" method="updaterole">
+		   <result type="redirect">RolelistAction.action</result>
+		</action>
+		<action name="AddUserRoleAction" class="HtglRoleAction" method="allrolelist">
+		   <result name="allrole">/11_BackGroundSystem/ManagerManagement/UserRoleConfig.jsp</result>
+		</action>
+		<action name="ConfigUserRoleAction" class="HtglRoleAction" method="configshowlist">
+		   <result name="configshowlist">/11_BackGroundSystem/ManagerManagement/UserRoleConfig.jsp</result>
+		</action>
+		<action name="MultipleDeleteRole" class="HtglRoleAction">
+		   <result name="multipledelete" type="redirect">RolelistAction.action</result>
+		</action>
+		<action name="ShowRoleDetailAction" class="HtglRoleAction">
+		   <result name="showroledetail" >/11_BackGroundSystem/ManagerManagement/RoleModuleFunctionConfig.jsp</result>
+		</action>
+		<action name="UpdateRoleDetailAction" class="HtglRoleAction">
+		   <result name="updateroledetail" type="redirect">RolelistAction.action</result>
+		</action>
+<!-- user relative action -->
+        <action name="UserlistAction" class="HtglUserAction" >
+           <result name="showuserlist">/11_BackGroundSystem/ManagerManagement/userlist.jsp</result>
+           <result name="delete" type="redirect">UserlistAction!showuserlist.action</result>
+           <result name="modify">/11_BackGroundSystem/ManagerManagement/ModifyUser.jsp</result>
+           <result name="update" type="redirect">UserlistAction!showuserlist.action</result>
+           <result name="add" type="redirect">UserRoleAction!showroleanduser.action</result>
+           <result name="error">/11_BackGroundSystem/ManagerManagement/AddUser.jsp</result>
+           <result name="input">/11_BackGroundSystem/ManagerManagement/AddUser.jsp</result>
+           <result name="multipledelete" type="redirect">UserlistAction!showuserlist.action</result>
+           <result name="searchuser">/11_BackGroundSystem/ManagerManagement/userlist.jsp</result>
+           <result name="showUserRoleFunction">/11_BackGroundSystem/ManagerManagement/UserRoleFunctionConfig.jsp</result>
+        </action>
+       
+        
+<!-- userrole relative action -->
+        <action name="UserRoleAction" class="HtglUserRoleAction">
+           <result name="success" type="redirect">/login.jsp</result>
+           <result name="roleuserlist">/11_BackGroundSystem/ManagerManagement/UserRoleList.jsp</result>
+           <result name="error" type="redirect">AddUserRoleAction!allrolelist.action</result>
+           <result name="deleteuserrolerelation" type="redirect">UserRoleAction!showlist.action</result>
+           <result name="deleteUserRoleRelation2" type="redirect">UserlistAction!showuserlist.action</result>
+           <result name="updateuserrolerelation" type="redirect">UserRoleAction!showlist.action</result>
+           <result name="modifyuserrolerelation">/11_BackGroundSystem/ManagerManagement/ModifyRoleUserRelation.jsp</result>
+           <result name="multipledelete" type="redirect">UserRoleAction!showlist.action</result>
+           <result name="multipleconfig" type="redirect">
+                  UserlistAction!showUserRoleFunction.action?id=${usernumber }
+           </result>
+           <result name="input">/11_BackGroundSystem/ManagerManagement/UserRoleConfig2.jsp</result>
+           <result name="searchuserrolerelation">/11_BackGroundSystem/ManagerManagement/UserRoleList.jsp</result>
+           <result name="showroleanduser">/11_BackGroundSystem/ManagerManagement/UserRoleConfig.jsp</result>
+           <result name="showroleanduser2">/11_BackGroundSystem/ManagerManagement/UserRoleConfig2.jsp</result>
+           <result name="pStudentRoleConfig" type="redirect">UserlistAction!showuserlist.action</result>
+           <result name="gStudentRoleConfig" type="redirect">UserlistAction!showuserlist.action</result>
+            <result name="saveUserRoleRelation">/login.jsp</result>
+        </action>
+
+<!-- function relative action -->
+        <action name="FunctionAction" class="HtglFunctionAction">
+           <result name="functionlist">/11_BackGroundSystem/ManagerManagement/FunctionList.jsp</result>
+           <result name="input">/11_BackGroundSystem/ManagerManagement/AddFunction.jsp</result>
+           <result name="addfunction" type="redirect">FunctionAction!showfunctionlist.action</result>
+           <result name="updatefunction" type="redirect">FunctionAction!showfunctionlist.action</result>
+           <result name="deletefunction" type="redirect">FunctionAction!showfunctionlist.action</result>
+           <result name="modifyfunction">/11_BackGroundSystem/ManagerManagement/ModifyFunction.jsp</result>
+           <result name="multipledelete" type="redirect">FunctionAction!showfunctionlist.action</result>
+           <result name="insertfunction">/11_BackGroundSystem/ManagerManagement/AddFunction.jsp</result>
+           <result name="configfunctionlist">/11_BackGroundSystem/ManagerManagement/UserFunctionConfig.jsp</result>
+           <result name="rolefunctionconfiglist">/11_BackGroundSystem/ManagerManagement/RoleFunctionConfig.jsp</result>
+        </action>
+        
+<!-- module relative action -->
+        <action name="ModuleAction" class="HtglModuleAction">
+           <result name="input">/11_BackGroundSystem/ManagerManagement/ModuleList.jsp</result>
+           <result name="addmodule" type="redirect">ModuleAction!showpagelist.action</result>
+           <result name="showpagelist">/11_BackGroundSystem/ManagerManagement/ModuleList.jsp</result>
+           <result name="deletemodule" type="redirect">ModuleAction!showpagelist.action</result>
+           <result name="modify">/11_BackGroundSystem/ManagerManagement/ModifyModule.jsp</result>
+           <result name="updatemodule" type="redirect">ModuleAction!showpagelist.action</result>    
+           <result name="modulelist" >/11_BackGroundSystem/ManagerManagement/ModuleUserConfig.jsp</result>   
+           <result name="multipledelete" type="redirect">ModuleAction!showpagelist.action</result>     
+           <result name="configmodulelist">/11_BackGroundSystem/ManagerManagement/ModuleUserConfig.jsp</result>   
+           <result name="configrolemodulelist">/11_BackGroundSystem/ManagerManagement/RoleModuleConfig.jsp</result>
+        </action>
+<!-- module user relative action -->       
+        <action name="ModuleUserAction" class="HtglModuleUserAction">
+           <result name="error" type="redirect">ModuleUserAction!showpagelist.action</result>
+           <result name="success" type="redirect">ModuleUserAction!showpagelist.action</result>
+           <result name="moduleuserlist">/11_BackGroundSystem/ManagerManagement/ModuleUserList.jsp</result> 
+           <result name="modifyModuleUserRelation">/11_BackGroundSystem/ManagerManagement/ModifyModuleUserRelation.jsp</result>
+           <result name="deleteModuleUserRelation" type="redirect">ModuleUserAction!showpagelist.action</result>     
+           <result name="updateModuleUserRelation" type="redirect">ModuleUserAction!showpagelist.action</result>    
+           <result name="multipledelete" type="redirect">ModuleUserAction!showpagelist.action</result>
+           <result name="multipleconfig" type="redirect">ModuleUserAction!showpagelist.action</result>
+           <result name="searchModuleUserRelation">/11_BackGroundSystem/ManagerManagement/ModuleUserList.jsp</result>
+        </action>
+<!-- role function relative action -->
+        <action name="RoleFunctionAction" class="HtglRoleFunctionAction">
+           <result name="getrolelist">/11_BackGroundSystem/ManagerManagement/RoleFunctionConfig.jsp</result>
+           <result name="showpagelist">/11_BackGroundSystem/ManagerManagement/RoleFunctionList.jsp</result>
+           <result name="addrolefunction" type="redirect">RoleFunctionAction!showpagelist.action</result>
+           <result name="deleteRoleFunction" type="redirect">RoleFunctionAction!showpagelist.action</result> 
+           <result name="modifyRoleFunctionRelation">/11_BackGroundSystem/ManagerManagement/ModifyRoleFunctionRelation.jsp</result>  
+           <result name="updateUserRoleRelation" type="redirect">RoleFunctionAction!showpagelist.action</result>
+           <result name="multipledelete" type="redirect">RoleFunctionAction!showpagelist.action</result>
+           <result name="multipleconfig" type="redirect">RoleFunctionAction!getrolelist.action</result>
+           <result name="getrolelistbysearch">/11_BackGroundSystem/ManagerManagement/RoleFunctionList.jsp</result>
+        </action> 
+        
+<!-- role module relative action -->
+        <action name="RoleModuleAction" class="HtglRoleModuleAction">
+           <result name="showlist">/11_BackGroundSystem/ManagerManagement/RoleModuleList.jsp</result>
+           <result name="deleteRoleModuleRelation" type="redirect">RoleModuleAction!showlist.action</result>
+           <result name="multipledelete" type="redirect">RoleModuleAction!showlist.action</result>
+           <result name="updateRoleModuleRelation" type="redirect">RoleModuleAction!showlist.action</result>
+           <result name="saveRoleModuleRelation" type="redirect">RoleModuleAction!RoleModuleConfig.action</result>
+           <result name="RoleModuleConfig">/11_BackGroundSystem/ManagerManagement/RoleModuleConfig.jsp</result>
+           <result name="getrolemodulebysearch">/11_BackGroundSystem/ManagerManagement/RoleModuleList.jsp</result>
+        </action>
+<!-- user function relative action -->
+        <action name="UserFunctionAction" class="HtglUserFunctionAction">
+           <result name="showlist">/11_BackGroundSystem/ManagerManagement/UserFunctionList.jsp</result>     
+           <result name="deleteUserFunctionRelation" type="redirect">UserFunctionAction!showlist.action</result>
+           <result name="multipledelete" type="redirect">UserFunctionAction!showlist.action</result>
+           <result name="saveUserFunctionRelation" type="redirect">UserFunctionAction!showlist.action</result>
+           <result name="UserFunctionConfig">/11_BackGroundSystem/ManagerManagement/UserFunctionConfig.jsp</result>
+           <result name="UserFunctionConfig2" type="redirect">UserlistAction!showuserlist.action</result>           
+           <result name="searchUserFunctionRelation">/11_BackGroundSystem/ManagerManagement/UserFunctionList.jsp</result>
+        </action>
+        
+<!-- login relative action -->
+        <action name="CheckLoginAction" class="HtglCheckLoginAction">
+           <result name="checkactionlogin" type="redirect">${url}</result>
+           <result>${url}</result>
+           <result name="error">/login.jsp</result>
+           <result name="relogin">/PersonalIndex.jsp</result>
+           <result name="showfunctionlist">/Personportal/FunctionList.jsp</result>
+           <result name="showmodulefunction">/Personportal/FunctionList.jsp</result>
+        </action>
+        
+        
+<!-- excel relative action -->
+        <action name="excelInpgs" class="com.xdsc.action.htgl_system.ExcelInAction">
+			<param name="path">
+			/WEB-INF/classes/com/xdsc/service/htgl_system/impl/upfile
+			</param>
+		<param name="tableName">mhqx_tab_user</param>
+		<param name="tableValue">
+			f_UserNumber,f_UserPassword
+			</param>
+			<result name="success" type="redirect">UserRoleAction!pStudentRoleConfig.action</result>
+			<result name="fail">/registerFail.jsp</result>
+			<result name="input">/AddUser.jsp</result>
+		</action>
+		
+		<action name="excelIngs" class="com.xdsc.action.htgl_system.ExcelInAction">
+			<param name="path">
+			/WEB-INF/classes/com/xdsc/service/htgl_system/impl/upfile
+			</param>
+		<param name="tableName">mhqx_tab_user</param>
+		<param name="tableValue">
+			f_UserNumber,f_UserPassword
+		</param>
+		<result name="success" type="redirect">UserRoleAction!gStudentRoleConfig.action</result>
+		<result name="fail">/registerFail.jsp</result>
+		</action>
+		
+		<action name="functionexcelIn" class="com.xdsc.action.htgl_system.ExcelInAction">
+			<param name="path">
+			/WEB-INF/classes/com/xdsc/service/htgl_system/impl/upfile
+			</param>
+		    <param name="tableName">mhqx_tab_function</param>
+		    <param name="tableValue">
+			      f_FunctionId,f_FunctionName,F_SuperFunctionId,f_ModuleId,f_FunctionMark,f_FilePath,f_Priority,f_IsLeaf
+			</param>
+			<result name="success" type="redirect">FunctionAction!showfunctionlist</result>
+			<result name="fail">/registerFail.jsp</result>
+		</action>
+		
+		<action name="NewNotice" class="NewNoticeAction">
+     		<result name="getUserNewNotice">/SelfMainPage.jsp</result>
+     		<result name="deleteNotice" type="redirect">NewNotice!getUserNewNotice.action</result>
+ 		 </action>
+	</package>
+</struts>
+

@@ -1,0 +1,883 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="notice" extends="struts-default">
+		<action name="newChecklistNotic" class="bksxTabNoticeAction"
+			method="newChecklistNotic">
+			<!-- 限制上传文件类型 -->
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">
+					application/vnd.ms-excel,image/x-png,image/bmp,image/gif,image/jpg,application/vnd.ms-powerpoint,text/plain,application/msword
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="defaultStack" />
+			<result type="chain">showChecklistNotice</result>
+			<result name="input">
+				/bksx/bishe/admin/ChecklistNoticeNew.jsp
+			</result>
+			<param name="uploadDir">
+				files/6bksx_system/uploadFiles
+			</param>
+		</action>
+		<action name="checklistNoticeNew" class="bksxTabNoticeAction"
+			method="checklistNoticeNew">
+			<result>/bksx/bishe/admin/ChecklistNoticeNew.jsp</result>
+		</action>
+		<action name="deleteChecklistNotice" class="bksxTabNoticeAction"
+			method="deleteChecklistNotice">
+			<result type="chain">showChecklistNotice</result>
+		</action>
+		<action name="showChecklistNotice" class="bksxTabNoticeAction"
+			method="showChecklistNotice">
+			<result>/bksx/bishe/admin/ChecklistNotice.jsp</result>
+		</action>
+		<action name="noticeDetail" class="bksxTabNoticeAction"
+			method="noticeDetail">
+			<result>/bksx/bishe/admin/ChecklistNoticeDetail.jsp</result>
+		</action>
+	</package>
+	<package name="login" extends="struts-default">
+		<action name="userLogin" class="bksxLoginAction"
+			method="userLogin">
+			<result name="studentLogin">
+				/bksx/bishe/student/welcome.jsp
+			</result>
+			<result name="teacherLogin">
+				/bksx/bishe/teacher/welcome.jsp
+			</result>
+			<result name="managerLogin">
+				/bksx/bishe/admin/welcome.jsp
+			</result>
+			<result name="error">/bksx/bishe/loginError.jsp</result>
+		</action>
+	</package>
+
+	<package name="achievement" extends="struts-default">
+		<action name="showAllAchieve" class="bksxTabAchievementAction"
+			method="getAchievementList">
+			<result>/bksx/bishe/admin/ResultManagement.jsp</result>
+		</action>
+		<action name="addSingleScore" class="bksxTabAchievementAction"
+			method="addSingleScore">
+			<result type="chain">getMyStudentAchievement</result>
+		</action>
+		<action name="addAchieve" class="bksxTabAchievementAction"
+			method="addAchieve">
+			<result type="chain">showAllAchieve</result>
+			<result name="input">
+				/bksx/bishe/admin/ResultImport.jsp
+			</result>
+		</action>
+		<action name="deleteAchieve" class="bksxTabAchievementAction"
+			method="deleteAchieve">
+			<result type="chain">showAllAchieve</result>
+		</action>
+		<action name="preUpdateAchieve" class="bksxTabAchievementAction"
+			method="preUpdateAchieve">
+			<result>/bksx/bishe/admin/ResultEdit.jsp</result>
+		</action>
+		<action name="updateAchieve" class="bksxTabAchievementAction"
+			method="updateAchieve">
+			<result type="chain">showAllAchieve</result>
+		</action>
+		<action name="getAchieveByStuNum"
+			class="bksxTabAchievementAction" method="getAchieveByStuNum">
+			<result>/bksx/bishe/admin/ResultManagement.jsp</result>
+		</action>
+		<action name="getAchieveByGrade"
+			class="bksxTabAchievementAction" method="getAchieveByGrade">
+			<result>/bksx/bishe/admin/ResultManagement.jsp</result>
+		</action>
+		<action name="getMyAchievement" class="bksxTabAchievementAction"
+			method="getMyAchievement">
+			<result>/bksx/bishe/student/ResultView.jsp</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="getMyStudentAchievement"
+			class="bksxTabAchievementAction" method="getMyStudentAchievement">
+			<result>/bksx/bishe/teacher/ResultInfo.jsp</result>
+			<result name="input">
+				/bksx/bishe/teacher/systemError.jsp
+			</result>
+		</action>
+		<action name="preUpdateStudentAchieve"
+			class="bksxTabAchievementAction" method="preUpdateStudentAchieve">
+			<result>/bksx/bishe/teacher/ResultEdit.jsp</result>
+		</action>
+		<action name="updateStudentAchieve"
+			class="bksxTabAchievementAction" method="updateStudentAchieve">
+			<result type="chain">getMyStudentAchievement</result>
+		</action>
+		<action name="toResultImport" class="bksxTabAchievementAction"
+			method="toResultImport">
+			<result>/bksx/bishe/admin/ResultImport.jsp</result>
+		</action>
+	</package>
+
+	<package name="ganttplan" extends="struts-default">
+		<action name="showGanttplan" class="bksxTabGanttplanAction"
+			method="getGanttplanList">
+			<result>/bksx/bishe/student/ProjectPlanView.jsp</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="toProjectPlan" class="bksxTabGanttplanAction"
+			method="toProjectPlan">
+			<result>bksx/bishe/student/ProjectProgress.jsp</result>
+		</action>
+		<action name="preAddTask" class="bksxTabGanttplanAction"
+			method="preAddTask">
+			<result>/bksx/bishe/student/ProjectPlanNew.jsp</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="addGanttplan" class="bksxTabGanttplanAction"
+			method="addGanttplanTask">
+			<result type="chain">showGanttplan</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="deleteGanttplan" class="bksxTabGanttplanAction"
+			method="deleteGanttplanTask">
+			<result type="chain">showGanttplan</result>
+		</action>
+		<action name="preUpdateGanttplan" class="bksxTabGanttplanAction"
+			method="preUpdateGanttplan">
+			<result>/bksx/bishe/student/ProjectPlanUpdate.jsp</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="updateGanttplan" class="bksxTabGanttplanAction"
+			method="updateGanttplanTask">
+			<result type="chain">showGanttplan</result>
+		</action>
+	</package>
+
+	<package name="substugui" extends="struts-default">
+		<action name="preProjectImport" class="bksxTabSubstuguiAction"
+			method="preProjectImport">
+			<result>/bksx/bishe/admin/ProjectImport.jsp</result>
+		</action>
+		<action name="showSubstugui" class="bksxTabSubstuguiAction"
+			method="getSubstuguiList">
+			<result>/bksx/bishe/admin/ProjectManagement.jsp</result>
+		</action>
+		<action name="showSomeSubstuguiByCategory"
+			class="bksxTabSubstuguiAction"
+			method="getSomeSubstuguiListByCategory">
+			<result>/bksx/bishe/admin/ProjectManagement.jsp</result>
+		</action>
+		<action name="showSomeSubstuguiByAttribute"
+			class="bksxTabSubstuguiAction"
+			method="getSomeSubstuguiListByAttribute">
+			<result>/bksx/bishe/admin/ProjectManagement.jsp</result>
+		</action>
+		<action name="addSubstugui" class="bksxTabSubstuguiAction"
+			method="addSubstugui">
+			<result type="chain">showSubstugui</result>
+			<result name="input">/bksx/bishe/admin/ProjectImport.jsp</result>
+		</action>
+		<action name="deleteSubstugui" class="bksxTabSubstuguiAction"
+			method="deleteSubstugui">
+			<result type="chain">showSubstugui</result>
+		</action>
+		<action name="preUpdateSubstugui" class="bksxTabSubstuguiAction"
+			method="preUpdateSubstugui">
+			<result>/bksx/bishe/admin/ProjectEdit.jsp</result>
+		</action>
+		<action name="updateSubstugui" class="bksxTabSubstuguiAction"
+			method="updateSubstugui">
+			<result type="chain">showSubstugui</result>
+			<result name="input">/bksx/bishe/admin/ProjectEdit.jsp</result>
+		</action>
+		<action name="getSubjectByStuNum" class="bksxTabSubstuguiAction"
+			method="getSubstuguiByStuNum">
+			<result>/bksx/bishe/student/SubjectInfo.jsp</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="getTeacherByStuNum" class="bksxTabSubstuguiAction"
+			method="getSubstuguiByStuNum">
+			<result>/bksx/bishe/student/TeacherInfo.jsp</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="getResearchSubject" class="bksxTabSubstuguiAction"
+			method="getResearchSubject">
+			<result>
+				/bksx/bishe/admin/Research-basedManagement.jsp
+			</result>
+		</action>
+		<action name="researchView" class="bksxTabSubstuguiAction"
+			method="showResearchView">
+			<result>/bksx/bishe/admin/ResearchView.jsp</result>
+			<result name="input">
+				/bksx/bishe/teacher/ResearchView.jsp
+			</result>
+		</action>
+		<action name="getResearchByAttribute"
+			class="bksxTabSubstuguiAction" method="getResearchByAttribute">
+			<result>
+				/bksx/bishe/admin/Research-basedManagement.jsp
+			</result>
+		</action>
+		<action name="getResearchByGrade" class="bksxTabSubstuguiAction"
+			method="getResearchByGrade">
+			<result>
+				/bksx/bishe/admin/Research-basedManagement.jsp
+			</result>
+		</action>
+		<action name="getSubstuguiByCategory"
+			class="bksxTabSubstuguiAction" method="getSubstuguiByCategory">
+			<result>/bksx/bishe/admin/StudentManagment.jsp</result>
+		</action>
+		<action name="getMySubjects" class="bksxTabSubstuguiAction"
+			method="getMySubjects">
+			<result>/bksx/bishe/teacher/SubjectManagement.jsp</result>
+			<result name="input">
+				/bksx/bishe/teacher/systemError.jsp
+			</result>
+		</action>
+		<action name="showSubjectDetail" class="bksxTabSubstuguiAction"
+			method="showSubjectDetail">
+			<result>/bksx/bishe/teacher/SubjectDetail.jsp</result>
+		</action>
+		<action name="getMyStudents" class="bksxTabSubstuguiAction"
+			method="getMyStudents">
+			<result>/bksx/bishe/teacher/StudentManagement.jsp</result>
+			<result name="input">
+				/bksx/bishe/teacher/systemError.jsp
+			</result>
+		</action>
+		<action name="getMyProjectList" class="bksxTabSubstuguiAction"
+			method="getMyProjectList">
+			<result>/bksx/bishe/teacher/ProjectManagement.jsp</result>
+			<result name="input">
+				/bksx/bishe/teacher/systemError.jsp
+			</result>
+		</action>
+		<action name="getMyResearchList" class="bksxTabSubstuguiAction"
+			method="getMyResearchList">
+			<result>/bksx/bishe/teacher/ResearchManagement.jsp</result>
+			<result name="input">
+				/bksx/bishe/teacher/systemError.jsp
+			</result>
+		</action>
+		<action name="getMyNewSubjects" class="bksxTabSubstuguiAction"
+			method="getMyNewSubjects">
+			<result>/bksx/bishe/teacher/MyNewSubject.jsp</result>
+			<result name="input">
+				/bksx/bishe/teacher/systemError.jsp
+			</result>
+		</action>
+		<action name="newMySubject" class="bksxTabSubstuguiAction"
+			method="newMySubject">
+			<result type="chain">getMyNewSubjects</result>
+			<result name="input">
+				/bksx/bishe/teacher/systemError.jsp
+			</result>
+		</action>
+		<action name="getNewApplySubject" class="bksxTabSubstuguiAction"
+			method="getNewApplySubject">
+			<result>/bksx/bishe/admin/ApplyingSubject.jsp</result>
+		</action>
+		<action name="applyingSubjectDetail"
+			class="bksxTabSubstuguiAction" method="applyingSubjectDetail">
+			<result>/bksx/bishe/admin/ApplyingDetail.jsp</result>
+		</action>
+		<action name="dealApplySubject" class="bksxTabSubstuguiAction"
+			method="dealApplySubject">
+			<result type="chain">getNewApplySubject</result>
+		</action>
+		<action name="deleteRefuseInfo" class="bksxTabSubstuguiAction"
+			method="deleteRefuseInfo">
+			<result type="chain">getMyNewSubjects</result>
+		</action>
+		<action name="getAvilableSubject" class="bksxTabSubstuguiAction"
+			method="getAvilableSubject">
+			<result>/bksx/bishe/student/AvilableSubject.jsp</result>
+		</action>
+		<action name="chooseSubject" class="bksxTabSubstuguiAction"
+			method="chooseSubject">
+			<result type="chain">getAvilableSubject</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="getMyApplySubjects" class="bksxTabSubstuguiAction"
+			method="getMyApplySubjects">
+			<result>/bksx/bishe/teacher/MySubjectApply.jsp</result>
+			<result name="input">
+				/bksx/bishe/teacher/systemError.jsp
+			</result>
+		</action>
+		<action name="agreeSubjectApply" class="bksxTabSubstuguiAction"
+			method="agreeSubjectApply">
+			<result type="chain">getMyApplySubjects</result>
+		</action>
+		<action name="refuseSubjectApply" class="bksxTabSubstuguiAction"
+			method="refuseSubjectApply">
+			<result type="chain">getMyApplySubjects</result>
+		</action>
+		<action name="showAvalibleSubjectByAttribute"
+			class="bksxTabSubstuguiAction"
+			method="showAvalibleSubjectByAttribute">
+			<result>/bksx/bishe/student/AvilableSubject.jsp</result>
+		</action>
+		<action name="showAvalibleSubjectByCategory"
+			class="bksxTabSubstuguiAction"
+			method="showAvalibleSubjectByCategory">
+			<result>/bksx/bishe/student/AvilableSubject.jsp</result>
+		</action>
+	</package>
+
+	<package name="project" extends="struts-default">
+		<action name="createProjectApply" class="bksxTabProjectAction"
+			method="createProjectApply">
+			<result>/bksx/bishe/student/MyProjectApply.jsp</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="getTeamInfo" class="bksxTabProjectAction"
+			method="getProjectByStuNum">
+			<result>/bksx/bishe/student/MyTeam.jsp</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="showAllProject" class="bksxTabProjectAction"
+			method="getProjectList">
+			<result>/bksx/bishe/admin/ProjectizedManagement.jsp</result>
+		</action>
+		<action name="showProjectDetail" class="bksxTabProjectAction"
+			method="showProjectDetail">
+			<result>/bksx/bishe/admin/ProjectView.jsp</result>
+			<result name="input">
+				/bksx/bishe/teacher/ProjectView.jsp
+			</result>
+		</action>
+		<action name="getProjectByAttribute"
+			class="bksxTabProjectAction" method="getProjectByAttribute">
+			<result>/bksx/bishe/admin/ProjectizedManagement.jsp</result>
+		</action>
+		<action name="preCreateProject" class="bksxTabProjectAction"
+			method="preCreateProject">
+			<result>/bksx/bishe/student/ProjectCreate.jsp</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="getMyProjectApplyList"
+			class="bksxTabProjectAction" method="getMyProjectApplyList">
+			<result>/bksx/bishe/teacher/ProjectApplyList.jsp</result>
+			<result name="input">
+				/bksx/bishe/teacher/systemError.jsp
+			</result>
+		</action>
+		<action name="agreeProjectApply" class="bksxTabProjectAction"
+			method="agreeProjectApply">
+			<result type="chain">getMyProjectApplyList</result>
+		</action>
+		<action name="refuseProjectApply" class="bksxTabProjectAction"
+			method="refuseProjectApply">
+			<result type="chain">getMyProjectApplyList</result>
+		</action>
+	</package>
+
+	<package name="member" extends="struts-default">
+		<action name="preUpdateMember" class="bksxTabMemberAction"
+			method="preUpdateMember">
+			<result>/bksx/bishe/student/MemberUpdate.jsp</result>
+		</action>
+		<action name="updateMember" class="bksxTabMemberAction"
+			method="updateMember">
+			<result type="chain">getTeamInfo</result>
+		</action>
+		<action name="deleteMember" class="bksxTabMemberAction"
+			method="deleteMember">
+			<result type="chain">getTeamInfo</result>
+		</action>
+	</package>
+
+	<package name="team" extends="struts-default">
+		<action name="showAllTeam" class="bksxTabTeamAction"
+			method="getTeamList">
+			<result>/bksx/bishe/student/MyTeamIn.jsp</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="showTeamByName" class="bksxTabTeamAction"
+			method="getTeamListByName">
+			<result>/bksx/bishe/student/MyTeamIn.jsp</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="showTeamByDate" class="bksxTabTeamAction"
+			method="getTeamListByDate">
+			<result>/bksx/bishe/student/MyTeamIn.jsp</result>
+			<result name="error">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+			<result name="input" type="chain">showAllTeam</result>
+		</action>
+		<action name="outOfTeam" class="bksxTabTeamAction"
+			method="quitFromTeam">
+			<result type="chain">getTeamInfo</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="applyTeam" class="bksxTabTeamAction"
+			method="applyTeam">
+			<result type="chain">showAllTeam</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="deleteApply" class="bksxTabTeamAction"
+			method="deleteApplyInfo">
+			<result type="chain">showAllTeam</result>
+		</action>
+		<action name="agreeApply" class="bksxTabTeamAction"
+			method="agreeApply">
+			<result type="chain">getTeamInfo</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="refuseApply" class="bksxTabTeamAction"
+			method="refuseApply">
+			<result type="chain">getTeamInfo</result>
+		</action>
+	</package>
+
+	<package name="stagereport" extends="struts-default">
+		<action name="showReportList" class="bksxTabStagereportAction"
+			method="getReportListByProject">
+			<result>/bksx/bishe/student/ProjectReportList.jsp</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="preAddReport" class="bksxTabStagereportAction"
+			method="preAddReport">
+			<result>/bksx/bishe/student/ProjectReportEdit.jsp</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="addReport" class="bksxTabStagereportAction"
+			method="addStageReport">
+			<result type="chain">showReportList</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="showDetail" class="bksxTabStagereportAction"
+			method="getReportById">
+			<result>/bksx/bishe/student/ProjectReport.jsp</result>
+			<result name="teacher">
+				/bksx/bishe/teacher/ProjectStatusReprot.jsp
+			</result>
+			<result name="admin">
+				/bksx/bishe/admin/ProjectStatusReprot.jsp
+			</result>
+		</action>
+		<action name="showReportByStage"
+			class="bksxTabStagereportAction" method="getReportByStage">
+			<result>/bksx/bishe/student/ProjectReportList.jsp</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="getStudentReportByStage"
+			class="bksxTabStagereportAction" method="getStudentReportByStage">
+			<result>
+				/bksx/bishe/admin/ProjectStatusReprotList.jsp
+			</result>
+			<result name="teacher">
+				/bksx/bishe/teacher/ProjectStatusReprotList.jsp
+			</result>
+		</action>
+		<action name="addManagerAdvice" class="bksxTabStagereportAction"
+			method="addManagerAdvice">
+			<result>/bksx/bishe/admin/ProjectStatusReprot.jsp</result>
+		</action>
+		<action name="addTeacherAdvice" class="bksxTabStagereportAction"
+			method="addTeacherAdvice">
+			<result>/bksx/bishe/teacher/ProjectStatusReprot.jsp</result>
+		</action>
+	</package>
+
+	<package name="workdiary" extends="struts-default">
+		<action name="addDiary" class="bksxTabWorkdiaryAction"
+			method="addWorkDiary">
+			<result type="chain">showDiary</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+			<result name="error">
+				/bksx/bishe/student/Homepage.jsp
+			</result>
+		</action>
+		<action name="deleteDiary" class="bksxTabWorkdiaryAction"
+			method="deleteDiary">
+			<result type="chain">showDiary</result>
+		</action>
+		<action name="showDiary" class="bksxTabWorkdiaryAction"
+			method="getDiaryListByStuNum">
+			<result>/bksx/bishe/student/ProjectDiary.jsp</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="getDiaryByDate" class="bksxTabWorkdiaryAction"
+			method="getDiaryListByDate">
+			<result>/bksx/bishe/student/ProjectDiary.jsp</result>
+			<result name="input" type="chain">showDiary</result>
+			<result name="error">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="showStudentDiary" class="bksxTabWorkdiaryAction"
+			method="getStudentDiaryByStuNum">
+			<result>/bksx/bishe/admin/ProjectWorkDiary.jsp</result>
+		</action>
+		<action name="showStudentDiaryByDate"
+			class="bksxTabWorkdiaryAction" method="getStudentDiaryByDate">
+			<result>/bksx/bishe/admin/ProjectWorkDiary.jsp</result>
+		</action>
+	</package>
+
+	<package name="researchPlan" extends="struts-default">
+		<action name="getPlanByStu" class="bksxTabSearchplanAction"
+			method="getSearchPlanByStuNum">
+			<result>/bksx/bishe/student/ResearchPlan.jsp</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="addResearchPlan" class="bksxTabSearchplanAction"
+			method="savePlan">
+			<result type="chain">getPlanByStu</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="preUpdateResearchPlan"
+			class="bksxTabSearchplanAction" method="preUpdatePlan">
+			<result>/bksx/bishe/student/ResearchPlanEdit.jsp</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="updateResearchPlan"
+			class="bksxTabSearchplanAction" method="updatePlan">
+			<result type="chain">getPlanByStu</result>
+		</action>
+	</package>
+
+	<package name="worksummary" extends="struts-default">
+		<action name="getSummaryByStuNum"
+			class="bksxTabWorksummaryAction" method="getSummaryByStuNum">
+			<result>/bksx/bishe/student/ResearchReportList.jsp</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="addWorkSummary" class="bksxTabWorksummaryAction"
+			method="addWorkSummary">
+			<result type="chain">getSummaryByStuNum</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="showSummaryDetail"
+			class="bksxTabWorksummaryAction" method="getSummaryByID">
+			<result>/bksx/bishe/student/ResearchReport.jsp</result>
+		</action>
+		<action name="getSummaryByStage"
+			class="bksxTabWorksummaryAction" method="getSummaryByStage">
+			<result>/bksx/bishe/student/ResearchReportList.jsp</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="showSummaryByStage"
+			class="bksxTabWorksummaryAction" method="showSummaryByStage">
+			<result>/bksx/bishe/admin/ResearchStatusReport.jsp</result>
+			<result name="input">
+				/bksx/bishe/teacher/ResearchStatusReport.jsp
+			</result>
+		</action>
+		<action name="addManagerAdvice2Summary"
+			class="bksxTabWorksummaryAction" method="addManagerAdvice">
+			<result>/bksx/bishe/admin/ResearchStatusReport.jsp</result>
+		</action>
+		<action name="addTeacherAdvice2Summary"
+			class="bksxTabWorksummaryAction" method="addTeacherAdvice">
+			<result>
+				/bksx/bishe/teacher/ResearchStatusReport.jsp
+			</result>
+		</action>
+	</package>
+
+	<!-- JFreeChart -->
+	<package name="jfreechart" extends="struts-default">
+		<result-types>
+			<result-type name="chart"
+				class="org.apache.struts2.dispatcher.ChartResult">
+			</result-type>
+		</result-types>
+		<action name="drawGanttChart"
+			class="com.xdsc.action.bksx_system.BksxTabGanttplanAction"
+			method="darwGanttChart">
+			<result type="chart">
+				<param name="width">700</param>
+				<param name="height">400</param>
+			</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+		</action>
+		<action name="drawThisGanttChart"
+			class="com.xdsc.action.bksx_system.BksxTabGanttplanAction"
+			method="darwThisGanttChart">
+			<result type="chart">
+				<param name="width">700</param>
+				<param name="height">400</param>
+			</result>
+		</action>
+	</package>
+	<!-- JFreeChart -->
+
+	<!-- File upload/download -->
+	<!-- 设置上传文件大小 ,最大为20M-->
+	<constant name="struts.multipart.maxSize" value="20000000" />
+	<package name="fileUpDown" extends="struts-default">
+		<action name="bksxUpload"
+			class="com.xdsc.action.bksx_system.FileUploadAction">
+			<!-- 限制上传文件类型 -->
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">
+					application/vnd.ms-excel,image/x-png,image/bmp,image/gif,image/jpg,application/vnd.ms-powerpoint,text/plain,application/msword,application/zip
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="defaultStack" />
+			<result name="error">/bksx/bishe/student/error.jsp</result>
+			<result>/bksx/bishe/student/fileUploadSuccess.jsp</result>
+			<result name="input">
+				/bksx/bishe/student/systemError.jsp
+			</result>
+			<param name="uploadDir">
+				files/6bksx_system/uploadFiles
+			</param>
+		</action>
+		<action name="toFileUpload"
+			class="com.xdsc.action.bksx_system.FileUploadAction"
+			method="toFileUpload">
+			<result>/bksx/bishe/student/fileUpload.jsp</result>
+		</action>
+		<action name="bksxDownload"
+			class="com.xdsc.action.bksx_system.FileDownloadAction">
+
+			<!-- 使用StreamResult结果类型 -->
+			<result name="success" type="stream">
+
+				<param name="contentDisposition">
+					attachment;filename="${fileName}"
+				</param>
+				<!-- inputName默认值是inputStream，如果action中用于读取下载文件内容的属性名
+					是inputStream，那么可以省略这个参数-->
+				<param name="inputName">downloadFile</param>
+				<param name="bufferSize">2048</param>
+			</result>
+		</action>
+		<action name="downloadChecklist"
+			class="com.xdsc.action.bksx_system.FileDownloadAction"
+			method="downloadChecklist">
+			<!-- 使用StreamResult结果类型 -->
+			<result name="success" type="stream">
+				<param name="contentDisposition">
+					attachment;filename="${fileName}"
+				</param>
+				<!-- inputName默认值是inputStream，如果action中用于读取下载文件内容的属性名
+					是inputStream，那么可以省略这个参数-->
+				<param name="inputName">checklistDownloadFile</param>
+				<param name="bufferSize">2048</param>
+			</result>
+		</action>
+		<action name="preDownload"
+			class="com.xdsc.action.bksx_system.FileDownloadAction"
+			method="preDownload">
+			<result>/bksx/bishe/admin/fileDownload.jsp</result>
+			<result name="teacher" type="chain">getFiles</result>
+		</action>
+		<action name="clearChecklist"
+			class="com.xdsc.action.bksx_system.FileDownloadAction"
+			method="clearChecklist">
+			<result type="chain">showChecklistNotice</result>
+		</action>
+		<action name="clearFoder"
+			class="com.xdsc.action.bksx_system.FileDownloadAction"
+			method="clearFoder">
+			<result>/bksx/bishe/admin/fileDownload.jsp</result>
+		</action>
+		<!-- 单纯跳转功能，为配合项目整合之需 -->
+		<action name="filePreDownload"
+			class="com.xdsc.action.bksx_system.FileDownloadAction"
+			method="filePreDownload">
+			<result>/bksx/bishe/admin/filePreDownload.jsp</result>
+		</action>
+
+		<!-- 全部下载 -->
+		<action name="downloadAllFiles"
+			class="com.xdsc.action.bksx_system.FileDownloadAction"
+			method="downloadAllFiles">
+			<result>/bksx/bishe/admin/fileAllDownSuccess.jsp</result>
+		</action>
+		<!-- 打包下载 -->
+		<action name="downloadAsZip"
+			class="com.xdsc.action.bksx_system.FileDownloadAction"
+			method="downloadAsZip">
+			<!-- 使用StreamResult结果类型 -->
+			<result type="stream">
+				<param name="contentType">application/zip</param>
+				<param name="contentDisposition">
+					attachment;filename="allFiles.zip"
+				</param>
+				<param name="inputName">downloadAsZipFile</param>
+			</result>
+		</action>
+
+		<!-- 获取某个导师的学生上传的文件 -->
+		<action name="getFiles" class="getMyFilesAction"
+			method="getFiles">
+			<result>/bksx/bishe/teacher/fileDownload.jsp</result>
+			<result name="input">
+				/bksx/bishe/teacher/systemError.jsp
+			</result>
+		</action>
+
+
+	</package>
+	<!-- File upload/download -->
+	<package name="excelImport" extends="struts-default">
+		<action name="uploadExcel"
+			class="com.xdsc.action.bksx_system.UploadAction">
+			<!--path变量指定上传文件保存的位置，统一要求保存在ServiceImpl层对应的各子系统文件夹下面，存放文件的文件夹可任意命名。此处以学生管理系统为例，所建文件夹为upfile-->
+			<param name="path">
+				files/6bksx_system/uploadFiles/tempDir
+			</param>
+			<!-- 限制上传文件类型仅为Excel -->
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">
+					application/vnd.ms-excel
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="defaultStack" />
+		</action>
+
+		<action name="substuguiImport" class="bksxExcelInAction"
+			method="substuguiImport">
+			<!--  path指定的是上传文件的地址 -->
+
+			<param name="path">
+				files/6bksx_system/uploadFiles/tempDir
+			</param>
+			<param name="tableName">bksx_tab_substugui</param>
+			<param name="tableValue">
+				f_NO,f_SubjectName,f_IsSoftware,f_IsHardware,f_IsSoftHard,f_IsDocument,f_IsResearch,f_IsSimulation,f_IsLab,f_IsOthers,f_Level,f_TeacherName,f_TeacherDegreen,f_WorkPlace,f_StudentName,f_StudentNumber
+			</param>
+			<result>/bksx/bishe/admin/ProjectInSuccess.jsp</result>
+			<result name="error">
+				/bksx/bishe/admin/ProjectInError.jsp
+			</result>
+		</action>
+
+		<action name="resultImport" class="bksxExcelInAction"
+			method="resultIn">
+			<!--  path指定的是上传文件的地址 -->
+			<param name="path">
+				files/6bksx_system/uploadFiles/tempDir
+			</param>
+			<param name="tableName">bksx_tab_achievement</param>
+			<param name="tableValue">
+				f_SubStuGuiId,f_FirstScore,f_SecondScore,f_ThirdScore,f_FinalScore
+			</param>
+			<result>/bksx/bishe/admin/ResultInSuccess.jsp</result>
+			<result name="error">
+				/bksx/bishe/admin/ResultInError.jsp
+			</result>
+		</action>
+	</package>
+
+	<package name="exportAsExcel" extends="struts-default">
+		<action name="exportSubstugui" class="exportAsExcelAction"
+			method="exportSubstugui">
+			<result type="stream">
+				<param name="contentType">
+					application/vnd.ms-excel
+				</param>
+				<param name="contentDisposition">
+					attachment;filename="xuantixinxi.xls"
+				</param>
+				<param name="inputName">substuguiDownloadFile</param>
+			</result>
+		</action>
+		<action name="exportEmptySubstugui" class="exportAsExcelAction"
+			method="exportEmptySubstugui">
+			<result type="stream">
+				<param name="contentType">
+					application/vnd.ms-excel
+				</param>
+				<param name="contentDisposition">
+					attachment;filename="example.xls"
+				</param>
+				<param name="inputName">
+					substuguiEmptyDownloadFile
+				</param>
+			</result>
+		</action>
+		<action name="exportAchieve" class="exportAsExcelAction"
+			method="exportAchieve">
+			<result type="stream">
+				<param name="contentType">
+					application/vnd.ms-excel
+				</param>
+				<param name="contentDisposition">
+					attachment;filename="BiYeSheChengJi.xls"
+				</param>
+				<param name="inputName">achieveDownloadFile</param>
+			</result>
+		</action>
+		<action name="exportEmptyAchieve" class="exportAsExcelAction"
+			method="exportEmptyAchieve">
+			<result type="stream">
+				<param name="contentType">
+					application/vnd.ms-excel
+				</param>
+				<param name="contentDisposition">
+					attachment;filename="example.xls"
+				</param>
+				<param name="inputName">achieveEmptyDownloadFile</param>
+			</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+
+
+	<!--注入 -->
+
+	<!--快速导航表相关配置 -->
+    
+	<!--向MhqxTabNavigationDAO中注入hibernateTemplate对象 -->
+	<bean id="MhqxTabNavigationDAO"
+		class="com.xdsc.dao.wzmh_system.impl.MhqxTabNavigationDAOImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+
+
+	<!--向MhqxTabNavigationManager中注入MhqxTabNavigationDAO对象 -->
+
+	<bean id="MhqxTabNavigationManager"
+		class="com.xdsc.service.wzmh_system.impl.MhqxTabNavigationManagerImpl">
+		<property name="mhqxTabNavigationDAO" ref="MhqxTabNavigationDAO" />
+	</bean>
+
+	<!--向NavigationAction中注入navigationManager对象 -->
+	<bean id="MhqxTabNavigationAction"
+		class="com.xdsc.action.wzmh_system.MhqxTabNavigationAction">
+		<property name="mhqxTabNavigationManager" ref="MhqxTabNavigationManager" />
+	</bean>
+
+
+	<!-- 信息表相关配置 -->
+	<!--向TabInformationDAO中注入hibernateTemplate对象 -->
+	<bean id="TabInformationDAO"
+		class="com.xdsc.dao.wzmh_system.impl.TabInformationDAOImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+
+
+	<!--向TabInformationManager中注入TabInformationDAO对象 -->
+
+	<bean id="TabInformationManager"
+		class="com.xdsc.service.wzmh_system.impl.TabInformationManagerImpl">
+		<property name="tabInformationDAO" ref="TabInformationDAO" />
+	</bean>
+	
+	<!--向TabInformationAction中注入TabInformationManager对象 -->
+	<bean id="TabInformationAction"
+		class="com.xdsc.action.wzmh_system.TabInformationAction">
+		<property name="tabInformationManager"
+			ref="TabInformationManager" />
+		<property name="menuManager" ref="MhqxTabMenuManager" />
+		<property name="picManager" ref="MhqxTabPictureManager" />
+		<property name="mhqxTabLinkManager" ref="MhqxTabLinkManager" />
+		<property name="navigationManager" ref="MhqxTabNavigationManager" />
+		
+	</bean>
+
+
+	<!-- 菜单表相关配置 -->
+	<!--向MhqxTabMenuDAO中注入hibernateTemplate对象-->
+	<bean id="MhqxTabMenuDAO"
+		class="com.xdsc.dao.wzmh_system.impl.MhqxTabMenuDAOImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+
+	<!--向MhqxTabMenuManager中注入MhqxTabMenuDAO对象-->
+
+	<bean id="MhqxTabMenuManager"
+		class="com.xdsc.service.wzmh_system.impl.MhqxTabMenuManagerImpl">
+		<property name="mhqxTabMenuDAO" ref="MhqxTabMenuDAO" />
+		<property name="tabInformationDAOImpl">
+			<ref bean="TabInformationDAO" />
+		</property>
+		<property name="mhqxTabFunctionDAOImpl">
+			<ref bean="HtglFunctionDao" />
+		</property>
+	</bean>
+
+	<!--向MhqxTabMenuAction中注入MhqxTabMenuManager对象-->
+	<bean id="MhqxTabMenuAction"
+		class="com.xdsc.action.wzmh_system.MhqxTabMenuAction">
+		<property name="menuManager" ref="MhqxTabMenuManager" />
+	</bean>
+	
+	
+   <!-- 友情链接表相关配置 -->
+	<!--向MhqxTabLinkDAO中注入hibernateTemplate对象-->
+	<bean id="MhqxTabLinkDAO"
+		class="com.xdsc.dao.wzmh_system.impl.MhqxTabLinkDAOImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+
+	<!--向MhqxTabLinkManager中注入MhqxTabLinkDAO对象-->
+
+	<bean id="MhqxTabLinkManager"
+		class="com.xdsc.service.wzmh_system.impl.MhqxTabLinkManagerImpl">
+		<property name="mhqxTabLinkDAO" ref="MhqxTabLinkDAO" />
+	</bean>
+
+	<!--向MhqxTabLinkAction中注入MhqxTabLinkManager对象-->
+	<bean id="MhqxTabLinkAction"
+		class="com.xdsc.action.wzmh_system.MhqxTabLinkAction">
+		<property name="mhqxTabLinkManager" ref="MhqxTabLinkManager" />
+	</bean>
+	<!-- 图片新闻表相关配置 -->
+     <!--向MhqxTabPictureDAO中注入hibernateTemplate对象-->
+     <bean id="MhqxTabPictureDAO"
+		class="com.xdsc.dao.wzmh_system.impl.MhqxTabPictureDAOImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+       <!--向MhqxTabPictureManager中注入MhqxTabPictureDAO对象-->
+	<bean id="MhqxTabPictureManager"
+		class="com.xdsc.service.wzmh_system.impl.MhqxTabPictureManagerImpl">
+		<property name="mhqxTabPictureDAO" ref="MhqxTabPictureDAO" />
+	</bean>
+	 <!--向MhqxTabPictureAction中注入MhqxTabPictureManager对象-->
+	<bean id="MhqxTabPictureAction"
+		class="com.xdsc.action.wzmh_system.MhqxTabPictureAction">
+		<property name="mhqxTabPictureManager" ref="MhqxTabPictureManager" />
+	</bean>
+
+</beans>

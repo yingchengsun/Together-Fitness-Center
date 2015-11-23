@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="yjssxCommon" namespace="/yjssxCommon" extends="struts-default">
+		<action name="CommonOperation" class="YjssxCommonOperationAction">
+			<result name="findStudentInfo">/7_yjssx_system/common/PostgraduateInfo.jsp</result>
+			<result name="findTutorInfo">/7_yjssx_system/common/TutorInfo.jsp</result>
+			<result name="findCompanyInfo">/7_yjssx_system/common/CompanyInfo.jsp</result>
+			<result name="deleteInfo" type="redirect">/yjssxAdmin/AdminReleaseFirstPageInfo!showInfo.action?type=${type}</result>
+			<result name="findInfoDetail">/7_yjssx_system/common/findInfoDetail.jsp</result>
+			<result name="findSubmitThesisDetail">/7_yjssx_system/common/SubmitThesisDetail.jsp</result>
+			<result name="findReturnThesisDetail">/7_yjssx_system/common/ReturnThesisDetail.jsp</result>
+		</action>
+		
+		<action name="CommonLogin" class="YjssxCommonLoginAction">
+			<result name="LoginSuccess">/7_yjssx_system/SelfMainPage.jsp</result>
+			<result name="adminLogin">/7_yjssx_system/yjssx_system_forAdmin.jsp</result>
+			<result name="studentPage">/7_yjssx_system/yjssx_system_forStu.jsp</result>
+			<result name="companyPage">/7_yjssx_system/yjssx_system_forCompany.jsp</result>
+			<result name="tutorPage">/7_yjssx_system/yjssx_system_forTutor.jsp</result>
+			<result name="loginFalse">/7_yjssx_system/LoginFalse.jsp</result>
+			<result name="LogOut" type="redirect">/yjssxCommon/YjssxFirstPage!showFirstPageInfo.action</result>
+		</action>
+		
+		<action name="YjssxFirstPage" class="YjssxFirstPageAction">
+			<result name="showFirstPageInfo">/7_yjssx_system/PracticingFirstPage.jsp</result>
+			<result name="showMoreInfo">/7_yjssx_system/common/showMoreInfo.jsp</result>
+			<result name="showInfoDetail">/7_yjssx_system/common/showFirstInfoDetail.jsp</result>
+		</action>
+	</package>
+<!-- *************************************/yjssxStudent******************************** -->	
+    <package name="yjssxStudent" extends="struts-default" namespace="/yjssxStudent">
+        <action name="PostgraudateSelfInfo" class="YjssxPostgraudateSelfInfoAction">
+        	<result name="findPostgraduateInfo">/7_yjssx_system/StudentManage/postgraduateSelfInfomation.jsp</result>
+        	<result name="CompanyNotConfirm">/7_yjssx_system/StudentManage/CompanyNotConfirmed.jsp</result>
+        	<result name="findCompanyInfo">/7_yjssx_system/StudentManage/CompanyInfomation.jsp</result>
+        	<result name="TutorNotConfirm">/7_yjssx_system/StudentManage/TutorNotConfirmed.jsp</result>
+        	<result name="findTutorInfo">/7_yjssx_system/StudentManage/tutorInfomation.jsp</result>
+        	<result name="preModifySelfInfo">/7_yjssx_system/StudentManage/postgraudteModifySelfInfo.jsp</result>
+        	<result name="ModifySelfInfo" type="redirect">/yjssxStudent/PostgraudateSelfInfo!findPostgraduateInfo.action</result>
+        </action>
+        
+        <action name="PostgraduateAllTutorInfoForSelect" class="YjssxPostgraduateAllTutorInfoForSelectAction">
+        	<result name="findAllTutorInfo">/7_yjssx_system/StudentManage/AllTutorInfomationForSelete.jsp</result>
+        	<result name="findTutorDetailInfo">/7_yjssx_system/StudentManage/TutorDetailInfo.jsp</result>
+        	<result name="allTutorInfo">/7_yjssx_system/StudentManage/tutorForSelect.jsp</result>
+        </action>
+        
+        <action name="PostgraduatePreSelectTutor" class="YjssxPostgraduatePreSelectTutorAction">
+        	<result name="tutorNotSelect">/7_yjssx_system/StudentManage/SelectTutor.jsp</result>
+        	<result name="preSelectTutor">/7_yjssx_system/StudentManage/tutorAlreadySelected.jsp</result>
+        	<result name="TutorHaveConfirmed">/7_yjssx_system/StudentManage/TutorHaveConfirmed.jsp</result>
+        	<result name="NoPowerToDoThisOption">/7_yjssx_system/StudentManage/NoPowerToDoThisOption.jsp</result>
+        </action>
+        
+
+        <action name="PostgraduateSelectTutor" class="YjssxPostgraduateSelectTutorAction">
+            <result name="StudentSelectTutorInfo">/7_yjssx_system/common/TutorSelectInfo.jsp</result>
+        	<result name="selectTutor" type="redirect">/yjssxStudent/PostgraduateSelectTutor!SelectedTutorInfo.action</result>
+        	<result name="SelectedTutorInfo">/7_yjssx_system/StudentManage/showSelectedTutorInfo.jsp</result>
+        	<result name="preUpdateTutorInfo">/7_yjssx_system/StudentManage/ModifySelectedTutor.jsp</result>
+        	<result name="updateTutorSelect" type="redirect">/yjssxStudent/PostgraduateSelectTutor!SelectedTutorInfo.action</result>
+        </action>
+        
+        <action name="PostgraduateZhaoPinInfo" class="YjssxPostgraduateZhaoPinInfoAction">
+        	<result name="showAllInfo">/7_yjssx_system/StudentManage/showAllZhaoPinInfo.jsp</result>
+        	<result name="showInfo">/7_yjssx_system/StudentManage/ShowZhaoPinInfo.jsp</result>
+        </action>
+        
+        <action name="PostgraduateUploadResume" class="YjssxPostgraduateUploadResumeAction">
+        	<param name="savePath">files/7yjssx_system/infoFile/uploadResume</param>
+        	<result name="uploadResume">/7_yjssx_system/StudentManage/UploadResumeSuccess.jsp</result>
+        </action>
+                  	
+    	<action name="PostgraduateYingPinInfo" class="YjssxPostgraduateYingPinInfoAction">
+    		<result name="ShowNotice">/7_yjssx_system/StudentManage/ShowYingPinNotice.jsp</result>
+    		<result name="noYingPinNotice">/7_yjssx_system/StudentManage/noYingPinNotice.jsp</result>
+    		<result name="showDetail">/7_yjssx_system/StudentManage/ShowYingPinNoticeDetail.jsp</result>
+    	</action>
+    	
+    	<action name="PostgraduateSubmitThesis" class="YjssxPostgraduateSubmitThesisAction">
+    		<param name="savePath">files/7yjssx_system/infoFile/Thesis</param>
+    		<result name="thesisAlreadySubmit">/7_yjssx_system/StudentManage/thesisAlreadySubmit.jsp</result>
+    		<result name="ThesisStuts">/7_yjssx_system/StudentManage/ThesisStatus.jsp</result>
+    		<result name="preUpdateThesis">/7_yjssx_system/StudentManage/ModifySubmitThesis.jsp</result>
+    		<result name="preSubmitThesis">/7_yjssx_system/StudentManage/SubmitThesis.jsp</result>
+    		<result name="submitThesis" type="redirect">/yjssxStudent/PostgraduateSubmitThesis!showDetailThesis.action?ThesisType=${ThesisType}</result>
+    		<result name="updateSubmitThesis" type="redirect">/yjssxStudent/PostgraduateSubmitThesis!showDetailThesis.action?ThesisType=${ThesisType}</result>
+    		<result name="showDetailSubmitThesis">/7_yjssx_system/StudentManage/showDetailSubmitThesis.jsp</result>
+    		<result name="tutorNotConfirm">/7_yjssx_system/StudentManage/TutorNotConfirmed.jsp</result>
+    		<result name="NoPowerToDoThisOption">/7_yjssx_system/StudentManage/NoPowerToDoThisOption.jsp</result>
+    	</action>
+    	
+    	<action name="PostgraduateReceiveThesis" class="YjssxPostgraduateReceiveThesisAction">
+    		<result name="findReturnThesis">/7_yjssx_system/StudentManage/ReturnThesis.jsp</result>
+    		<result name="thesisNotSubmit">/7_yjssx_system/StudentManage/thesisNotSubmit.jsp</result>
+    		<result name="theisNotReturn">/7_yjssx_system/StudentManage/theisNotReturn.jsp</result>
+    	</action>
+    	
+    	<action name="PostgraduateReceiveNotice" class="YjssxPostgraduateReceiveNoticeAction">
+    		<result name="findAllNotice">/7_yjssx_system/StudentManage/findDeferentNotice.jsp</result>
+    		<result name="showNoticeDetail">/7_yjssx_system/StudentManage/showNoticeDetail.jsp</result>
+    		<result name="noNoticeRightNow">/7_yjssx_system/StudentManage/noNoticeRightNow.jsp</result>
+    		<result name="deleteNotice" type="redirect">/yjssxStudent/PostgraduateReceiveNotice!findAllNotice.action</result>
+    	</action>
+    </package>
+    
+<!-- *************************************/yjssxCompany******************************** -->    
+    <package name="yjssxCompany" namespace="/yjssxCompany" extends="struts-default">
+    	<action name="CompanySelfInfo" class="YjssxCompanySelfInfoAction">
+    		<result name="findCompanyInfo">/7_yjssx_system/CompanyManage/CompanyInfomation.jsp</result>
+    		<result name="preModifyCompanyInfo">/7_yjssx_system/CompanyManage/ModifyCompanyInfomation.jsp</result>
+    	</action>
+    	
+    	<action name="CompanyModifySelfInfo" class="YjssxCompanyModifySelfInfoAction">
+    		<result name="modifyInfo" type="redirect">/yjssxCompany/CompanySelfInfo!findCompanyInfo.action</result>
+    	</action>
+    	
+    	<action name="CompanyReleaseZhaoPin" class="YjssxCompanyReleaseZhaoPinAction">
+    		<param name="savePath">files/7yjssx_system/infoFile/information</param>
+    		<result name="preRelease">/7_yjssx_system/CompanyManage/AllZhaoPinInfo.jsp</result>
+    		<result name="ReleaseInfo" type="redirect">/yjssxCompany/CompanyReleaseZhaoPin!preRelease.action</result>
+    		<result name="releaseInfomation">/7_yjssx_system/CompanyManage/ReleaseZhaoPinXinXi.jsp</result>
+    		<result name="NoPowerToDoThisOption">/7_yjssx_system/CompanyManage/NoPowerToDoThisOption.jsp</result>
+    	</action>
+    	
+    	<action name="CompanyZhaoPinOperation" class="YjssxCompanyZhaoPinOperationAction">
+    		<result name="showInfo">/7_yjssx_system/CompanyManage/ShowZhaoPinInfo.jsp</result>
+    		<result name="deleteInfo" type="redirect">/yjssxCompany/CompanyReleaseZhaoPin!preRelease.action</result>
+    		<result name="updateInfo">/7_yjssx_system/CompanyManage/ModifyZhaoPinXinXi.jsp</result>
+    		<result name="downFileSuccess" type="stream">
+				<param name="contentType">application/msword</param>
+				<param name="contentDisposition">filename=${fileName}</param>
+				<param name="inputName">downFile</param>
+				<param name="bufferSize">4096</param>
+			</result>
+			<result name="applyCompany">/7_yjssx_system/StudentManage/applyCompany.jsp</result>
+    	</action>
+    	
+    	<action name="CompanyModifyZhaoPin" class="YjssxCompanyModifyZhaoPinAction">
+    		<param name="savePath">files/7yjssx_system/infoFile/information</param>
+    		<result name="modifyInfo" type="redirect">/yjssxCompany/CompanyReleaseZhaoPin!preRelease.action</result>
+    	</action>
+    	
+    	<action name="CompanyCheckResume" class="YjssxCompanyCheckResumeAction">
+    		<result name="receiveResume">/7_yjssx_system/CompanyManage/ReceivedResume.jsp</result>
+    		<result name="showStuInfo">/7_yjssx_system/CompanyManage/ReceiveResumeShowStuInfo.jsp</result>
+    		<result name="deleteResume" type="redirect">/yjssxCompany/CompanyCheckResume!receiveResume.action</result>
+    		<result name="downFileSuccess" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">filename=${fileName}</param>
+				<param name="inputName">downFile</param>
+				<param name="bufferSize">4096</param>
+			</result>
+    	</action>
+    	
+    	<action name="CompanyNoticeToStudent" class="YjssxCompanyNoticeToStudentAction">
+    		<param name="savePath">files/7yjssx_system/infoFile/Notice</param>
+    		<result name="NoticeToStudent">/7_yjssx_system/CompanyManage/NoticeToStudent.jsp</result>
+    		<result name="saveNotice">/7_yjssx_system/CompanyManage/SendNoticeSuccess.jsp</result>
+    	</action>
+    	
+    	<action name="CompanyAcceptStu" class="YjssxCompanyAcceptStuAction">
+    		<result name="acceptStudent">/7_yjssx_system/CompanyManage/AcceptStudent.jsp</result>
+    		<result name="confirmToAccept" type="redirect">/yjssxCompany/CompanyAcceptStu!StudentAccepted.action</result>
+    		<result name="StudentAccepted">/7_yjssx_system/CompanyManage/confirmedStudent.jsp</result>
+    	</action>
+    	
+    	<action name="CompanySelectedStudent" class="YjssxCompanySelectedStudentAction">
+    		<param name="savePath">files/7yjssx_system/infoFile/Notice</param>
+    		<result name="findAllSelectedStu">/7_yjssx_system/CompanyManage/findAllSelectedStu.jsp</result>
+    		<result name="sendPracticeNotice">/7_yjssx_system/CompanyManage/sendPractceNotice.jsp</result>
+    		<result name="saveNotice">/7_yjssx_system/CompanyManage/SendNoticeSuccess.jsp</result>
+    	</action>
+    	
+    	<action name="CompanyReceiveNotice" class="YjssxCompanyReceiveNoticeAction">
+    		<result name="findAllNotice">/7_yjssx_system/CompanyManage/findAllNotice.jsp</result>
+    		<result name="showNoticeDetail">/7_yjssx_system/CompanyManage/showNoticeDetail.jsp</result>
+    		<result name="deleteNotice" type="redirect">/yjssxCompany/CompanyReceiveNotice!findAllNotice.action</result>
+    	</action>
+    
+    </package>
+<!-- *************************************/yjssxTutor******************************** -->        
+    <package name="yjssxTutor" extends="struts-default" namespace="/yjssxTutor">
+    	<action name="TutorSelfInfo" class="YjssxTutorSelfInfoAction">
+    		<result name="showTutorInfo">/7_yjssx_system/TutorManage/TutorSelfInfomation.jsp</result>
+    		<result name="preModifySelfInfo">/7_yjssx_system/TutorManage/ModifySelfInfomation.jsp</result>
+    		<result name="modifyselfInfo" type="redirect">/yjssxTutor/TutorSelfInfo!showTutorInfo.action</result>
+    	</action>
+    	
+    	<action name="TutorReceiveThesis" class="YjssxTutorReceiveThesisAction">
+    	    <param name="savePath">files/7yjssx_system/infoFile/Thesis</param>
+    		<result name="submitThesis">/7_yjssx_system/TutorManage/SubmitedThesis.jsp</result>
+    		<result name="SubmitThesisSearchByCondition">/7_yjssx_system/TutorManage/SubmitedThesis.jsp</result>
+    		<result name="showDetailThesisForReturn">/7_yjssx_system/TutorManage/showDetailThesisForReturn.jsp</result>
+    		<result name="showDetailThesisForSetStatus">/7_yjssx_system/TutorManage/showDetailThesisForSetStatus.jsp</result>
+    		<result name="ThesisNotSubmit">/7_yjssx_system/TutorManage/thesisNotSubmit.jsp</result>
+    		<result name="ReturnThesis" type="redirect">/yjssxTutor/TutorReceiveThesis!submitThesis.action?ThesisType=${ThesisType }</result>
+    		<result name="SetSubmitStatus" type="redirect">/yjssxTutor/TutorReceiveThesis!submitThesis.action?ThesisType=${ThesisType }</result>
+    		<result name="TutorReturnThesisStatus">/7_yjssx_system/TutorManage/TutorReturnedThesisStatus.jsp</result>
+    		<result name="ReturnedThesisStatusSearchByCondition">/7_yjssx_system/TutorManage/TutorReturnedThesisStatus.jsp</result>
+    		<result name="ReturnThesisStatusReason">/7_yjssx_system/TutorManage/ReturnedThesisStatusReason.jsp</result>
+    		<result name="NotRightTimeToReceiveThesis">/7_yjssx_system/TutorManage/NotRightTimeToReceiveThesis.jsp</result>
+    	</action>
+    	
+    	<action name="TutorNoticeTuStudent" class="YjssxTutorNoticeTuStudentAction">
+    		<param name="savePath">files/7yjssx_system/infoFile/Notice</param>
+    		<result name="NoticeToStudent">/7_yjssx_system/TutorManage/NoticeToStudent.jsp</result>
+    		<result name="saveNotice">/7_yjssx_system/CompanyManage/SendNoticeSuccess.jsp</result>
+    	</action>
+    	
+    	<action name="TutorReturnThesis" class="YjssxTutorReturnThesisAction">
+    		<param name="savePath">files/7yjssx_system/infoFile/Thesis</param>
+    		<result name="returnInfomation">/7_yjssx_system/TutorManage/returnInfomationSearch.jsp</result>
+    		<result name="submitedStudent">/7_yjssx_system/TutorManage/submitedStudent.jsp</result>
+    		<result name="returnThesis">/7_yjssx_system/TutorManage/returnThesis.jsp</result>
+    		<result name="uploadThesis" type="redirect">/yjssxTutor/TutorReturnThesis!thesisHaveReturned.action</result>
+    		<result name="thesisHaveReturned">/7_yjssx_system/TutorManage/thesisHaveReturned.jsp</result>
+    		<result name="showDetailThesis">/7_yjssx_system/TutorManage/showDetailRetThesis.jsp</result>
+    		<result name="thesisNotReturned">/7_yjssx_system/TutorManage/thesisNotReturned.jsp</result>
+    		<result name="allThesisHavaReturn">/7_yjssx_system/TutorManage/AllThesisHaveReturn.jsp</result>
+    		<result name="NoStudentHaveSubmit">/7_yjssx_system/TutorManage/NoStudentHaveSubmit.jsp</result>
+    		<result name="NotRightTimeToReceiveThesis">/7_yjssx_system/TutorManage/NotRightTimeToReceiveThesis.jsp</result>
+    		<result name="downFileSuccess" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">filename=${fileName}</param>
+				<param name="inputName">downFile</param>
+				<param name="bufferSize">4096</param>
+			</result>
+    	</action>
+    	
+    	<action name="TutorStuInfoForNotice" class="YjssxTutorStuInfoForNoticeAction">
+    		<result name="TutorsStuInfo">/7_yjssx_system/TutorManage/TutorStuInfoForNotice.jsp</result>
+    		<result name="AllStudentInfo">/7_yjssx_system/TutorManage/AllStudentInfo.jsp</result>
+    	</action>
+    	
+    	<action name="TutorReceiveStudent" class="YjssxTutorReceiveStudentAction">
+    		<result name="findAllDispachedStudent">/7_yjssx_system/TutorManage/AllDispachedStudentToTutor.jsp</result>
+    		<result name="confirmToAcceptStudent">/7_yjssx_system/TutorManage/confirmToAcceptStudent.jsp</result>
+    		<result name="confirmTOAccept" type="redirect">/yjssxTutor/TutorReceiveStudent!confirmToAcceptStudent.action</result>
+    		<result name="AdminNotDispachStudent">/7_yjssx_system/TutorManage/AdminNotDispachStudent.jsp</result>
+    		<result name="AllDispachedStudentHasConfirm">/7_yjssx_system/TutorManage/AllDispachedStudentHasConfirm.jsp</result>
+    	</action>
+    	
+    	<action name="TutorReceiveNotice" class="YjssxTutorReceiveNoticeAction">
+    		<result name="findAllNotice">/7_yjssx_system/TutorManage/findAllNotice.jsp</result>
+    		<result name="showNoticeDetail">/7_yjssx_system/TutorManage/showNoticeDetail.jsp</result>
+    		<result name="deleteNotice" type="redirect">/yjssxTutor/TutorReceiveNotice!findAllNotice.action</result>
+    	</action>
+    	
+    </package>
+ <!-- ******************************************/yjssxAdmin**************************************************** -->   
+    <package name="yjssxAdmin" extends="struts-default" namespace="/yjssxAdmin">
+    	<action name="AdminReleaseFirstPageInfo" class="YjssxAdminReleaseFirstPageInfoAction">
+    	    <param name="savePath">files/7yjssx_system/infoFile/information</param>
+    		<result name="showInfo">/7_yjssx_system/ManagerControl/AllFirstPageInfo.jsp</result>
+    		<result name="releaseInfo">/7_yjssx_system/ManagerControl/releaseInfo.jsp</result>
+    		<result name="saveInfo" type="redirect">/yjssxAdmin/AdminReleaseFirstPageInfo!showInfo.action?type=${infoType}</result>
+    	</action>
+    	
+    	<action name="AdminNoticeOperation" class="YjssxAdminNoticeOperationAction">
+    		<result name="showAllNotice">/7_yjssx_system/ManagerControl/showAllNotice.jsp</result>
+    		<result name="showNoticeDetail">/7_yjssx_system/ManagerControl/showNoticeDetail.jsp</result>
+    		<result name="deleteNotice" type="redirect">/yjssxAdmin/AdminNoticeOperation!showAllNotice.action</result>
+    	</action>
+    	
+    	<action name="AdminReleaseNotice" class="YjssxAdminReleaseNoticeAction">
+    		<param name="savePath">files/7yjssx_system/infoFile/Notice</param>
+    		<result name="adminNoticeToStudent">/7_yjssx_system/ManagerControl/adminNoticeToStudent.jsp</result>
+    		<result name="adminNoticeToTutor">/7_yjssx_system/ManagerControl/adminNoticeToTutor.jsp</result>
+    		<result name="adminNoticeToCompany">/7_yjssx_system/ManagerControl/adminNoticeToCompany.jsp</result>
+    		<result name="adminNoticeToAll">/7_yjssx_system/ManagerControl/NoticeTo.jsp</result>
+    		<result name="releaseNotice">/7_yjssx_system/ManagerControl/releaseNotice.jsp</result>
+			<result name="NoticeTo">/7_yjssx_system/ManagerControl/NoticeTo.jsp</result>
+			<result name="saveNotice" type="redirect">/yjssxAdmin/AdminNoticeOperation!showAllNotice.action</result>
+    	</action>
+    	
+    	<action name="AdminTutorInfoManage" class="YjssxAdminTutorInfoManageAction">
+    		<result name="findAllTutor">/7_yjssx_system/ManagerControl/findAllTutor.jsp</result>
+    		<result name="searchTutor">/7_yjssx_system/ManagerControl/findAllTutor.jsp</result>
+    		<result name="preAddNewTutor">/7_yjssx_system/ManagerControl/AddNewTutor.jsp</result>
+    		<result name="searchTeacher">/7_yjssx_system/ManagerControl/AddNewTutor.jsp</result>
+    		<result name="preAddNewTutorInfo">/7_yjssx_system/ManagerControl/addNewTutorInfo.jsp</result>
+    		<result name="deleteTutor" type="redirect">/yjssxAdmin/AdminTutorInfoManage!findAllTutor.action</result>
+    		<result name="addNewTutor" type="redirect">/yjssxAdmin/AdminTutorInfoManage!findAllTutor.action</result>
+    		<result name="addNewTutorInfo" type="redirect">/yjssxAdmin/AdminTutorInfoManage!findAllTutor.action</result>
+    	</action>
+    	
+    	<action name="AdminStudentInfoManage" class="YjssxAdminStudentInfoManageAction">
+    		<result name="preAddNewStudent">/7_yjssx_system/ManagerControl/AddNewStudent.jsp</result>
+    		<result name="addNewStudent" type="redirect">/yjssxAdmin/AdminStudentInfoManage!showAllPostgraudte.action</result>
+    		<result name="showAllPostgraudte">/7_yjssx_system/ManagerControl/showAllPostgraudte.jsp</result>
+    		<result name="studentSearch">/7_yjssx_system/ManagerControl/showAllPostgraudte.jsp</result>
+    		<result name="deleteStudent" type="redirect">/yjssxAdmin/AdminStudentInfoManage!showAllPostgraudte.action</result>
+    		<result name="studentAddTutorSearch">/7_yjssx_system/ManagerControl/studentAddTutorSearchReault.jsp</result>
+    		<result name="studentAddTutor">/7_yjssx_system/ManagerControl/studentAddTutor.jsp</result>
+    		<result name="confirmToAdd">/7_yjssx_system/ManagerControl/studentAddTutorSuccess.jsp</result>
+    		<result name="studentAddCompanySearch">/7_yjssx_system/ManagerControl/studentAddCompanySearchReault.jsp</result>
+    		<result name="studentAddCompany">/7_yjssx_system/ManagerControl/studentAddCompany.jsp</result>
+    		<result name="confirmToAddCom">/7_yjssx_system/ManagerControl/studentAddcompanySuccess.jsp</result>
+    	</action>
+    	
+    	<action name="AdminCompanyInfoManage" class="YjssxAdminCompanyInfoManageAction">
+    		<result name="findAllCompany">/7_yjssx_system/ManagerControl/findAllCompany.jsp</result>
+    		<result name="searchCompany">/7_yjssx_system/ManagerControl/findAllCompany.jsp</result>
+    		<result name="deleteCompany" type="redirect">/yjssxAdmin/AdminCompanyInfoManage!findAllCompany.action</result>
+    		<result name="preAddCompanyInfo">/7_yjssx_system/ManagerControl/AddCompanyInfo.jsp</result>
+    		<result name="AddCompanyInfo" type="redirect">/yjssxAdmin/AdminCompanyInfoManage!findAllCompany.action</result>
+    	</action>
+    	
+    	<action name="AdminThesisManage" class="YjssxAdminThesisManageAction">
+    		<result name="ThesisPreManage">/7_yjssx_system/ManagerControl/AdminThesisManage.jsp</result>
+    		<result name="ThesisHaveSumbit">/7_yjssx_system/ManagerControl/AdminThesisManageThesisHaveSubmit.jsp</result>
+    		<result name="ThesisNotSubmit">/7_yjssx_system/ManagerControl/AdminThesisManageThesisNotSubmit.jsp</result>
+    		<result name="ThesisReturnInformationSearch">/7_yjssx_system/ManagerControl/AdminThesisManageThesisReturnInfo.jsp</result>
+    		<result name="ReturnThesisStatusSearch">/7_yjssx_system/ManagerControl/AdminThesisManageThesisSetStatus.jsp</result>
+    		<result name="showDetailThesis">/7_yjssx_system/ManagerControl/AdminThesisManageThesisDetailSetStatus.jsp</result>
+    		<result name="SetSubmitStatus" type="redirect">/yjssxAdmin/AdminThesisManage!ReturnThesisStatusSearch.action?ThesisType=${ThesisType }</result>
+    	</action>
+    	
+    	
+    	
+    	<action name="AdminTutorSelectManage" class="YjssxAdminTutorSelectManageAction">
+    		<result name="preManage">/7_yjssx_system/ManagerControl/StudentSelectTutorManage.jsp</result>
+    		<result name="tutorHaveSelect">/7_yjssx_system/ManagerControl/StudentHaveSelectTutorSearchResult.jsp</result>
+    		<result name="tutorNotSelect">/7_yjssx_system/ManagerControl/StudentNotSelectTutorSearchResult.jsp</result>
+    		<result name="TutorConfirmInfoSearch">/7_yjssx_system/ManagerControl/TutorConfirmInfoSearchResult.jsp</result>
+    		<result name="SelectInfoWishSearch">/7_yjssx_system/ManagerControl/SelectInfoWishSearchResult.jsp</result>
+    		<result name="tutorSelectSearchByTutorName">/7_yjssx_system/ManagerControl/tutorSelectSearchByTutorNameResult.jsp</result>
+    	</action>
+    	
+    	<action name="AdminPractingZhaoPinManage" class="YjssxAdminPractingZhaoPinManageAction">
+    		<result name="preShowManage">/7_yjssx_system/ManagerControl/PracticingZhaoPinManage.jsp</result>
+    		<result name="searchStudent">/7_yjssx_system/ManagerControl/PracticingZhaoPinManage.jsp</result>
+    		<result name="preSearchForManage">/7_yjssx_system/ManagerControl/PracticingZhaoPinSearch.jsp</result>
+    		<result name="CompanyConfirmedSearch">/7_yjssx_system/ManagerControl/PracticingZhaoPinSearchResult.jsp</result>
+    		<result name="searchByCompanyName">/7_yjssx_system/ManagerControl/PractingZhaoPinSearchByComNameResult.jsp</result>
+    	</action>
+    	
+    	<action name="AdminTutorSelectDispach" class="YjssxAdminTutorSelectDispachAction">
+    		<result name="preDispachStudent">/7_yjssx_system/ManagerControl/DispachStudent.jsp</result>
+    		<result name="dispachSearchByTutorName">/7_yjssx_system/ManagerControl/DispachStudentToTutor.jsp</result>
+    		<result name="disDispachStudent">/7_yjssx_system/ManagerControl/DispachStudent.jsp</result>
+    		<result name="preConfirmAddStuToTutor">/7_yjssx_system/ManagerControl/ConfirmAddStudentToTutor.jsp</result>
+    		<result name="confirmAddStudentToTutor">/7_yjssx_system/ManagerControl/ConfirmAddStudentToTutorSearchResult.jsp</result>
+    		<result name="saveConfirmInfo">/7_yjssx_system/ManagerControl/ConfirmAddStudentToTutorSearchResult.jsp</result>
+    	</action>
+    	
+    	<action name="AdminSystemFunctionDeploy" class="YjssxAdminSystemFunctionDeployAction">
+    		<result name="preTutorSelectDeploy">/7_yjssx_system/ManagerControl/TutorSelectDepoly.jsp</result>
+    		<result name="TutorSelectOpenToAllStudent">/7_yjssx_system/ManagerControl/TutorSelectDepoly.jsp</result>
+    		<result name="TutorSelectCloseToAllStudent">/7_yjssx_system/ManagerControl/TutorSelectDepoly.jsp</result>
+    		<result name="CloseSbTutorSelect" type="redirect">/yjssxAdmin/AdminSystemFunctionDeploy!preTutorSelectDeploy.action</result>
+    		<result name="OpenSbTutorSelect" type="redirect">/yjssxAdmin/AdminSystemFunctionDeploy!preTutorSelectDeploy.action</result>
+    		<result name="CloseSbTutorSelectSearchResult">/7_yjssx_system/ManagerControl/CloseSbTutorSelect.jsp</result>
+    		<result name="OpenSbTutorSelectSearchResult">/7_yjssx_system/ManagerControl/OpenSbTutorSelect.jsp</result>
+    		<result name="preThesisSubmitDeploy">/7_yjssx_system/ManagerControl/ThesisSubmitDeploy.jsp</result>
+    		<result name="openThesisFunction" type="redirect">/yjssxAdmin/AdminSystemFunctionDeploy!ThesisSubmitDeployToAll.action?thesisType=${thesisType}</result>
+    		<result name="closeThesisFunction" type="redirect">/yjssxAdmin/AdminSystemFunctionDeploy!SummitThesisCloseToAllStudent.action?thesisType=${thesisType}</result>
+    		<result name="ThesisSubmitDeployToAll">/7_yjssx_system/ManagerControl/ThesisSubmitDeploy.jsp</result>
+    		<result name="SummitThesisCloseToAllStudent">/7_yjssx_system/ManagerControl/ThesisSubmitDeploy.jsp</result>
+    		<result name="CloseSbSubmitThesis" type="redirect">/yjssxAdmin/AdminSystemFunctionDeploy!preThesisSubmitDeploy.action</result>
+    		<result name="OpenSbSubmitThesis" type="redirect">/yjssxAdmin/AdminSystemFunctionDeploy!preThesisSubmitDeploy.action</result>
+    		<result name="CloseSbSubmitThesisSearchResult">/7_yjssx_system/ManagerControl/CloseSbSubmitThesis.jsp</result>
+    		<result name="OpenSbSubmitThesisSearchResult">/7_yjssx_system/ManagerControl/OpenSbSubmitThesis.jsp</result>
+    		<result name="preCompanyReleaseInfoDeploy">/7_yjssx_system/ManagerControl/CompanyReleaseInfoDeploy.jsp</result>
+    		<result name="CompanyReleaseInfoDeployToAll">/7_yjssx_system/ManagerControl/CompanyReleaseInfoDeploy.jsp</result>
+    		<result name="CompanyReleaseInfoCloseToAll">/7_yjssx_system/ManagerControl/CompanyReleaseInfoDeploy.jsp</result>
+    		<result name="CloseSmCompanyReleaseInfo" type="redirect">/yjssxAdmin/AdminSystemFunctionDeploy!preCompanyReleaseInfoDeploy.action</result>
+    		<result name="OpenSmCompanyReleaseInfo" type="redirect">/yjssxAdmin/AdminSystemFunctionDeploy!preCompanyReleaseInfoDeploy.action</result>
+    		<result name="CloseSmCompanyReleaseInfoSearchResult">/7_yjssx_system/ManagerControl/CloseSmCompanyReleaseInfo.jsp</result>
+    		<result name="OpenSmCompanyReleaseInfoSearchResult">/7_yjssx_system/ManagerControl/OpenSmCompanyReleaseInfo.jsp</result>
+    	</action>
+    	
+    	<action name="AdminManageZhaoPinInfo" class="YjssxAdminManageZhaoPinInfoAction">
+    		<result name="showInfo">/7_yjssx_system/ManagerControl/showZhaoPinInfo.jsp</result>
+    		<result name="releaseInfo">/7_yjssx_system/ManagerControl/showZhaoPinInfo.jsp</result>
+        </action>
+    	
+    </package>
+    
+
+</struts>

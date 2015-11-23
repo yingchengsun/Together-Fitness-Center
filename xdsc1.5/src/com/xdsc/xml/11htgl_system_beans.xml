@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+<!-- 通过hibernate.cfg.xml注入sessionFactory
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+	</bean>
+-->
+
+<!-- 事务管理
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+	<aop:config>
+		<aop:pointcut id="bussinessService"
+			expression="execution(public * com.xdsc.service.htgl_system.*.*(..))" />
+		<aop:advisor pointcut-ref="bussinessService"
+			advice-ref="txAdvice" />
+	</aop:config>
+
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="find*" propagation="REQUIRED" /> 
+			
+			<tx:method name="multiple*" propagation="REQUIRED" /> 
+			<tx:method name="update*" propagation="REQUIRED" /> 
+		</tx:attributes>
+	</tx:advice>
+	
+-->
+
+
+<!-- DAO注入  -->
+
+    <bean id="HtglRoleDao" class="com.xdsc.dao.htgl_system.impl.MhqxTabRoleDAOImpl">
+	    <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+	</bean>
+	
+	<bean id="HtglUserDao" class="com.xdsc.dao.htgl_system.impl.MhqxTabUserDAOImpl">
+	    <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+	</bean>
+	
+	<bean id="HtglUserRoleDao" class="com.xdsc.dao.htgl_system.impl.MhqxTabRoleUserDAOImpl">
+	    <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+	</bean>
+
+	<bean id="HtglFunctionDao" class="com.xdsc.dao.htgl_system.impl.MhqxTabFunctionDAOImpl">
+	    <property name="sessionFactory">
+	      <ref bean="sessionFactory"/>
+	    </property>
+	</bean>	
+	
+	<bean id="HtglModuleUserDao" class="com.xdsc.dao.htgl_system.impl.MhqxTabModuleuserDAOImpl">
+	    <property name="sessionFactory">
+	      <ref bean="sessionFactory"/>
+	    </property>
+	</bean>
+	
+	<bean id="HtglModuleDao" class="com.xdsc.dao.htgl_system.impl.MhqxTabModuleDAOImpl">
+	    <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+	</bean>	
+	
+	<bean id="HtglRoleFunctionDao" class="com.xdsc.dao.htgl_system.impl.MhqxTabRolefuctionDAOImpl">
+	    <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>	
+	</bean>
+	
+	<bean id="HtglRoleModuleDao" class="com.xdsc.dao.htgl_system.impl.MhqxTabRoleModuleDAOImpl">
+	    <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>	
+	</bean>
+	
+	<bean id="HtglUserFunctionDao" class="com.xdsc.dao.htgl_system.impl.MhqxTabUserfunctionDAOImpl">
+	    <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>		    
+	</bean>
+	
+	<bean id="HtglTabStudentsDAO"
+		class="com.xdsc.dao.htgl_system.impl.TabStudentsDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="HtglTabTeachersDAO"
+		class="com.xdsc.dao.htgl_system.impl.TabTeachersDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+<!-- service注入 -->
+	<bean id="HtglRoleManager" class="com.xdsc.service.htgl_system.impl.MhqxTabRoleManagerImpl">
+	   <property name="roledao">
+	     <ref bean="HtglRoleDao"/>
+	   </property>
+    </bean>
+    
+    <bean id="HtglUserManager" class="com.xdsc.service.htgl_system.impl.MhqxTabUserManagerImpl">
+ 	   <property name="userdao">
+	     <ref bean="HtglUserDao"/>
+	   </property>   
+    </bean>
+    
+    <bean id="HtglUserRoleManager" class="com.xdsc.service.htgl_system.impl.MhqxTabRoleUserManagerImpl">
+       <property name="roleuserdao">
+         <ref bean="HtglUserRoleDao"/>
+       </property>
+    </bean>
+
+    <bean id="HtglFunctionManager" class="com.xdsc.service.htgl_system.impl.MhqxTabFunctionManagerImpl">
+       <property name="functiondao">
+         <ref bean="HtglFunctionDao"/>
+       </property>
+    </bean>    
+ 
+    <bean id="HtglModuleManager" class="com.xdsc.service.htgl_system.impl.MhqxTabModuleManagerImpl">
+       <property name="moduledao">
+         <ref bean="HtglModuleDao"/>
+       </property>
+    </bean>   
+    
+    <bean id="HtglModuleUserManager" class="com.xdsc.service.htgl_system.impl.MhqxTabModuleuserManagerImpl">
+       <property name="moduleuserdao">
+         <ref bean="HtglModuleUserDao"/>
+       </property>
+    </bean>
+    
+    <bean id="HtglRoleFunctionManager" class="com.xdsc.service.htgl_system.impl.MhqxTabRolefunctionManagerImpl">
+       <property name="rolefunctiondao">
+         <ref bean="HtglRoleFunctionDao"/>
+       </property>
+    </bean>
+    
+    <bean id="HtglRoleModuleManager" class="com.xdsc.service.htgl_system.impl.MhqxTabRoleModuleManagerImpl">
+       <property name="rolemoduledao">
+         <ref bean="HtglRoleModuleDao"/>
+       </property>
+    </bean>
+
+    <bean id="HtglUserFunctionManager" class="com.xdsc.service.htgl_system.impl.MhqxTabUserfunctionManagerImpl">
+       <property name="userfunctiondao">
+          <ref bean="HtglUserFunctionDao"/>
+       </property>
+    </bean>
+    
+    <bean id="HtglTabStudentsManager"
+		class="com.xdsc.service.htgl_system.impl.TabStudentsManagerImpl">
+		<property name="tabStudentsDAO" ref="HtglTabStudentsDAO" />
+	</bean>
+	<bean id="HtglTabTeachersManager"
+		class="com.xdsc.service.htgl_system.impl.TabTeachersManagerImpl">
+		<property name="tabTeachersDAO" ref="HtglTabTeachersDAO" />
+	</bean>
+    
+<!-- Action注入 -->
+	<bean id="HtglRoleAction" class="com.xdsc.action.htgl_system.MhqxTabRoleAction">
+	      <property name="rolemanager">
+	        <ref bean="HtglRoleManager"/>
+	      </property>
+	      <property name="rolemodulemanager">
+             <ref bean="HtglRoleModuleManager"/>
+          </property>
+          <property name="rolefunctionmanager">
+             <ref bean="HtglRoleFunctionManager"/>
+          </property>
+          <property name="userfunctionmanager">
+             <ref bean="HtglUserFunctionManager"/>
+          </property>
+          <property name="moduleusermanager">
+            <ref bean="HtglModuleUserManager"/>
+          </property>
+          <property name="functionmanager">
+            <ref bean="HtglFunctionManager"/>
+         </property>
+         <property name="modulemanager">
+            <ref bean="HtglModuleManager"/>
+         </property>
+	</bean>
+	
+	<bean id="HtglUserAction" class="com.xdsc.action.htgl_system.MhqxTabUserAction" scope="prototype">
+	     <property name="usermanager">
+	        <ref bean="HtglUserManager"/>
+	     </property>
+	     <property name="userrolemanager">
+            <ref bean="HtglUserRoleManager"/>
+         </property>
+         <property name="rolefunctionmanager">
+             <ref bean="HtglRoleFunctionManager"/>
+         </property>
+         <property name="userfunctionmanager">
+             <ref bean="HtglUserFunctionManager"/>
+         </property>
+         <property name="usermodulemanager">
+            <ref bean="HtglModuleUserManager"/>
+         </property>
+         <property name="modulemanager">
+            <ref bean="HtglModuleManager"/>
+         </property>
+	</bean>
+
+    <bean id="HtglUserRoleAction" class="com.xdsc.action.htgl_system.MhqxTabUserRoleAction">
+         <property name="userrolemanager">
+            <ref bean="HtglUserRoleManager"/>
+         </property>
+         <property name="rolemanager">
+            <ref bean="HtglRoleManager"/>
+         </property>
+         <property name="usermanager">
+            <ref bean="HtglUserManager"/>
+         </property>
+         <property name="rolemodulemanager">
+             <ref bean="HtglRoleModuleManager"/>
+          </property>
+          <property name="rolefunctionmanager">
+             <ref bean="HtglRoleFunctionManager"/>
+         </property>
+         <property name="userfunctionmanager">
+             <ref bean="HtglUserFunctionManager"/>
+          </property>
+          <property name="usermodulemanager">
+            <ref bean="HtglModuleUserManager"/>
+         </property>
+         
+         <property name="studentmanager">
+            <ref bean="HtglTabStudentsManager"/>
+         </property>
+         <property name="teachermanager">
+            <ref bean="HtglTabTeachersManager"/>
+         </property>
+         <property name="parentsmanager">
+            <ref bean="xsglTabParentsManager"/>
+         </property>
+         
+    </bean>
+    
+    <bean id="HtglFunctionAction" class="com.xdsc.action.htgl_system.MhqxTabFunctionAction" scope="prototype">
+         <property name="functionmanager">
+            <ref bean="HtglFunctionManager"/>
+         </property>
+         <property name="modulemanager">
+            <ref bean="HtglModuleManager" />
+         </property>
+         <property name="rolemanager">
+            <ref bean="HtglRoleManager"/>
+         </property>
+    </bean>
+    
+    <bean id="HtglModuleAction" class="com.xdsc.action.htgl_system.MhqxTabModuleAction" scope="prototype">
+         <property name="modulemanager">
+            <ref bean="HtglModuleManager"/>
+         </property>
+         <property name="rolemanager">
+            <ref bean="HtglRoleManager"/>
+         </property>
+         <property name="userfunctionmanager">
+             <ref bean="HtglUserFunctionManager"/>
+          </property>
+          <property name="rolefunctionmanager">
+             <ref bean="HtglRoleFunctionManager"/>
+         </property>
+    </bean>
+    
+    <bean id="HtglModuleUserAction" class="com.xdsc.action.htgl_system.MhqxTabModuleuserAction">
+         <property name="usermanager">
+            <ref bean="HtglUserManager"/>
+         </property>
+         <property name="modulemanager">
+            <ref bean="HtglModuleManager"/>
+         </property>
+         <property name="moduleusermanager">
+            <ref bean="HtglModuleUserManager"/>
+         </property>
+         <property name="userfunctionmanager">
+             <ref bean="HtglUserFunctionManager"/>
+          </property>
+    </bean>
+    
+    <bean id="HtglRoleFunctionAction" class="com.xdsc.action.htgl_system.MhqxTabRolefunctionAction">
+         <property name="rolemanager">
+             <ref bean="HtglRoleManager"/>
+         </property>
+         <property name="rolefunctionmanager">
+             <ref bean="HtglRoleFunctionManager"/>
+         </property>
+         <property name="functionmanager">
+             <ref bean="HtglFunctionManager"/>
+         </property>
+         <property name="modulemanager">
+            <ref bean="HtglModuleManager"/>
+         </property>
+         <property name="userfunctionmanager">
+             <ref bean="HtglUserFunctionManager"/>
+          </property>
+          <property name="userrolemanager">
+            <ref bean="HtglUserRoleManager"/>
+         </property>
+    </bean>
+    
+    <bean name="HtglRoleModuleAction" class="com.xdsc.action.htgl_system.MhqxTabRoleModuleAction ">
+          <property name="rolemanager">
+             <ref bean="HtglRoleManager"/>
+          </property>
+          <property name="modulemanager">
+             <ref bean="HtglModuleManager"/>
+          </property>
+          <property name="rolemodulemanager">
+             <ref bean="HtglRoleModuleManager"/>
+          </property>
+          <property name="userrolemanager">
+            <ref bean="HtglUserRoleManager"/>
+         </property>
+          <property name="moduleusermanager">
+             <ref bean="HtglModuleUserManager" />
+          </property>
+
+    </bean>
+    
+    <bean name="HtglUserFunctionAction" class="com.xdsc.action.htgl_system.MhqxTabUserFunctionAction">
+          <property name="usermanager">
+             <ref bean="HtglUserManager"/>
+          </property>
+          <property name="functionmanager">
+             <ref bean="HtglFunctionManager"/>
+          </property>
+          <property name="userfunctionmanager">
+             <ref bean="HtglUserFunctionManager"/>
+          </property>
+          <property name="modulemanager">
+             <ref bean="HtglModuleManager"/>
+          </property>
+          <property name="rolemanager">
+             <ref bean="HtglRoleManager"/>
+          </property>
+          <property name="usermodulemanager">
+            <ref bean="HtglModuleUserManager"/>
+          </property>
+    </bean>
+    <bean name="HtglCheckLoginAction" class="com.xdsc.action.htgl_system.CheckLoginAction">
+
+          <property name="usermanager">
+          	<ref bean="HtglUserManager" />
+          </property>
+          <property name="userfunctionmanager">
+          	<ref bean="HtglUserFunctionManager" />
+          </property>
+          <property name="moduleusermanager">
+          	<ref bean="HtglModuleUserManager" />
+          </property>
+          <property name="functionmanager">
+          	<ref bean="HtglFunctionManager" />
+          </property>
+          <property name="tabStudentsManager"
+          	ref="bksxTabStudentsManager" />
+          <property name="tabTeachersManager"
+          	ref="bksxTabTeachersManager" />
+          <property name="bksxTabSubstuguiManager"
+          	ref="bksxTabSubstuguiManager" />
+          <property name="userrolemanager">
+          	<ref bean="HtglUserRoleManager" />
+          </property>
+           <property name="mailManagerDao">
+          	<ref bean="mailmanagerDao" />
+          </property>
+           <property name="basicInfoManager">
+          	<ref bean="MhqxGetBasicInfoManager" />
+          </property>
+              <property name="xsglTabParentsManager">
+          	<ref bean="xsglTabParentsManager" />
+          </property>
+          <property name="xsglTabTeachersManager">
+          	<ref bean="xsglTabTeachersManager" />
+          </property>
+           <property name="cssManagerImpl">
+          	<ref bean="MhqxCssManager" />
+          </property>        
+    </bean>
+	<bean id="NewNoticeAction" class="com.xdsc.util.NewNoticeAction">
+         <property name="systomNoticeService">
+            <ref bean="YjssxSystomNoticeService"/>
+         </property>
+          <property name="noticeToDaoImpl">
+            <ref bean="MhqxNoticeto"/>
+         </property>
+    </bean>
+
+</beans>

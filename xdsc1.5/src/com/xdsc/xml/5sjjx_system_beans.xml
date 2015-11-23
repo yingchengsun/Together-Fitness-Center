@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	
+
+	<!-- ********************************事务管理********************************-->
+	
+	
+  <!-- ********************************配置DAO********************************-->
+    
+	<bean id="sjjxTabEquipmentDAO"
+		class="com.xdsc.dao.sjjx_system.impl.SjjxTabEquipmentDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <bean id="sjjxTabEquipmentdetailDAO"
+		class="com.xdsc.dao.sjjx_system.impl.SjjxTabEquipmentdetailDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <bean id="sjjxTabEquipmenttypeDAO"
+		class="com.xdsc.dao.sjjx_system.impl.SjjxTabEquipmenttypeDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="sjjxTabLabDAO"
+		class="com.xdsc.dao.sjjx_system.impl.SjjxTabLabDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <bean id="sjjxTabCourselabDAO"
+         class="com.xdsc.dao.sjjx_system.impl.SjjxTabCourselabDAOImpl">
+         <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+        <bean id="sjjxTabCourseDAO"
+         class="com.xdsc.dao.sjjx_system.impl.SjjxTabCourseDAOImpl">
+         <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+    <bean id="sjjxTabTeachersDAO"
+         class="com.xdsc.dao.sjjx_system.impl.SjjxTabTeachersDAOImpl">
+         <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+    <bean id="sjjxTabClassesDAO"
+         class="com.xdsc.dao.sjjx_system.impl.SjjxTabClassesDAOImpl">
+         <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+    <bean id="sjjxTabDirectionDAO"
+         class="com.xdsc.dao.sjjx_system.impl.SjjxTabDirectionDAOImpl">
+         <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+    <bean id="sjjxTabGradeDAO"
+         class="com.xdsc.dao.sjjx_system.impl.SjjxTabGradeDAOImpl">
+         <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+    <bean id="sjjxTabInformationDAO"
+         class="com.xdsc.dao.sjjx_system.impl.SjjxTabInformationDAOImpl">
+         <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+	 <bean id="sjjxTabTeacherstotypeDAO"
+         class="com.xdsc.dao.sjjx_system.impl.SjjxTabTeacherstotypeDAOImpl">
+         <property name="sessionFactory" ref="sessionFactory"></property> 
+    </bean>
+	
+	
+	<!-- ********************************配置Service********************************-->
+	
+	<bean id="sjjxTabEquipmentManager"
+		class="com.xdsc.service.sjjx_system.impl.SjjxTabEquipmentManagerImpl">
+		<property name="sjjxTabEquipmentDAO" ref="sjjxTabEquipmentDAO" />
+	</bean>
+	<bean id="sjjxTabEquipmentdetailManager"
+		class="com.xdsc.service.sjjx_system.impl.SjjxTabEquipmentdetailManagerImpl">
+		<property name="sjjxTabEquipmentdetailDAO" ref="sjjxTabEquipmentdetailDAO" />
+	</bean>
+	<bean id="sjjxTabEquipmenttypeManager"
+		class="com.xdsc.service.sjjx_system.impl.SjjxTabEquipmenttypeManagerImpl">
+		<property name="sjjxTabEquipmenttypeDAO" ref="sjjxTabEquipmenttypeDAO" />
+	</bean>
+    <bean id="sjjxTabLabManager"
+		class="com.xdsc.service.sjjx_system.impl.SjjxTabLabManagerImpl">
+		<property name="sjjxTabLabDAO" ref="sjjxTabLabDAO" />
+	</bean>
+	<bean id="sjjxTabCourselabManager"
+	    class="com.xdsc.service.sjjx_system.impl.SjjxTabCourselabManagerImpl">
+	    <property name="sjjxTabCourselabDAO" ref="sjjxTabCourselabDAO"/>
+	 </bean>
+	 <bean id="sjjxTabCourseManager"
+	    class="com.xdsc.service.sjjx_system.impl.SjjxTabCourseManagerImpl">
+	    <property name="sjjxTabCourseDAO" ref="sjjxTabCourseDAO"/>
+	 </bean>
+	 <bean id="sjjxTabTeachersManager"
+	    class="com.xdsc.service.sjjx_system.impl.SjjxTabTeachersManagerImpl">
+	    <property name="sjjxTabTeachersDAO" ref="sjjxTabTeachersDAO"/>
+	 </bean>
+	 <bean id="sjjxTabClassesManager"
+	    class="com.xdsc.service.sjjx_system.impl.SjjxTabClassesManagerImpl">
+	    <property name="sjjxTabClassesDAO" ref="sjjxTabClassesDAO"/>
+	 </bean>
+	 <bean id="sjjxTabDirectionManager"
+	    class="com.xdsc.service.sjjx_system.impl.SjjxTabDirectionManagerImpl">
+	    <property name="sjjxTabDirectionDAO" ref="sjjxTabDirectionDAO"/>
+	 </bean>
+	 <bean id="sjjxTabGradeManager"
+	    class="com.xdsc.service.sjjx_system.impl.SjjxTabGradeManagerImpl">
+	    <property name="sjjxTabGradeDAO" ref="sjjxTabGradeDAO"/>
+	 </bean>
+	 <bean id="sjjxTabInformationManager"
+	    class="com.xdsc.service.sjjx_system.impl.SjjxTabInformationManagerImpl">
+	    <property name="sjjxTabInformationDAO" ref="sjjxTabInformationDAO"/>
+	 </bean>
+	 <bean id="sjjxTabTeacherstotypeManager"
+	    class="com.xdsc.service.sjjx_system.impl.SjjxTabTeacherstotypeManagerImpl">
+	    <property name="sjjxTabTeacherstotypeDAO" ref="sjjxTabTeacherstotypeDAO"/>
+	 </bean>
+	
+	
+	<!-- ********************************配置Action********************************-->
+	
+	<bean id="sjjxTabEquipmentAction"
+		class="com.xdsc.action.sjjx_system.SjjxTabEquipmentAction">
+		<property name="sjjxTabEquipmentManager" ref="sjjxTabEquipmentManager" />
+		<property name="sjjxTabEquipmenttypeManager" ref="sjjxTabEquipmenttypeManager"></property>
+		<property name="sjjxTabLabManager" ref="sjjxTabLabManager"></property>
+	</bean>
+		<bean id="sjjxTabEquipmentdetailAction"
+		class="com.xdsc.action.sjjx_system.SjjxTabEquipmentdetailAction">
+		<property name="sjjxTabEquipmentdetailManager" ref="sjjxTabEquipmentdetailManager" />
+		<property name="sjjxTabEquipmentManager" ref="sjjxTabEquipmentManager" />
+		<property name="sjjxTabLabManager" ref="sjjxTabLabManager"></property>
+	</bean>
+	<bean id="sjjxTabEquipmenttypeAction"
+		class="com.xdsc.action.sjjx_system.SjjxTabEquipmenttypeAction">
+		<property name="sjjxTabEquipmenttypeManager" ref="sjjxTabEquipmenttypeManager"></property>
+	</bean>
+	<bean id="sjjxTabLabAction"
+	      class="com.xdsc.action.sjjx_system.SjjxTabLabAction">
+	      <property name="sjjxTabLabManager" ref="sjjxTabLabManager"></property>
+	</bean>
+	<bean id="sjjxTabCourselabAction"
+	    class="com.xdsc.action.sjjx_system.SjjxTabCourselabAction">
+	    <property name="sjjxTabCourselabManager" ref="sjjxTabCourselabManager"></property>
+	    <property name="sjjxTabLabManager" ref="sjjxTabLabManager"></property>
+	    <property name="sjjxTabCourseManager" ref="sjjxTabCourseManager"></property>
+	    <property name="sjjxTabTeachersManager" ref="sjjxTabTeachersManager"></property>
+	    <property name="sjjxTabClassesManager" ref="sjjxTabClassesManager"></property>
+	    <property name="sjjxTabDirectionManager" ref="sjjxTabDirectionManager"></property>
+	    <property name="sjjxTabGradeManager" ref="sjjxTabGradeManager"></property>
+	    <property name="sjjxTabTeacherstotypeManager" ref="sjjxTabTeacherstotypeManager"></property>
+	    <property name="correspondingDeployManager" ref="CorrespondingDeployManager"></property>
+	 </bean>
+	
+	<bean id="sjjxTabInformationAction"
+	      class="com.xdsc.action.sjjx_system.SjjxTabInformationAction">
+	      <property name="sjjxTabInformationManager" ref="sjjxTabInformationManager"></property>
+	</bean>
+	
+	<bean id="uploadAction" class="com.xdsc.util.UploadAction">      
+	</bean>
+	<bean id="sjjxExcelInAction" class="com.xdsc.action.sjjx_system.SjjxExcelInAction">
+	      <property name="sjjxTabEquipmenttypeManager" ref="sjjxTabEquipmenttypeManager"></property>
+	      <property name="sjjxTabLabManager" ref="sjjxTabLabManager"></property>
+	      <property name="sjjxTabCourseManager" ref="sjjxTabCourseManager"></property>
+	      <property name="sjjxTabTeachersManager" ref="sjjxTabTeachersManager"></property>
+	      <property name="sjjxTabClassesManager" ref="sjjxTabClassesManager"></property>
+	      <property name="sjjxTabDirectionManager" ref="sjjxTabDirectionManager"></property>
+	      <property name="sjjxTabGradeManager" ref="sjjxTabGradeManager"></property>
+	      <property name="sjjxTabCourselabManager" ref="sjjxTabCourselabManager"></property>
+	      
+	</bean>
+	<bean id="sjjxDownloadAction" class="com.xdsc.action.sjjx_system.SjjxFileDownLoadAction">      
+	</bean>
+	<bean id="sjjxExportAsExcelAction" class="com.xdsc.action.sjjx_system.SjjxExportAsExcelAction"> 
+	      <property name="sjjxTabCourselabManager" ref="sjjxTabCourselabManager"></property>   
+	      <property name="sjjxTabEquipmentManager" ref="sjjxTabEquipmentManager"></property>  
+	</bean>
+</beans>

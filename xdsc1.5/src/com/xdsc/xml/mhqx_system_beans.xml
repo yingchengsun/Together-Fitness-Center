@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+
+	<!-- 通过hibernate.cfg.xml注入sessionFactory-->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+	</bean>
+
+
+	<!-- 事务管理-->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+<!-- DAO注入  -->
+<!--向DAO中注入sessionFactory对象 -->
+	<bean id="MhqxCssDao" class="com.xdsc.dao.wzmh_system.impl.CssDAOImpl">
+	    <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+	</bean>
+	
+	<bean id="MhqxAdminDao" class="com.xdsc.dao.wzmh_system.impl.AdminInfoDAOImpl">
+	    <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+	</bean>
+	<bean id="MhqxAssitDao" class="com.xdsc.dao.wzmh_system.impl.AssitInfoDAOImpl">
+	    <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+	</bean>
+
+	<bean id="MhqxUserDao" class="com.xdsc.dao.htgl_system.impl.MhqxTabUserDAOImpl">
+	    <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+	</bean>
+	
+	<bean name="MhqxEntityDao"
+		class="com.xdsc.dao.wzmh_system.impl.EntityDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="MhqxUserRoleDao"
+		class="com.xdsc.dao.htgl_system.impl.MhqxTabRoleUserDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="MhqxNoticeto" class="com.xdsc.dao.wzmh_system.impl.NoticeToDaoImpl">
+	    <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	    </property>
+	</bean>
+<!-- Service注入  -->
+<!--向MhqxUserManager中注入MhqxUserDao对象-->
+   <bean id="MhqxCssManager" class="com.xdsc.service.wzmh_system.impl.CssManagerImpl">
+ 	   <property name="cssdao">
+	     <ref bean="MhqxCssDao"/>
+	   </property>   
+    </bean>
+
+
+    <bean id="MhqxUserManager" class="com.xdsc.service.htgl_system.impl.MhqxTabUserManagerImpl">
+ 	   <property name="userdao">
+	     <ref bean="MhqxUserDao"/>
+	   </property>   
+    </bean>
+    <!--向MhqxRoleInfoManager中注入MhqxEntityDao对象-->
+	<bean id="MhqxRoleInfoManager"
+		class="com.xdsc.service.wzmh_system.impl.RoleInfoManagerImpl">
+		<property name="entityDAO">
+			<ref bean="MhqxEntityDao" />
+		</property>
+	</bean>
+	 <!--MhqxGetBasicInfoManager中注入MhqxEntityDao对象-->
+	<bean id="MhqxGetBasicInfoManager"
+		class="com.xdsc.service.wzmh_system.impl.GetBasicInfoManagerImpl">
+		<property name="entityDAO">
+			<ref bean="MhqxEntityDao" />
+		</property>
+	</bean>
+	<!--向MhqxUserRoleManager中注入MhqxUserRoleDao对象-->
+	<bean id="MhqxUserRoleManager" class="com.xdsc.service.htgl_system.impl.MhqxTabRoleUserManagerImpl">
+       <property name="roleuserdao">
+         <ref bean="MhqxUserRoleDao"/>
+       </property>
+    </bean>
+    <!--向MhqxEditRoleInfoManage中注入MhqxEntityDao对象-->
+    <bean id="MhqxEditRoleInfoManage" class="com.xdsc.service.wzmh_system.impl.EditRoleInfoManageImpl">
+       <property name="entityDAO">
+			<ref bean="MhqxEntityDao" />
+		</property>
+    </bean>
+<!-- Action注入  -->
+<!--向MhqxshowPIAction中注入MhqxRoleInfoManager,MhqxUserRoleManager,MhqxEditRoleInfoManage对象-->
+<bean id="MhqxshowPIAction"
+		class="com.xdsc.action.wzmh_system.ShowPIAction">
+		<property name="roleInfoManager">
+			<ref bean="MhqxRoleInfoManager" />
+		</property>
+		<property name="roleusermanager">
+			<ref bean="MhqxUserRoleManager" />
+		</property>
+		<property name="editRoleInfomanager">
+			<ref bean="MhqxEditRoleInfoManage" />
+		</property>
+	</bean>
+<!--向MhqxChangePasswordAction中注入MhqxUserManager对象-->
+	<bean id="MhqxChangePasswordAction"
+		class="com.xdsc.action.wzmh_system.ChangePasswordAction">
+		<property name="usermanager">
+			<ref bean="MhqxUserManager" />
+		</property>
+	</bean>
+	<!--向MhqxEditStudentInfoAction中注入GzfkStudentInfoDAO对象-->
+	<bean id="MhqxEditStudentInfoAction"
+		class="com.xdsc.action.wzmh_system.EditStudentInfoAction">
+		<property name="studentInfoDAO">
+			<ref bean="GzfkStudentInfoDAO" />
+		</property>
+	</bean>
+	<!--向MhqxEditAdminInfoAction中注入MhqxAdminDao对象-->
+	<bean id="MhqxEditAdminInfoAction"
+		class="com.xdsc.action.wzmh_system.EditAdminInfoAction">
+		<property name="adminInfoDAO">
+			<ref bean="MhqxAdminDao" />
+		</property>
+	</bean>
+	<!--向MhqxEditAssitInfoAction中注入MhqxAssitDao对象-->
+	<bean id="MhqxEditAssitInfoAction"
+		class="com.xdsc.action.wzmh_system.EditAssitInfoAction">
+		<property name="assitInfoDAO">
+			<ref bean="MhqxAssitDao" />
+		</property>
+	</bean>
+	<!--向MhqxEditCompanyInfoAction中注入YjssxCompanyInfoDao对象-->
+	<bean id="MhqxEditCompanyInfoAction"
+		class="com.xdsc.action.wzmh_system.EditCompanyInfoAction">
+		<property name="companyInfoDao">
+			<ref bean="YjssxCompanyInfoDao" />
+		</property>
+	</bean>
+	<!--向MhqxEditTeacherInfoAction"中注入GzfkTutorInfoDao对象-->
+	<bean id="MhqxEditTeacherInfoAction"
+		class="com.xdsc.action.wzmh_system.EditTeacherInfoAction">
+		<property name="tutorInfoDao">
+			<ref bean="GzfkTutorInfoDao" />
+		</property>
+	</bean>
+	<bean id="MhqxLoginOutAction"
+		class="com.xdsc.action.wzmh_system.LoginOutAction">
+	</bean>
+	<bean id="ChangeCssAction"
+		class="com.xdsc.action.wzmh_system.ChangeCss">
+		<property name="cssManagerImpl">
+			<ref bean="MhqxCssManager" />
+		</property>
+	</bean>
+
+<!--后台菜单维护的配置  -->
+	
+
+	
+	<bean id="MenuAction"
+		class="com.xdsc.action.wzmh_system.MenuAction">
+		<property name="mhqxTabMenuManagerImpl">
+			<ref bean="MhqxTabMenuManager" />
+		</property>
+	</bean>
+
+
+
+
+	
+</beans>

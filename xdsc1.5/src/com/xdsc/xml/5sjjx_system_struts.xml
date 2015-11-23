@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<!-- 对设备信息管理的相关配置 -->
+	<package name="EquipManage" extends="struts-default">
+		<action name="addEquipInfo" class="sjjxTabEquipmentAction" method="addEquipInfo">
+			<result name="success">/5_sjjx_system/EquipManage/AddEquipSuccess.jsp</result>
+			<result name="input">/5_sjjx_system/EquipManage/AddEquipFail.jsp</result>
+		</action>
+		<action name="deleteEquip" class="sjjxTabEquipmentAction" method="deleteEquip">
+			<result name="success" type="chain">showallEquip</result>
+		</action>
+		<action name="showallEquip" class="sjjxTabEquipmentAction" method="getEquipList">
+			<result name="success">/5_sjjx_system/EquipManage/LokEquip.jsp</result>
+		</action>
+		
+		<action name="showTypeEquip" class="sjjxTabEquipmentAction" method="showTypeEquip">
+			<result name="success">/5_sjjx_system/EquipManage/LokEquip.jsp</result>
+		</action>
+		<action name="showLabEquip" class="sjjxTabEquipmentAction" method="showLabEquip">
+			<result name="success">/5_sjjx_system/EquipManage/LokEquip.jsp</result>
+		</action>
+		<action name="showEquipDetailInfo" class="sjjxTabEquipmentAction" method="showEquipDetailInfo">
+			<result name="success">/5_sjjx_system/EquipManage/ShowEquipDetail.jsp</result>
+		</action>
+		<action name="showEquipType" class="sjjxTabEquipmenttypeAction" method="getEquipTypeList">
+			<result name="success">/5_sjjx_system/EquipManage/ShowEquipType.jsp</result>
+		</action>
+		<action name="previousEY" class="sjjxTabEquipmenttypeAction" method="previousEY">
+			<result name="success">/5_sjjx_system/EquipManage/ShowEquipType.jsp</result>
+		</action>
+		<action name="nextEY" class="sjjxTabEquipmenttypeAction" method="nextEY">
+			<result name="success">/5_sjjx_system/EquipManage/ShowEquipType.jsp</result>
+		</action>
+		<action name="addEquipType" class="sjjxTabEquipmenttypeAction" method="addEquipType">
+			<result name="success">/5_sjjx_system/EquipManage/AddEquipTypeSuccess.jsp</result>
+		</action>
+		<action name="deleteEquipType" class="sjjxTabEquipmenttypeAction" method="deleteEquipType">
+			<result name="success" type="chain">showEquipType</result>
+		</action>
+		<action name="addEquipDetailInfo" class="sjjxTabEquipmentdetailAction" method="addEquipDetailInfo">
+			<result name="success">/5_sjjx_system/EquipManage/AddEquipDetailSuccess.jsp</result>
+		</action>
+		<action name="preUpdateEquipDetail" class="sjjxTabEquipmentdetailAction" method="preUpdateEquipDetail">
+			<result>/5_sjjx_system/EquipManage/AddEquipDetailByHand1.jsp</result>
+		</action>
+		<action name="showEquipDetail" class="sjjxTabEquipmentdetailAction" method="showEquipDetail">
+			<result name="success">/5_sjjx_system/EquipManage/EquipDetail.jsp</result>
+		</action>
+		<action name="previousE" class="sjjxTabEquipmentAction" method="previousE">
+			<result name="success">/5_sjjx_system/EquipManage/LokEquip.jsp</result>
+		</action>
+		<action name="nextE" class="sjjxTabEquipmentAction" method="nextE">
+			<result name="success">/5_sjjx_system/EquipManage/LokEquip.jsp</result>
+		</action>
+	</package>
+
+	<!-- 对实验室信息管理的相关配置 -->
+	<package name="labManage" extends="struts-default">
+		<action name="addLabInfo" class="sjjxTabLabAction" method="addLabInfo">
+			<result name="success">/5_sjjx_system/CourseLab/AddLabSuccess.jsp</result>
+		</action>
+		<action name="showLab" class="sjjxTabLabAction" method="getLabList">
+			<result name="success">/5_sjjx_system/CourseLab/Lab.jsp</result>
+		</action>
+		<action name="showLab1" class="sjjxTabLabAction" method="getLabList">
+			<result name="success">/5_sjjx_system/CourseLab/Lab1.jsp</result>
+		</action>
+		<action name="showLab2" class="sjjxTabLabAction" method="showLab2">
+			<result name="success">/5_sjjx_system/CourseLab/LabDetail.jsp</result>
+		</action>
+		
+		<action name="preUpdateLab" class="sjjxTabLabAction" method="preUpdateLab">
+			<result name="success">/5_sjjx_system/CourseLab/ModifyLab.jsp</result>
+		</action>
+		<action name="updateLab" class="sjjxTabLabAction" method="updateLab">
+			<result name="success" type="chain">showLab</result>
+		</action>
+		<action name="deleteLab" class="sjjxTabLabAction" method="deleteLab">
+			<result name="success" type="chain">showLab</result>
+		</action>
+		<action name="previous0" class="sjjxTabLabAction" method="previous">
+			<result name="success">/5_sjjx_system/CourseLab/Lab.jsp</result>
+		</action>
+		<action name="next0" class="sjjxTabLabAction" method="next">
+			<result name="success">/5_sjjx_system/CourseLab/Lab.jsp</result>
+		</action>
+		<action name="previous1" class="sjjxTabLabAction" method="previous">
+			<result name="success">/5_sjjx_system/CourseLab/Lab1.jsp</result>
+		</action>
+		<action name="next1" class="sjjxTabLabAction" method="next">
+			<result name="success">/5_sjjx_system/CourseLab/Lab1.jsp</result>
+		</action>
+
+	</package>
+
+	<!-- 对实验安排信息管理的相关配置 -->
+	<package name="courselabManage" extends="struts-default">
+		<action name="addCourseLabInfo1" class="sjjxTabCourselabAction" method="addCourseLabInfo1">
+			<result name="success">/5_sjjx_system/CourseLab/AddCourseLabSuccess1.jsp</result>
+		    <result name="input">/5_sjjx_system/CourseLab/AddCourseLabFail.jsp</result>
+		    <result name="error">/5_sjjx_system/CourseLab/AddCourseLabFail4.jsp</result>
+		</action>
+		<action name="addCourseLabInfo" class="sjjxTabCourselabAction" method="addCourseLabInfo">
+			<result name="success">/5_sjjx_system/teacher/BookLabManage/AddCourseLabSuccess.jsp</result>
+			<result name="input">/5_sjjx_system/CourseLab/AddCourseLabFail3.jsp</result>
+			<result name="error">/5_sjjx_system/CourseLab/AddCourseLabFail3.jsp</result>
+		</action>
+		<action name="showAllCourseLab" class="sjjxTabCourselabAction" method="getCourseLabList">
+			<result name="success">/5_sjjx_system/CourseLab/CourseManage.jsp</result>
+		</action>
+		<action name="showAllCourseLab1" class="sjjxTabCourselabAction" method="getCourseLabList">
+			<result name="success">/5_sjjx_system/CourseLab/CourseManage1.jsp</result>
+		</action>
+		<action name="showCourseLab" class="sjjxTabCourselabAction" method="showCourseLab">
+			<result name="success">/5_sjjx_system/CourseLab/CourseManage.jsp</result>
+		</action>
+		<action name="showCourseLab1" class="sjjxTabCourselabAction" method="showCourseLab1">
+			<result name="success">/5_sjjx_system/CourseLab/CourseManage.jsp</result>
+		</action>
+		<action name="showCourseLab2" class="sjjxTabCourselabAction" method="showCourseLab2">
+			<result name="success">5_sjjx_system/CourseLab/CourseLab.jsp</result>
+		</action>
+		<action name="previousC2" class="sjjxTabCourselabAction" method="previousC">
+			<result name="success">/5_sjjx_system/CourseLab/CourseLab.jsp</result>
+		</action>
+		<action name="nextC2" class="sjjxTabCourselabAction" method="nextC">
+			<result name="success">/5_sjjx_system/CourseLab/CourseLab.jsp</result>
+		</action>
+		<action name="showCourseLab3" class="sjjxTabCourselabAction" method="showCourseLab3">
+			<result name="success">5_sjjx_system/CourseLab/CourseLabDetail.jsp</result>
+		</action>
+		<action name="showCourseLab4" class="sjjxTabCourselabAction" method="showCourseLab2">
+			<result name="success">5_sjjx_system/CourseLab/CourseLab1.jsp</result>
+		</action>
+		<action name="previousC3" class="sjjxTabCourselabAction" method="previousC">
+			<result name="success">/5_sjjx_system/CourseLab/CourseLab1.jsp</result>
+		</action>
+		<action name="nextC3" class="sjjxTabCourselabAction" method="nextC">
+			<result name="success">/5_sjjx_system/CourseLab/CourseLab1.jsp</result>
+		</action>
+		<action name="deleteCourseLab" class="sjjxTabCourselabAction" method="deleteCourseLab">
+			<result name="success" type="chain">showAllCourseLab</result>
+		</action>
+		<action name="deleteCourseLabAll" class="sjjxTabCourselabAction" method="deleteCourseLabAll">
+			<result name="success" type="chain">showAllCourseLab</result>
+		</action>
+		<action name="preUpdateCourseLab" class="sjjxTabCourselabAction" method="preUpdateCourseLab">
+			<result>/5_sjjx_system/CourseLab/ModifyCourseLab.jsp</result>
+		</action>
+		<action name="updateCourseLab" class="sjjxTabCourselabAction" method="updateCourseLab">
+			<result name="success" type="chain">showCourseLab3</result>
+			<result name="input">/5_sjjx_system/CourseLab/ModifyCourseLabFail.jsp</result>
+		</action>
+		<action name="showCourseLabT" class="sjjxTabCourselabAction" method="courseLabT">
+			<result name="success">/5_sjjx_system/teacher/BookLabManage/CourseLabT.jsp</result>
+		</action>
+		<action name="previousT" class="sjjxTabCourselabAction" method="previousT">
+			<result name="success">/5_sjjx_system/teacher/BookLabManage/CourseLabT.jsp</result>
+		</action>
+		<action name="nextT" class="sjjxTabCourselabAction" method="nextT">
+			<result name="success">/5_sjjx_system/teacher/BookLabManage/CourseLabT.jsp</result>
+		</action>
+		<action name="unique" class="sjjxTabCourselabAction" method="unique">
+			<result name="success">/5_sjjx_system/teacher/BookLabManage/BookLab1.jsp</result>
+		</action>
+        <action name="previousL" class="sjjxTabLabAction" method="previous">
+			<result name="success">/5_sjjx_system/teacher/BookLabManage/BookLab1.jsp</result>
+		</action>
+		<action name="nextL" class="sjjxTabLabAction" method="next">
+			<result name="success">/5_sjjx_system/teacher/BookLabManage/BookLab1.jsp</result>
+		</action>
+		<action name="previousC" class="sjjxTabCourselabAction" method="previousC">
+			<result name="success">/5_sjjx_system/CourseLab/CourseManage.jsp</result>
+		</action>
+		<action name="nextC" class="sjjxTabCourselabAction" method="nextC">
+			<result name="success">/5_sjjx_system/CourseLab/CourseManage.jsp</result>
+		</action>
+		<action name="previousC1" class="sjjxTabCourselabAction" method="previousC">
+			<result name="success">/5_sjjx_system/CourseLab/CourseManage1.jsp</result>
+		</action>
+		<action name="nextC1" class="sjjxTabCourselabAction" method="nextC">
+			<result name="success">/5_sjjx_system/CourseLab/CourseManage1.jsp</result>
+		</action>
+		<action name="search" class="sjjxTabCourselabAction" method="search">
+			<result name="success">/5_sjjx_system/teacher/BookLabManage/preBook.jsp</result>
+		</action>
+	</package>
+
+	<!-- 对通知公告信息管理的相关配置 -->
+	<package name="informationManage" extends="struts-default">
+		<action name="showInfoList" class="sjjxTabInformationAction" method="getTZGGInfoList">
+			<result name="success">/5_sjjx_system/information/ShowInfo.jsp</result>
+		</action>
+		<action name="addTZGGInfo" class="sjjxTabInformationAction" method="addTZGGInfo">
+			<param name="savePath">\newsFile\uploadFile\</param>
+			<result name="success">/5_sjjx_system/information/AddInfoSuccess.jsp</result>
+		</action>
+		<action name="showTZGGInfoList" class="sjjxTabInformationAction" method="getTZGGInfoList">
+			<result name="success">/5_sjjx_system/information/ShowInfo1.jsp</result>
+		</action>
+		<action name="addTZGGInfo1" class="sjjxTabInformationAction" method="addTZGGInfo1">
+			<param name="savePath">\newsFile\uploadFile\</param>
+			<result name="success">/5_sjjx_system/information/AddInfoSuccess1.jsp</result>
+		</action>
+		<action name="showTZGGInfoDetail" class="sjjxTabInformationAction" method="showTZGGInfoDetail">
+			<result name="success">/5_sjjx_system/information/ShowInfoDetail.jsp</result>
+		</action>
+		<action name="showTZGGInfoDetail1" class="sjjxTabInformationAction" method="showTZGGInfoDetail">
+			<result name="success">/5_sjjx_system/information/ShowInfoDetailA.jsp</result>
+		</action>
+		<action name="preUpdateTZGGInfo" class="sjjxTabInformationAction" method="preUpdateTZGGInfo">
+			<result name="success">/5_sjjx_system/information/ModifyInfoDetail.jsp</result>
+		</action>
+		<action name="updateTZGGInfo" class="sjjxTabInformationAction" method="updateTZGGInfo">
+			<result name="success">/5_sjjx_system/information/ModifySuccess.jsp</result>
+			<result name="input">/5_sjjx_system/information/ModifyFail.jsp</result>
+		</action>
+		<action name="deleteTZGGInfo" class="sjjxTabInformationAction" method="deleteTZGGInfo">
+			<result name="success" type="chain">showInfoList</result>
+		</action>
+		<action name="previousI" class="sjjxTabInformationAction" method="previousI">
+			<result name="success">/5_sjjx_system/information/ShowInfo.jsp</result>
+		</action>
+		<action name="nextI" class="sjjxTabInformationAction" method="nextI">
+			<result name="success">/5_sjjx_system/information/ShowInfo.jsp</result>
+		</action>
+		<action name="previousI1" class="sjjxTabInformationAction" method="previousI">
+			<result name="success">/5_sjjx_system/information/ShowInfo1.jsp</result>
+		</action>
+		<action name="nextI1" class="sjjxTabInformationAction" method="nextI">
+			<result name="success">/5_sjjx_system/information/ShowInfo1.jsp</result>
+		</action>
+
+	</package>
+
+	<!-- 文件上传配置 -->
+	<package name="uploadManage" extends="struts-default">
+		<action name="upload" class="uploadAction">
+		<!-- 限制上传文件类型仅为Excel -->
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">
+					application/vnd.ms-excel
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="defaultStack" />
+		</action>
+		<action name="excelInLab" class="sjjxExcelInAction" method="excelInLab">
+			<!--path指定的是上传文件的地址 -->
+			<param name="path">\files\5_sjjx_system\upfile</param>
+			<param name="tableName">sjjx_tab_lab</param>
+			<param name="tableValue">
+				f_LabName,f_LabLocation,f_RoomNumber,f_SeatNumber
+			</param>
+			<result name="success" type="chain">showLab</result>
+			<result name="error">/5_sjjx_system/CourseLab/AddLabFail.jsp</result>
+		</action>
+		<action name="excelInEquType" class="sjjxExcelInAction" method="excelInEquipType">
+		   <!--path指定的是上传文件的地址 -->
+			<param name="path">
+			\files\5_sjjx_system\upfile
+			</param>
+		    <param name="tableName">sjjx_tab_equipmenttype</param>
+		    <param name="tableValue">
+			    f_EquTypeName
+			</param>
+			<result name="success" type="chain">showEquipType</result> 
+			
+			<result name="error">/5_sjjx_system/EquipManage/AddEquipTypeFail.jsp</result> 
+		</action>
+		<action name="excelInEquipment" class="sjjxExcelInAction" method="excelInEquipment" >
+		   <!--path指定的是上传文件的地址 -->
+			<param name="path">
+			\files\5_sjjx_system\upfile
+			</param>
+		    <param name="tableName">sjjx_tab_equipment</param>
+		    <param name="tableValue">
+		       f_DepartmentId,f_DepartmentName,f_TypeId,f_EquTypeId,f_EquId,f_EquName,f_EquBrand,f_EquPattern,
+			   f_EquStandard,f_EquPrice,f_Country,f_CountryId,f_EquBuyCompany,f_ChuChangId,f_EquBuyTime,f_PersonL,
+			   f_FundsId,f_FundsName,f_UseDirectionId,f_UseDirectionName,f_KeYanId,f_DanJuId,f_PersonJ,f_RuKuTime,
+			   f_ShenHe,f_ZiChanType,f_GuoBiaoId,f_JiZhangRen,f_ShuRuTime,f_EquSourceId,f_EquSourceName,
+               f_ZheJiuId,f_ZheJiuName,f_CaiWuPingDan,f_BaoXiuDate,f_PersonS,f_LabId,f_Remarks
+			</param>
+			<result name="success" type="chain">showallEquip</result>
+			<result name="error">/5_sjjx_system/EquipManage/AddEquipFail2.jsp</result>
+		</action>
+		<action name="excelInCourseLab" class="sjjxExcelInAction" method="excelInCourseLab" >
+		   <!--path指定的是上传文件的地址 -->
+			<param name="path">
+			\files\5_sjjx_system\upfile
+			</param>
+		    <param name="tableName">sjjx_tab_courselab</param>
+		    <param name="tableValue">
+			    f_Date,f_CourseNumber,f_TeacherNumber,f_ClassNumber,f_LabId,f_ExactTime,f_GradeId,f_DirectionId
+			</param>
+			<result name="success" type="chain">showAllCourseLab</result>
+			<result name="error">/5_sjjx_system/CourseLab/AddCourseLabFail2.jsp</result>
+			<result name="input">/5_sjjx_system/CourseLab/AddCourseLabFail2.jsp</result>
+		</action>
+	</package>
+	
+	<package name="excelOut" extends="struts-default">
+	     <action name="exportCourseLab" class="sjjxExportAsExcelAction"
+			method="exportCourseLab">
+			<result type="stream">
+				<param name="contentType">
+					application/vnd.ms-excel
+				</param>
+				<param name="contentDisposition">
+					attachment;filename="kechengbiao.xls"
+				</param>
+				<param name="inputName">courseLabDownloadFile</param>
+			</result>
+		</action>
+		<action name="exportEquipment" class="sjjxExportAsExcelAction"
+			method="exportEquipment">
+			<result type="stream">
+				<param name="contentType">
+					application/vnd.ms-excel
+				</param>
+				<param name="contentDisposition">
+					attachment;filename="Equipment.xls"
+				</param>
+				<param name="inputName">equipmentDownloadFile</param>
+			</result>
+		</action>
+	</package>
+	<!--文件下载配置  -->
+	<package name="downLoadManage" extends="struts-default" >
+	       <action name="sjjxDownLoad" class="sjjxDownloadAction">
+				<!-- 指定inputPath -->
+    			<result name="success" type="stream">
+    				
+				<!-- inputName默认值是inputStream，如果action中用于读取下载文件内容的属性名
+					是inputStream，那么可以省略这个参数 -->
+				<param name="inputName">inputStream</param>
+				
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				
+				<param name="bufferSize">4096</param>
+    				
+    			</result>
+	       </action>
+	</package>
+</struts>
